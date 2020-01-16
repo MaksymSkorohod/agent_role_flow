@@ -20,34 +20,30 @@ public class SignInPage {
     private By signUpNow = By.cssSelector("[href='\\/agency']");
     private By emailErrorMessage = By.xpath("//*[@for='email']/../div[contains(@class, 'ValidationError-root')]");
     private By passwordErrorMessage = By.xpath("//*[@for='password']/../div[contains(@class, 'ValidationError-root')]");
+    private By profileLink = By.id("accountProfile");
 
 
     @Getter
     InputField EmailField = new InputField(emailField, "Email Address");
-
     @Getter
     TextField ErrorEmailField = new TextField(emailErrorMessage, "Error email message");
-
     @Getter
     InputField PasswordField = new InputField(passwordField, "Password");
-
     @Getter
     Button ViewPassword = new Button(viewPassword, "Show password");
-
     @Getter
     Button ForgotPassword = new Button(forgotPassword, "Forgot my password");
-
     @Getter
     TextField WrongPassword = new TextField(passwordErrorMessage, "Password does not match email address");
-
     @Getter
     Check RememberMe = new Check(agree, "Remember me on this computer");
-
     @Getter
     Button SignInButton = new Button(signInButton, "Sign In button");
-
     @Getter
     Button SignUpNow = new Button(signUpNow, "Sign up now link");
+    @Getter
+    Button UserIcon = new Button(profileLink, "Profile icon is present");
+
 
 
     @Step("Clear input field")
@@ -55,14 +51,12 @@ public class SignInPage {
         getEmailField().clear();
         return this;
     }
-
     @Step("Enter email into the 'Email Address field'")
     public SignInPage typeEmail(String email) {
         getEmailField().setText(email);
         System.out.println(email);
         return this;
     }
-
     @Step("The warning message for 'Email Address' field is shown")
     public void  checkEmailErrorText(String expected) {
         String actual = getErrorEmailField().getText();
@@ -70,7 +64,6 @@ public class SignInPage {
         System.out.println("expected is: " + expected);
         Assert.assertEquals(actual, expected);
     }
-
     @Step("Enter password into the 'Password' field")
     public SignInPage typePassword(String password) {
         getPasswordField().setText(password);

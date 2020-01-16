@@ -47,7 +47,7 @@ public class BaseElement {
     }
 
     public boolean isExists(long...timeout){
-        long currentTimeout = 5;
+        long currentTimeout = 7;
         if(timeout.length > 0) {
             currentTimeout = timeout[0];
         }

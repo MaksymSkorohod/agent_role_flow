@@ -14,10 +14,11 @@ public class SignInTests extends TestBase {
     public void signInTest() {
         new SignInPage()
                 .clearEmailField()
-                .typeEmail("toweriqautotest@gmail.com")
+                .typeEmail("toweriqautotest+1@gmail.com")
                 .typePassword("Vfrcbv82")
                 .setRememberMe(true)
-                .clickSignInButton();
+                .clickSignInButton()
+                .getUserIcon().isExists();
     }
 
     @Test(description = "Empty email field")

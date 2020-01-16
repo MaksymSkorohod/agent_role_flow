@@ -13,19 +13,17 @@ public class ProfilePreferencesTests extends TestBase {
                 .clickOnProfileIcon()
                 .clickOnProfilePreferencesLink()
                 .clickOnNotificationsTab()
-                .clickOnUnderwriterPage()
                 .clickOnProfileTab();
     }
 
-    @Test(description = "Set all notification for In-app")
+    @Test(description = "Overview of 'Notifications' page")
     public void setAllNotificationForInApp(){
         homePage
                 .getUserIcon().isExists();
         homePage
                 .clickOnProfileIcon()
                 .clickOnProfilePreferencesLink()
-                .clickOnNotificationsTab()
-                .checkNotificationsEmail(true);
+                .clickOnNotificationsTab();
     }
 
 }

@@ -14,10 +14,8 @@ public class ResetPasswordPage {
 
     @Getter
     InputField EmailFieldToRestore = new InputField(emailFieldToRestorePassword, "Email Address");
-
     @Getter
     Button ResetPasswordButton = new Button(resetPasswordButton, "Reset passwor button");
-
     @Getter
     Button BackToSignInPage = new Button(backToSignInPage, "Back to Sign In page button");
 

@@ -15,7 +15,7 @@ public class TestBase {
     public void signIn() {
         homePage = new SignInPage()
                 .clearEmailField()
-                .typeEmail("toweriqautotest@gmail.com")
+                .typeEmail("toweriqautotest+1@gmail.com")
                 .typePassword("Vfrcbv82")
                 .setRememberMe(true)
                 .clickSignInButton();
@@ -24,12 +24,12 @@ public class TestBase {
 
     @BeforeMethod
     public void openSignInPage(){
-        getDriver().get("https://qa.toweriq.io/");
+        getDriver().get("https://app.mytoweriq.com/sign-in");
     }
 
 
     @AfterMethod
     public void close(){
-        killDriver();
+      killDriver();
     }
 }

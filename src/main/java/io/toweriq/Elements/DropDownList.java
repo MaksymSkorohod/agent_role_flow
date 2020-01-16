@@ -13,6 +13,7 @@ public class DropDownList extends TextField {
     }
 
     public void SelectOption(String text){
+
         getSelectElement().selectByVisibleText(text);
     }
 
