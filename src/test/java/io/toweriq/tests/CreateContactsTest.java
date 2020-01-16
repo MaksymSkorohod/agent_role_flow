@@ -12,7 +12,6 @@ public class CreateContactsTest extends TestBase {
                 .clickOnClientsLink();
     }
 
-
     @Test(description = "Click on the 'Create contact' button")
     public void clickOnCreateContactButton(){
         homePage
