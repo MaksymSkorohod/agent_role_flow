@@ -1,6 +1,7 @@
 package io.toweriq.pageObjects;
 
 import io.qameta.allure.Step;
+import io.toweriq.DriverManager;
 import io.toweriq.Elements.Button;
 import lombok.Getter;
 import org.openqa.selenium.By;
@@ -39,23 +40,33 @@ public class HomePage {
 
     @Step("Click on the 'Clients' link from the sidebar menu")
     public ClientsPage clickOnClientsLink() {
+        DriverManager.WebDriverWait();
         getClientsLink().clickButton();
         return new ClientsPage();
     }
     @Step("Click on the 'Transactions' link from the sidebar menu")
-    public TransactionsPage clickOnTransactionsLink() {
+    public TransactionsPage clickOnTransactionsLink(){
+        DriverManager.WebDriverWait();
         getTransactionsLink().clickButton();
         return new TransactionsPage();
     }
     @Step("Click on the 'Contact' link from the sidebar menu")
     public ContactsPage clickOnContactsLink(){
+        DriverManager.WebDriverWait();
         getContactsLink().clickButton();
         return new ContactsPage();
     }
     @Step("Click on the 'Forms' link from the sidebar menu")
     public FormsPage clickOnFormsLink(){
+        DriverManager.WebDriverWait();
         getFormsLink().clickButton();
         return new FormsPage();
+    }
+    @Step("Click on the 'Policies' link from the sidebar menu")
+    public PoliciesPage clickOnPoliciesLink(){
+        DriverManager.WebDriverWait();
+        getPoliciesLink().clickButton();
+        return new PoliciesPage();
     }
     @Step("Click on the Users profile icon")
     public HomePage clickOnProfileIcon(){
@@ -64,11 +75,13 @@ public class HomePage {
     }
     @Step("Click on the 'Profile&Preferences' link")
     public ProfileAndPreferencesPage clickOnProfilePreferencesLink(){
+        DriverManager.WebDriverWait();
         getProfilePreferencesLink().clickButton();
         return new ProfileAndPreferencesPage();
     }
     @Step("Click on the 'Settings' button")
     public SettingsPage clickOnSettingsButton(){
+        DriverManager.WebDriverWait();
         getSettingsButton().clickButton();
         return new SettingsPage();
     }

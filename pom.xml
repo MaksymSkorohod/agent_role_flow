@@ -21,7 +21,6 @@
     <allure-testng.version>2.13.0</allure-testng.version>
   </properties>
 
-
   <dependencies>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>

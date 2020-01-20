@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 
 public class ContactsPage extends AbstractPage{
 
+    private By contactsPageHeader = By.xpath("//h1[text()='Contacts']");
     private By createContactButton = By.id("contactCreate");
     private By clientDropDownField = By.id("account");
     private By clientSearchField = By.id("select-account-search");
@@ -19,6 +20,8 @@ public class ContactsPage extends AbstractPage{
     private By selectSecondClientOption = By.xpath("//div[@id='account']/div[2]/div[data-for='option-item_1']");
     private By selectThirdClientOption = By.xpath("//div[@id='account']/div[2]/div[data-for='option-item_2']");
 
+    @Getter
+    TextField ContactsPageHeader = new TextField(contactsPageHeader,"Header of the 'Contacts' page");
     @Getter
     Button CreateContactButton = new Button(createContactButton,"Click on the 'Create account' button");
     @Getter

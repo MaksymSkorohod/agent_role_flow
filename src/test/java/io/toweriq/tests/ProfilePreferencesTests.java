@@ -25,6 +25,5 @@ public class ProfilePreferencesTests extends TestBase {
                 .clickOnProfilePreferencesLink()
                 .clickOnNotificationsTab();
     }
-
 }
 

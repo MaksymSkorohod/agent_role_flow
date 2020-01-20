@@ -6,64 +6,65 @@ public class SettingsTests extends TestBase {
 
     @Test(description = "Open Settings page and return back on the Home page")
     public void openSettingsPage(){
-        homePage
-                .getSettingsButton().isExists();
-        homePage
-                .clickOnSettingsButton()
-                .clickOnLogo();
+        fillSettingsPage();
+        settingsPage
+                .getSettingsPageHeader().isExists();
     }
 
-    @Test(description = "Open Brokerage information settings page")
+    @Test(description = "Open Brokerage information settings page")//
     public void openBrokerageInformationPage(){
-        homePage
-                .getSettingsButton().isExists();
-        homePage
-                .clickOnSettingsButton()
+        fillSettingsPage();
+        settingsPage
+                .getSettingsPageHeader().isExists();
+        settingsPage
                 .clickOnBrokerageInformation()
                 .clickBackLinkOnBrokeragePage();
     }
-    @Test(description = "Open Manage users settings page")
+
+    @Test(description = "Open Manage users settings page")//
     public void openManageUsersPage(){
-        homePage
-                .getSettingsButton().isExists();
-        homePage
-                .clickOnSettingsButton()
+        fillSettingsPage();
+        settingsPage
+                .getSettingsPageHeader().isExists();
+        settingsPage
                 .clickOnManageUsers()
                 .clickBackLinkOnManageUsersPage();
     }
-    @Test(description = "Open Carriers settings page")
+
+    @Test(description = "Open Carriers settings page")//
     public void openCarriersPage(){
-        homePage
-                .getSettingsButton().isExists();
-        homePage
-                .clickOnSettingsButton()
+        fillSettingsPage();
+        settingsPage
+                .getSettingsPageHeader().isExists();
+        settingsPage
                 .clickOnCarriersSettings()
                 .clickBackLinkOnCarrierPage();
     }
-    @Test(description = "Open Transaction settings page")
+
+    @Test(description = "Open Transactions settings page")
     public void openTransactionPage(){
-        homePage
-                .getSettingsButton().isExists();
-        homePage
-                .clickOnSettingsButton()
+        fillSettingsPage();
+        settingsPage
+                .getSettingsPageHeader().isExists();
+        settingsPage
                 .clickOnTransactionSettings()
                 .clickBackLinkOnTransactionSettingsPage();
     }
-    @Test(description = "Open Development portal settings page")
+    @Test(description = "Open Development portal settings page")//
     public void openDevelopmentPortalPage(){
-        homePage
-                .getSettingsButton().isExists();
-        homePage
-                .clickOnSettingsButton()
+        fillSettingsPage();
+        settingsPage
+                .getSettingsPageHeader().isExists();
+        settingsPage
                 .clickOnDevelopmentPortal()
                 .clickBackLinkOnDevelopmentPortalPage();
     }
-    @Test(description = "Open Business line settings page")
+    @Test(description = "Open Business line settings page")//
     public void openBusinessLinePage(){
-        homePage
-                .getSettingsButton().isExists();
-        homePage
-                .clickOnSettingsButton()
+        fillSettingsPage();
+        settingsPage
+                .getSettingsPageHeader().isExists();
+        settingsPage
                 .clickOnBusinessLineSettings()
                 .clickBackLinkOnDevelopmentPortalPage();
     }

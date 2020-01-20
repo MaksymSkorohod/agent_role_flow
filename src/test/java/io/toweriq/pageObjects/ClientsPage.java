@@ -1,6 +1,7 @@
 package io.toweriq.pageObjects;
 
 import io.qameta.allure.Step;
+import io.toweriq.DriverManager;
 import io.toweriq.Elements.Button;
 import io.toweriq.Elements.InputField;
 import io.toweriq.Elements.TextField;
@@ -10,8 +11,8 @@ import org.testng.Assert;
 
 public class ClientsPage extends AbstractPage {
 
+    private By clientsPageHeader = By.xpath("//h1[text()='Clients']");
     private By createNewClientButton = By.id("clientCreate");
-    private By clientsLabel = By.xpath("//h1[.='Clients']");
     private By clientNameField = By.id("clientName");
     private By websiteUrl = By.id("website");
     private By primaryContactFirstNameField = By.id("firstName");
@@ -23,11 +24,12 @@ public class ClientsPage extends AbstractPage {
     private By lastNameFieldIsRequired = By.xpath("//*[@id='new-client-form']/div[1]/div[2]/div[2]/div[text()='This field is required']");
     private By emailFieldIsRequired = By.xpath("//*[@id='new-client-form']/div[1]/div[2]/div[3]/div[text()='This field is required']");
     private By notValidContactEmailAddress = By.xpath("//*[@id='new-client-form']/div[1]/div[2]/div[3]/div[text()='Contact email is not valid']");
+    private By contactOnLandingPage = By.xpath("//h3[.='Primary contact']");
 
 
 
     @Getter
-    TextField ClientsLabelIsPresent = new TextField(clientsLabel, "The 'Clients' label is visible");
+    TextField ClientsPageHeader = new TextField(clientsPageHeader, "The 'Clients' label is visible");
     @Getter
     Button CreateNewClientButton = new Button(createNewClientButton, "Click on the 'New client' button");
     @Getter
@@ -52,6 +54,8 @@ public class ClientsPage extends AbstractPage {
     TextField TheEmailFieldIsRequired = new TextField(emailFieldIsRequired, "This field is required");
     @Getter
     TextField TheEmailIsNotValidForContact = new TextField(notValidContactEmailAddress, "Contact email is not valid");
+    @Getter
+    TextField ThePrimaryContactBlock = new TextField(contactOnLandingPage,"The client's landing page is visible");
 
 
     @Step("Click on the 'New client' button")

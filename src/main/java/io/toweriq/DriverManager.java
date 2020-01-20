@@ -7,6 +7,8 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
+
 public class DriverManager {
 
     private static ThreadLocal<WebDriver> threadDriver = new ThreadLocal();
@@ -45,6 +47,7 @@ public class DriverManager {
         getDriver().navigate().to(url);
     }
 
-    public void WebDriverWait(){
+    public static void WebDriverWait(){
+        threadDriver.get().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 }

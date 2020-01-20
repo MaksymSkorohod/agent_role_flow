@@ -6,21 +6,20 @@ import java.util.Random;
 
 public class CreateClientsTest extends TestBase {
 
+
     @Test(description = "Open 'Clients' page")
-    public void openAccountsPage(){
-        homePage
-                .getClientsLink().isExists();
-        homePage
-                .clickOnClientsLink()
-                .getCreateNewClientButton().isExists();
+    public void openClientsPage(){
+        fillClientsPage();
+        clientsPage
+                .getClientsPageHeader().isExists();
     }
 
     @Test(description = "Cancel creation of the new Client")
-    public void clickOnCancelButtonForCreatingClient() throws InterruptedException {
-        homePage
-                .getClientsLink().isExists();
-        homePage
-                .clickOnClientsLink()
+    public void clickOnCancelButtonForCreatingClient() {
+        fillClientsPage();
+        clientsPage
+                .getClientsPageHeader().isExists();
+        clientsPage
                 .clickOnClientCreateButton()
                 .typeClientName(generateClientName())
                 .typeUrl(generateClientUrl())
@@ -32,25 +31,26 @@ public class CreateClientsTest extends TestBase {
 
     @Test (description = "Creating new Client")
     public void createAccount(){
-        homePage
-                .getClientsLink().isExists();
-        homePage
-                .clickOnClientsLink()
+        fillClientsPage();
+        clientsPage
+                .getClientsPageHeader().isExists();
+        clientsPage
                 .clickOnClientCreateButton()
                 .typeClientName(generateClientName())
                 .typeUrl(generateClientUrl())
                 .typeFirsNameForPrimaryContact(generateContactFirstName())
                 .typeLastNameForPrimaryContact(generateContactLastName())
                 .typeEmailForPrimaryContact(generateContactEmail())
-                .clickOnCreateAndReturnButton();
+                .clickOnCreateAndReturnButton()
+                .getThePrimaryContactBlock().isExists();
     }
 
     @Test(description = "Check if warning message appear for not filling out the 'First name' field for the primary contact")
     public void warningMessagesForPrimaryContactFirstNameField(){
-        homePage
-                .getClientsLink().isExists();
-        homePage
-                .clickOnClientsLink()
+        fillClientsPage();
+        clientsPage
+                .getClientsPageHeader().isExists();
+        clientsPage
                 .clickOnClientCreateButton()
                 .typeClientName(generateClientName())
                 .typeUrl(generateClientUrl())
@@ -62,10 +62,10 @@ public class CreateClientsTest extends TestBase {
 
     @Test(description = "Check if warning message appear for not filling out the 'Last name' field for the primary contact")
     public void warningMessagesForPrimaryContactLastNameField(){
-        homePage
-                .getClientsLink().isExists();
-        homePage
-                .clickOnClientsLink()
+        fillClientsPage();
+        clientsPage
+                .getClientsPageHeader().isExists();
+        clientsPage
                 .clickOnClientCreateButton()
                 .typeClientName(generateClientName())
                 .typeUrl(generateClientUrl())
@@ -77,10 +77,10 @@ public class CreateClientsTest extends TestBase {
 
     @Test(description = "Check if warning message appear for not filling out the 'Email' field for the primary contact")
     public void warningMessagesForPrimaryContactEmailField(){
-        homePage
-                .getClientsLink().isExists();
-        homePage
-                .clickOnClientsLink()
+        fillClientsPage();
+        clientsPage
+                .getClientsPageHeader().isExists();
+        clientsPage
                 .clickOnClientCreateButton()
                 .typeClientName(generateClientName())
                 .typeUrl(generateClientUrl())
@@ -92,10 +92,10 @@ public class CreateClientsTest extends TestBase {
 
     @Test(description = "Check if error message appear for not valid email address for the primary contact")
     public void errorMessagesForPrimaryContactEmailField(){
-        homePage
-                .getClientsLink().isExists();
-        homePage
-                .clickOnClientsLink()
+        fillClientsPage();
+        clientsPage
+                .getClientsPageHeader().isExists();
+        clientsPage
                 .clickOnClientCreateButton()
                 .typeClientName(generateClientName())
                 .typeUrl(generateClientUrl())

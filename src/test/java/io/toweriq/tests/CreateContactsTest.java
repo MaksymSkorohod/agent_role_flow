@@ -6,18 +6,16 @@ public class CreateContactsTest extends TestBase {
 
     @Test(description = "Open 'Contacts' page")
     public void openContactsPage(){
-        homePage
-                .getClientsLink().isExists();
-        homePage
-                .clickOnClientsLink();
+        fillContactsPage();
+        contactsPage
+                .getContactsPageHeader().isExists();
     }
-
     @Test(description = "Click on the 'Create contact' button")
     public void clickOnCreateContactButton(){
-        homePage
-                .getContactsLink().isExists();
-        homePage
-                .clickOnContactsLink()
+        fillContactsPage();
+        contactsPage
+                .getContactsPageHeader();
+        contactsPage
                 .clickOnCreateContactButton()
                 .clickOnClientDropDownField();
     }
