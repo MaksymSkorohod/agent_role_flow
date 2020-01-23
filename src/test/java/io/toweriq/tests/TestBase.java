@@ -2,12 +2,16 @@ package io.toweriq.tests;
 
 import io.toweriq.DriverManager;
 import io.toweriq.pageObjects.*;
+import io.toweriq.utils.TestListener;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 
 import static io.toweriq.DriverManager.getDriver;
 import static io.toweriq.DriverManager.killDriver;
 
+
+@Listeners({TestListener.class})
 public class TestBase {
 
     protected HomePage homePage;
@@ -21,7 +25,7 @@ public class TestBase {
 
     @BeforeMethod
     public void openSignInPage() {
-        getDriver().get("https://app.mytoweriq.com/sign-in");
+        getDriver().get("https://qa.toweriq.io/sign-in");
     }
 
     @BeforeMethod

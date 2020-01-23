@@ -12,7 +12,7 @@ public class CreateTransactionsTests extends TestBase {
                 .getTransactionsPageHeader().isExists();
     }
 
-    @Test(description = "Click on 'New transaction' button and select 'Start workflow' option")
+    @Test(description = "Click on 'New transaction' button")
     public void clickOnNewTransactionButton() {
         fillTransactionPage();
         transactionPage
@@ -22,7 +22,7 @@ public class CreateTransactionsTests extends TestBase {
         }
 
 
-    @Test(description = "Choose 'Start Workflow' option")
+    @Test(description = "Click on 'New transaction' button and choose 'Start workflow' option")
     public void chooseStartWorkflowOption(){
         fillTransactionPage();
         transactionPage
@@ -32,7 +32,7 @@ public class CreateTransactionsTests extends TestBase {
                 .clickStartWorkflowButton();
     }
 
-    @Test(description = "Choose 'Select forms' option")
+    @Test(description = "Click on 'New transaction' button and choose 'Select forms' option")
     public void chooseSelectFormsOption(){
         fillTransactionPage();
         transactionPage

@@ -18,7 +18,7 @@ public class ClientsPage extends AbstractPage {
     private By primaryContactFirstNameField = By.id("firstName");
     private By primaryContactLastNameField = By.id("lastName");
     private By primaryContactEmailField = By.id("email");
-    private By createAndReturnButton = By.id("create-client-button-confirm");
+    private By createAndReturnButton = By.id("create-contact-button-confirm");
     private By closeButton = By.cssSelector("div#account-dialog-title svg[role='img'] > path");
     private By firstNameFieldIsRequired = By.xpath("//*[@id='new-client-form']/div[1]/div[2]/div[1]/div[text()='This field is required']");
     private By lastNameFieldIsRequired = By.xpath("//*[@id='new-client-form']/div[1]/div[2]/div[2]/div[text()='This field is required']");
@@ -94,6 +94,7 @@ public class ClientsPage extends AbstractPage {
     }
     @Step("Click on the 'Create and return' button")
     public ClientsPage clickOnCreateAndReturnButton(){
+        DriverManager.WebDriverWait();
         getCreateAndReturnButton().clickButton();
         return this;
     }

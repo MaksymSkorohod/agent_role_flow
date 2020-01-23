@@ -1,6 +1,7 @@
 package io.toweriq.pageObjects;
 
 import io.qameta.allure.Step;
+import io.toweriq.DriverManager;
 import io.toweriq.Elements.Button;
 import io.toweriq.Elements.Check;
 import io.toweriq.Elements.TextField;
@@ -11,7 +12,7 @@ public class NotificationPage extends AbstractPage{
 
     private By profileTab = By.id("transactionTabProfile");
     private By underwritersTab = By.id("transactionTabUnderwriters");
-    private By allNotificationsInAppCheckBox = By.xpath("/html//input[@id='inapp']");
+    private By allNotificationsInAppCheckBox = By.id("inapp");
     private By allNotificationsInEmailCheckBox = By.id("email");
     private By saveNotificationChanges = By.id("save-changes-button");
     private By discardNotificationChanges = By.id("discard-changes-button");
@@ -23,9 +24,9 @@ public class NotificationPage extends AbstractPage{
     @Getter
     Button ClickOnUnderwriterTab = new Button(underwritersTab, "Click on the 'Underwriter' tab");
     @Getter
-    Check SetAllNotificationsInApp = new Check(allNotificationsInAppCheckBox, "Setting all notifications for In-app");
+    Button SetAllNotificationsInApp = new Button(allNotificationsInAppCheckBox, "Setting all notifications for In-app");
     @Getter
-    Check SetAllNotificationsEmail = new Check(allNotificationsInEmailCheckBox, "Setting all notifications for Email");
+    Button SetAllNotificationsEmail = new Button(allNotificationsInEmailCheckBox, "Setting all notifications for Email");
     @Getter
     Button SaveChangesForNotifications = new Button(saveNotificationChanges, "Click on 'Save' button to save changes for notifications");
     @Getter
@@ -38,36 +39,19 @@ public class NotificationPage extends AbstractPage{
     @Step("Click on the 'Profile' tab")
     public ProfileAndPreferencesPage clickOnProfileTab(){
         getClickOnProfileTab().clickButton();
+        DriverManager.WebDriverWait();
         return new ProfileAndPreferencesPage();
     }
-    @Step("Click on the 'Underwriters' tab")
-    public UnderwritersPage clickOnUnderwriterPage(){
-        getClickOnUnderwriterTab().clickButton();
-        return new UnderwritersPage();
-    }
-    @Step("Summary header is visible")
-    public NotificationPage summaryTextForNotifications(){
-        getSummaryHeaderIsShown().getText();
-        System.out.println(getSummaryHeaderIsShown());
-        return this;
-    }
-
     @Step("Setting all notifications for In-app")
-    public NotificationPage checkNotificationsInApp(boolean to){
-        if (to) {
-            getSetAllNotificationsInApp().select();
-        } else {
-            getSetAllNotificationsInApp().unSelect();
-        }
+    public NotificationPage clickOnInappForAll(){
+        DriverManager.WebDriverWait();
+        getSetAllNotificationsInApp().clickButton();
         return this;
     }
     @Step("Setting all notifications for Email")
-    public NotificationPage checkNotificationsEmail(boolean to){
-        if (to) {
-            getSetAllNotificationsEmail().select();
-        } else {
-            getSetAllNotificationsEmail().unSelect();
-        }
+    public NotificationPage clickOnEmailForAll(){
+        DriverManager.WebDriverWait();
+        getSetAllNotificationsEmail().clickButton();
         return this;
     }
     @Step("Click on 'Save' to save changes for notifications")

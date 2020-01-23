@@ -1,6 +1,7 @@
 package io.toweriq.pageObjects;
 
 import io.qameta.allure.Step;
+import io.toweriq.DriverManager;
 import io.toweriq.Elements.Button;
 import lombok.Getter;
 import org.openqa.selenium.By;
@@ -36,6 +37,7 @@ public class ProfileAndPreferencesPage extends AbstractPage {
     @Step("Click on the 'Notifications' tab")
     public NotificationPage clickOnNotificationsTab(){
         getClickOnNotificationsTab().clickButton();
+        DriverManager.WebDriverWait();
         return new NotificationPage();
     }
     @Step("Click on the 'Underwriters' tab")

@@ -10,7 +10,7 @@ public class SignInTests extends TestBase {
     public void signIn(){
         homePage = new HomePage();
     }
-    @Test(description = "Successful Sign In")
+    @Test(priority = 0, description = "Successful Sign In")
     public void signInTest() {
         new SignInPage()
                 .clearEmailField()
@@ -47,7 +47,7 @@ public class SignInTests extends TestBase {
     public void wrongPassword() throws InterruptedException {
         new SignInPage()
                 .clearEmailField()
-                .typeEmail("toweriqautotest@gmail.com")
+                .typeEmail("toweriqautotest+1@gmail.com")
                 .typePassword("Vfrcbv19821111111")
                 .setRememberMe(true)
                 .clickWithWrongCredentials()
