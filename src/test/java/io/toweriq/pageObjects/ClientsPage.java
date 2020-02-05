@@ -25,6 +25,8 @@ public class ClientsPage extends AbstractPage {
     private By emailFieldIsRequired = By.xpath("//*[@id='new-client-form']/div[1]/div[2]/div[3]/div[text()='This field is required']");
     private By notValidContactEmailAddress = By.xpath("//*[@id='new-client-form']/div[1]/div[2]/div[3]/div[text()='Contact email is not valid']");
     private By contactOnLandingPage = By.xpath("//h3[.='Primary contact']");
+    private By clientsTable = By.id("accounts-table");
+    private By firstRowInClientsTable = By.xpath("//table[@id='accounts-table']//tr[1]//td[1]");
 
 
 
@@ -56,6 +58,8 @@ public class ClientsPage extends AbstractPage {
     TextField TheEmailIsNotValidForContact = new TextField(notValidContactEmailAddress, "Contact email is not valid");
     @Getter
     TextField ThePrimaryContactBlock = new TextField(contactOnLandingPage,"The client's landing page is visible");
+    @Getter
+    Button ClickOnFirstClientInTable = new Button(firstRowInClientsTable, "Selecting the third option from 'Client' drop-down field");
 
 
     @Step("Click on the 'New client' button")

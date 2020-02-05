@@ -3,7 +3,7 @@ package io.toweriq.tests;
 import io.toweriq.pageObjects.TransactionsPage;
 import org.testng.annotations.Test;
 
-public class CreateTransactionsTests extends TestBase {
+public class TransactionsTests extends TestBase {
 
     @Test(description = "Open 'Transactions' page")
     public void openTransactionsPage(){
@@ -40,6 +40,13 @@ public class CreateTransactionsTests extends TestBase {
         transactionPage
                 .clickOnNewTransactionButton()
                 .clickSelectFormsButton();
+    }
+
+    @Test(description = "Open the transaction's landing page")
+    public void openTransactionLandingPage(){
+        fillTransactionPage();
+        transactionPage
+                .clickOnFirstTransaction();
     }
 }
 

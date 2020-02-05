@@ -63,10 +63,14 @@ public class TestBase {
         contactsPage = homePage
                 .clickOnContactsLink();
     }
-
-
-    @AfterMethod
-    public void close(){
-      killDriver();
+    protected void fillFormsPage(){
+        formsPage = homePage
+                .clickOnFormsLink();
     }
+
+
+//    @AfterMethod
+//    public void close(){
+//      killDriver();
+//    }
 }
