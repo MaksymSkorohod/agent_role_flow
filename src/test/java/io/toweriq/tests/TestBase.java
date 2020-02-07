@@ -37,7 +37,6 @@ public class TestBase {
                 .typePassword("Vfrcbv82")
                 .setRememberMe(true)
                 .clickSignInButton();
-
     }
 
     protected void fillSettingsPage(){

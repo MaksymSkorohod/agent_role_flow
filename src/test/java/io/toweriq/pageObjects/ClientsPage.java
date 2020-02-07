@@ -2,9 +2,7 @@ package io.toweriq.pageObjects;
 
 import io.qameta.allure.Step;
 import io.toweriq.DriverManager;
-import io.toweriq.Elements.Button;
-import io.toweriq.Elements.InputField;
-import io.toweriq.Elements.TextField;
+import io.toweriq.Elements.*;
 import lombok.Getter;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -26,32 +24,35 @@ public class ClientsPage extends AbstractPage {
     private By notValidContactEmailAddress = By.xpath("//*[@id='new-client-form']/div[1]/div[2]/div[3]/div[text()='Contact email is not valid']");
     private By contactOnLandingPage = By.xpath("//h3[.='Primary contact']");
     private By clientsTable = By.id("accounts-table");
+    private By clientNameInTable = By.xpath("//table[@id='accounts-table']/tbody/tr[1]/td[1]/div/a");
     private By firstRowInClientsTable = By.xpath("//table[@id='accounts-table']//tr[1]//td[1]");
-
-
+    private By clientLandingPageHeader = By.xpath("//div[@id='root']//h1");
+    private By clientEditButton = By.id("accountEdit");
+    private By editClientDialogWindow = By.xpath("//div[@role='presentation']/div[@role='document']/div[@role='dialog']");
+    private By closeClientEditMode = By.xpath("//div[@id='account-dialog-title']//button[@type='button']");
 
     @Getter
     TextField ClientsPageHeader = new TextField(clientsPageHeader, "The 'Clients' label is visible");
     @Getter
-    Button CreateNewClientButton = new Button(createNewClientButton, "Click on the 'New client' button");
+    Button CreateNewClientButton = new Button(createNewClientButton, "The 'New client' button");
     @Getter
-    InputField ClientNameField = new InputField(clientNameField, "Client name");
+    InputField ClientNameField = new InputField(clientNameField, "The 'Client name' field");
     @Getter
-    InputField AccountWebsite = new InputField(websiteUrl, "Website URL");
+    InputField AccountWebsite = new InputField(websiteUrl, "The 'Website URL' field");
     @Getter
-    InputField PrimaryContactFirstName = new InputField(primaryContactFirstNameField, "First name");
+    InputField PrimaryContactFirstName = new InputField(primaryContactFirstNameField, "The 'First name' field");
     @Getter
-    InputField PrimaryContactLastNameField = new InputField(primaryContactLastNameField,"Last name");
+    InputField PrimaryContactLastNameField = new InputField(primaryContactLastNameField,"The 'Last name' field");
     @Getter
-    InputField PrimaryContactEmailField =new InputField(primaryContactEmailField, "Email");
+    InputField PrimaryContactEmailField =new InputField(primaryContactEmailField, "The 'Email' field");
     @Getter
-    Button CreateAndReturnButton = new Button(createAndReturnButton,"Click on the 'Create and return' button");
+    Button CreateAndReturnButton = new Button(createAndReturnButton,"The 'Create and return' button");
     @Getter
-    Button CloseNewClientWindowButton = new Button(closeButton, "Click on 'X' button to close 'New Client' window");
+    Button CloseNewClientWindowButton = new Button(closeButton, "The 'X' button to close 'New Client' window");
     @Getter
-    TextField TheFirstNameFieldIsRequired = new TextField(firstNameFieldIsRequired, "This field is required");
+    TextField TheFirstNameFieldIsRequired = new TextField(firstNameFieldIsRequired, "Message 'This field is required' for the 'First name' field");
     @Getter
-    TextField TheLastNameFieldIsRequired = new TextField(lastNameFieldIsRequired, "This field is required");
+    TextField TheLastNameFieldIsRequired = new TextField(lastNameFieldIsRequired, "Message 'This field is required' for the 'Last name' field");
     @Getter
     TextField TheEmailFieldIsRequired = new TextField(emailFieldIsRequired, "This field is required");
     @Getter
@@ -60,7 +61,16 @@ public class ClientsPage extends AbstractPage {
     TextField ThePrimaryContactBlock = new TextField(contactOnLandingPage,"The client's landing page is visible");
     @Getter
     Button ClickOnFirstClientInTable = new Button(firstRowInClientsTable, "Selecting the third option from 'Client' drop-down field");
-
+    @Getter
+    Link ClientNameInTable = new Link(clientNameInTable,"Click on the client name from the table");
+    @Getter
+    TextField ClientLandingPageHeader = new TextField(clientLandingPageHeader,"Landing page hearer of the selected client");
+    @Getter
+    Button EditClientButton = new Button(clientEditButton,"The 'Edit client' button");
+    @Getter
+    Button CloseClientEditMode = new Button(closeClientEditMode,"The 'X' button to close 'Edit client' window");
+    @Getter
+    DialogContainer EditClientDialogWindow = new DialogContainer(editClientDialogWindow,"The 'Edit client' window");
 
     @Step("Click on the 'New client' button")
     public ClientsPage clickOnClientCreateButton(){
@@ -135,4 +145,21 @@ public class ClientsPage extends AbstractPage {
         System.out.println("expected is: " + expected);
         Assert.assertEquals(actual, expected);
     }
+    @Step("Click on the client name from the table")
+    public ClientsPage clickOnClientFromTable(){
+        getClientNameInTable().clickLink();
+        return this;
+    }
+    @Step("Click on the 'Edit client' button from the client landing page")
+    public ClientsPage clickOnEditClientButton(){
+        getEditClientButton().clickButton();
+        return  this;
+    }
+    @Step("Click on the 'X' button to close 'Edit client' window")
+    public ClientsPage clickOnXButton(){
+        DriverManager.WebDriverWait();
+        getCloseClientEditMode().clickButton();
+        return this;
+    }
+
 }

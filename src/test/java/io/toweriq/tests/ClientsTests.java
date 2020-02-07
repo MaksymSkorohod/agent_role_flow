@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 import java.util.Random;
 
-public class CreateClientsTest extends TestBase {
+public class ClientsTests extends TestBase {
 
 
     @Test(description = "Open 'Clients' page")
@@ -104,6 +104,26 @@ public class CreateClientsTest extends TestBase {
                 .typeEmailForPrimaryContact("chitauriwarriormail.com")
                 .clickOnCreateAndReturnButton()
                 .checkEmailErrorMessage("Contact email is not valid");
+    }
+    @Test(description = "Open the Client's landing page")
+    public void openClientLandingPage(){
+        fillClientsPage();
+        clientsPage
+                .getClientsPageHeader().isExists();
+        clientsPage
+                .clickOnClientFromTable()
+                .getClientLandingPageHeader().isExists();
+    }
+    @Test(description = "Open 'Edit' mode from the client landing page")
+    public void openEditModeForClient(){
+        fillClientsPage();
+        clientsPage
+                .getClientsPageHeader().isExists();
+        clientsPage
+                .clickOnClientFromTable()
+                .clickOnEditClientButton()
+                .clickOnXButton()
+                .getEditClientDialogWindow().isEnable();
     }
 
     private String generateClientName() {

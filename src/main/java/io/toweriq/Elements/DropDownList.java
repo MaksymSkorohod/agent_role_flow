@@ -7,7 +7,6 @@ public class DropDownList extends TextField {
     public DropDownList(By locator, String description) {
         super(locator, description);
     }
-
     public void select(int id){
         getSelectElement().selectByIndex(id);
     }

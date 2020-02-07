@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 import java.util.Random;
 
-public class CreateContactsTest extends TestBase {
+public class ContactsTests extends TestBase {
 
     @Test(description = "Open 'Contacts' page")
     public void openContactsPage(){
@@ -96,6 +96,29 @@ public class CreateContactsTest extends TestBase {
                 .clickOnCreateClientLink()
                 .clickBackToContact()
                 .clickToCloseCreateContactModal();
+    }
+    @Test(description = "Open contact's landing page")
+    public void openContactLandingPage(){
+        fillContactsPage();
+        contactsPage
+                .getContactsPageHeader().isExists();
+        contactsPage
+                .clickOnContactLinkName()
+                .contactHeaderText();
+    }
+
+    @Test(description = "Editing contacts information")
+    public void editContactInformation(){
+        fillContactsPage();
+        contactsPage
+                .getContactsPageHeader().isExists();
+        contactsPage
+                .clickOnContactLinkName()
+                .clickOnEditContactButton()
+                .getEnterContactPhoneNumber().clear();
+        contactsPage
+                .clearPhoneField()
+                .cancelUpdateContact();
     }
 
 

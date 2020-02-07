@@ -29,6 +29,12 @@ public class ContactsPage extends AbstractPage{
     private By createClientButton = By.id("create-client-button-confirm");
     private By cancelCreateClientButton = By.id("create-client-button-cancel");
     private By backToContactLink = By.xpath("//div[@id='client-dialog-title']/p");
+    private By contactTable = By.id("contacts-table");
+    private By contactNameInTable = By.xpath("//table[@id='contacts-table']/tbody/tr[1]/td[1]/div/a");
+    private By contactLandingPageHeader = By.xpath("//div[@id='root']//h1");
+    private By editContactButton = By.id("contactLandingEdit");
+    private By updateContactButton = By.id("update-account-button-confirm");
+    private By cancelUpdateContactButton = By.id("update-account-button-cancel");
 
 
     @Getter
@@ -73,6 +79,18 @@ public class ContactsPage extends AbstractPage{
     Button CreateClientButton = new Button(createClientButton, "Click on the 'Create and return' button");
     @Getter
     Button CancelCreateClientButton = new Button(cancelCreateClientButton, "Click on the 'Cancel' button");
+    @Getter
+    Table ContactsPageTable = new Table(contactTable,"The table of the contacts");
+    @Getter
+    Link ContactNameInTable = new Link(contactNameInTable,"The first contact in the table");
+    @Getter
+    TextField ContactLandingPageHeader = new TextField(contactLandingPageHeader, "Hearer of the contact landing page");
+    @Getter
+    Button EditContactButton = new Button(editContactButton,"Click on the 'Edit contact' button");
+    @Getter
+    Button UpdateContactButton = new Button(updateContactButton,"Click on the 'Update' button");
+    @Getter
+    Button CancelUpdateContactButton = new Button(cancelUpdateContactButton, "Click on the 'Cancel' button to cancel contact's update");
 
 
     @Step("Click on the 'Create contact' button")
@@ -123,6 +141,7 @@ public class ContactsPage extends AbstractPage{
     }
     @Step("Enter phone number of the contact")
     public ContactsPage typePhoneNumberOfContact(String phone){
+        DriverManager.WebDriverWait();
         getEnterContactPhoneNumber().setText(phone);
         System.out.println(phone);
         return this;
@@ -167,6 +186,41 @@ public class ContactsPage extends AbstractPage{
     @Step("Click on 'Back to contact' link")
     public ContactsPage clickCreateClientButton(){
         getCreateClientButton().clickButton();
+        return this;
+    }
+    @Step("Click on the contact link in the table")
+    public ContactsPage clickOnContactLinkName(){
+        DriverManager.WebDriverWait();
+        getContactNameInTable().clickLink();
+        return this;
+    }
+    @Step("Get header text of the contact's landing page")
+    public ContactsPage contactHeaderText(){
+        DriverManager.WebDriverWait();
+        getContactLandingPageHeader().getText();
+        System.out.println();
+        return this;
+    }
+    @Step("Click on the 'Edit contact' button")
+    public ContactsPage clickOnEditContactButton(){
+        DriverManager.WebDriverWait();
+        getEditContactButton().clickButton();
+        return this;
+    }
+    @Step("Click on the 'Update' button")
+    public ContactsPage clickUpdateContactButton(){
+        getUpdateContactButton().clickButton();
+        return this;
+    }
+    @Step("Click on the 'Cancel' button to cancel contact's update")
+    public ContactsPage cancelUpdateContact(){
+        getCancelUpdateContactButton().clickButton();
+        return this;
+    }
+    @Step("Clear 'Phone number' field")
+    public ContactsPage clearPhoneField(){
+        DriverManager.WebDriverWait();
+        getEnterContactPhoneNumber().clear();
         return this;
     }
 }
