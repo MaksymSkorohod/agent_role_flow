@@ -62,7 +62,7 @@ public class ClientsPage extends AbstractPage {
     @Getter
     Button ClickOnFirstClientInTable = new Button(firstRowInClientsTable, "Selecting the third option from 'Client' drop-down field");
     @Getter
-    Link ClientNameInTable = new Link(clientNameInTable,"Click on the client name from the table");
+    Link ClientNameInTable = new Link(clientNameInTable,"The client name in the table");
     @Getter
     TextField ClientLandingPageHeader = new TextField(clientLandingPageHeader,"Landing page hearer of the selected client");
     @Getter
