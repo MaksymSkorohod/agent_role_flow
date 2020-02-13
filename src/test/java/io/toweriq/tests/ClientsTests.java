@@ -125,6 +125,38 @@ public class ClientsTests extends TestBase {
                 .clickOnXButton()
                 .getEditClientDialogWindow().isEnable();
     }
+    @Test(description = "Creating the new manually policy from the client's landing page")
+    public void createNewManualPolicyFromClientPage(){
+        fillClientsPage();
+        clientsPage
+                .getClientsPageHeader().isExists();
+        clientsPage
+                .clickOnAnotherClientFromTable()
+                .clickOnNewPolicy()
+                .selectFromManualInput()
+                .clickNextToCreatePolicy()
+                .typePolicyNumber(generatePolicyNumber())
+                .clickCarrierDropDown()
+                .searchFieldForCarriers("21 st Century Insurance")
+                .selectCarrier()
+                .clickLineOfBusinessDropDown()
+                .selectLineOfBusiness()
+                .clickInceptionDatePicker()
+                .clickTodayButton()
+                .clickExpirationDatePicker()
+                .clickNextMonth()
+                .clickNextMonth()
+                .selectCurrentDate()
+                .clickAttachFilesButton()
+                .choosePdfFile()
+                .clickAttachFileButton()
+                .selectPolicyFile()
+                .clickConfirmFileType()
+                .typePremiumSum("800000")
+                .typeAggregateLimitSum("500000")
+                .typeDeductibleSum("300000")
+                .confirmPolicyCreationButton();
+    }
 
     private String generateClientName() {
         Random random = new Random();
@@ -162,5 +194,12 @@ public class ClientsTests extends TestBase {
         String email = "chitauriwarrior" + d + "@mail.com";
         System.out.println(email);
         return email;
+    }
+    private String generatePolicyNumber() {
+        Random random = new Random();
+        int e = random.nextInt(100000) + 1;
+        String policy = "PN # " + e;
+        System.out.println(policy);
+        return policy;
     }
 }

@@ -1,5 +1,7 @@
 package io.toweriq.tests;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.toweriq.pageObjects.HomePage;
 import io.toweriq.pageObjects.SignInPage;
 import org.testng.annotations.Test;
@@ -11,6 +13,7 @@ public class SignInTests extends TestBase {
         homePage = new HomePage();
     }
     @Test(priority = 0, description = "Successful Sign In")
+    @Severity(SeverityLevel.NORMAL)
     public void signInTest() {
         new SignInPage()
                 .clearEmailField()
