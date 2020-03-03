@@ -137,7 +137,7 @@ public class ClientsTests extends TestBase {
                 .clickNextToCreatePolicy()
                 .typePolicyNumber(generatePolicyNumber())
                 .clickCarrierDropDown()
-                .searchFieldForCarriers("21 st Century Insurance")
+                .searchFieldForCarriers("Elephant.com")
                 .selectCarrier()
                 .clickLineOfBusinessDropDown()
                 .selectLineOfBusiness()

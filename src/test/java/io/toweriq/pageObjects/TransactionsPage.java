@@ -17,11 +17,11 @@ public class TransactionsPage extends AbstractPage{
     private By startWorkflow = By.xpath("//div[@role='tooltip']//p[.='Start workflow']");
     private By selectFromTheForms = By.xpath("//div[@role='tooltip']//p[.='Select forms']");
     private By transactionsTable = By.id("transactions-table");
-    private By selectFirstTransactionInTable = By.xpath("//table[@id='transactions-table']/tbody[@class='MuiTableBody-root']/tr[1]//a");
-    private By landingPageHeader = By.xpath("//div[@id='root']//div//h3[.='Transaction']");
+    private By landingPageHeader = By.xpath("//*[@id=\"root\"]/div[1]//div[2]//div[1]//h1");
+    private By transactionNameInTable = By.xpath("//table[@id='transactions-table']//tbody//tr[1]/td[2]/div");
 
     @Getter
-    TextField TransactionsPageHeader = new TextField(transactionsPageHeader,"Header of the 'Transactions' page");
+    TextField TransactionsPageHeader = new TextField(transactionsPageHeader,"The header of the 'Transactions' page");
     @Getter
     InputField SearchForTransaction = new InputField(searchOnTransactionPage,"Search field on 'Transactions' page");
     @Getter
@@ -31,9 +31,9 @@ public class TransactionsPage extends AbstractPage{
     @Getter
     Button SelectFromTheForms = new Button(selectFromTheForms, "Select to create new transaction from the worms");
     @Getter
-    Link clickOnSelectedTransaction = new Link(selectFirstTransactionInTable, "Click on the selected transaction");
+    TextField LandingPageOpen = new TextField(landingPageHeader, "The landing page of the transaction is open");
     @Getter
-    TextField LandingPageOpen = new TextField(landingPageHeader, "THe landing page of the transaction is open");
+    Link TransactionNameInTable = new Link(transactionNameInTable,"The transaction name in the table on the 'Transactions' page");
 
 
     @Step("Enter text into the 'Search' field")
@@ -60,10 +60,9 @@ public class TransactionsPage extends AbstractPage{
         getSelectFromTheForms().clickButton();
         return this;
     }
-    @Step("Click on the firs transaction in the table")
-    public TransactionsPage clickOnFirstTransaction() {
-        DriverManager.WebDriverWait();
-        getClickOnSelectedTransaction().clickLink();
+    @Step("Click on the transaction name from the table on the 'Transactions' page")
+    public TransactionsPage clickOnTransactionName(){
+        getTransactionNameInTable().clickLink();
         return this;
     }
 }

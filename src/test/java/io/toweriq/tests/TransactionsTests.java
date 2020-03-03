@@ -46,7 +46,9 @@ public class TransactionsTests extends TestBase {
     public void openTransactionLandingPage(){
         fillTransactionPage();
         transactionPage
-                .clickOnFirstTransaction();
+                .clickOnTransactionName()
+                .getLandingPageOpen().isExists();
     }
+
 }
 

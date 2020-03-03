@@ -27,7 +27,6 @@ public class TestBase {
     public void openSignInPage() {
         getDriver().get("https://qa.toweriq.io/sign-in");
     }
-
     @BeforeMethod
     public void signIn() {
         System.out.println("test");
@@ -38,7 +37,6 @@ public class TestBase {
                 .setRememberMe(true)
                 .clickSignInButton();
     }
-
     protected void fillSettingsPage(){
         DriverManager.WebDriverWait();
         settingsPage = homePage
@@ -66,10 +64,13 @@ public class TestBase {
         formsPage = homePage
                 .clickOnFormsLink();
     }
-
-
+    protected void fillProfilePage(){
+        profilePage = homePage
+                .clickOnProfilePreferencesLink();
+    }
     @AfterMethod
     public void close(){
       killDriver();
     }
+
 }

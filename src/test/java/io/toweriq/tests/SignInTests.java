@@ -12,8 +12,7 @@ public class SignInTests extends TestBase {
     public void signIn(){
         homePage = new HomePage();
     }
-    @Test(priority = 0, description = "Successful Sign In")
-    @Severity(SeverityLevel.NORMAL)
+    @Test(description = "Successful Sign In")
     public void signInTest() {
         new SignInPage()
                 .clearEmailField()

@@ -38,7 +38,7 @@ public class ClientsPage extends AbstractPage {
     private By policyNumberField = By.id("policy-number");
     private By carrierDropdownField = By.id("carrier");
     private By carrierDropDownSearchField = By.id("select-carrier-search");
-    private By carrierNameOption = By.xpath("//div[@id='carrier']//div[text()='21st Century Insurance']");
+    private By carrierNameOption = By.xpath("//div[2]/div[text()='Elephant.com']");
     private By lineOfBusinessDropDown = By.id("lineOfBusinessesList");
     private By lineOfBusinessOption = By.xpath("//div[@id='lineOfBusinessesList']//div[4]");
     private By policyInceptionDate = By.xpath("//form[@id='new-policy-form']//div[@class='calendar-container']/div[@class='input-calendar']");

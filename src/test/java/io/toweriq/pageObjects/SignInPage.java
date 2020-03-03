@@ -1,6 +1,7 @@
 package io.toweriq.pageObjects;
 
 import io.qameta.allure.Step;
+import io.toweriq.DriverManager;
 import io.toweriq.Elements.Button;
 import io.toweriq.Elements.Check;
 import io.toweriq.Elements.InputField;
@@ -53,6 +54,7 @@ public class SignInPage {
     }
     @Step("Enter email into the 'Email Address field'")
     public SignInPage typeEmail(String email) {
+        DriverManager.WebDriverWait();
         getEmailField().setText(email);
         System.out.println(email);
         return this;
@@ -90,6 +92,7 @@ public class SignInPage {
     }
 
     public ResetPasswordPage clickForgotPassword(){
+        DriverManager.WebDriverWait();
         getForgotPassword().clickButton();
         return new ResetPasswordPage();
     }

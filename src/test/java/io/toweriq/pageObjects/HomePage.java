@@ -3,6 +3,8 @@ package io.toweriq.pageObjects;
 import io.qameta.allure.Step;
 import io.toweriq.DriverManager;
 import io.toweriq.Elements.Button;
+import io.toweriq.Elements.Link;
+import io.toweriq.Elements.TextField;
 import lombok.Getter;
 import org.openqa.selenium.By;
 
@@ -16,27 +18,48 @@ public class HomePage {
     private By formsLink = By.id("sidebarMenuItemForms");
     private By profileLink = By.id("accountProfile");
     private By preferencesLink = By.id("accountPreferences");
+    private By agentSignOutLink = By.id("accountSignOut");
     private By settingsButton = By.id("pageSettings");
+    private By homePageHeader = By.xpath("//div[@id='root']//h1");
+    private By clientsPageHeader = By.xpath("//h1[text()='Clients']");
+    private By transactionsPageHeader = By.xpath("//h1[text()='Transactions']");
+    private By policiesPageHeader = By.xpath("//h1[text()='Policies']");
+    private By contactsPageHeader = By.xpath("//h1[text()='Contacts']");
+    private By formsPageHeader = By.xpath("//div[@id='root']//div[2]//h1");
 
 
     @Getter
-    Button UserIcon = new Button(profileLink, "Click on the User's profile icon");
+    Button UserIcon = new Button(profileLink, "The User's profile icon");
     @Getter
-    Button ProfilePreferencesLink = new Button(preferencesLink, "Click on the 'Profile&Preferences' link");
+    Button ProfilePreferencesLink = new Button(preferencesLink, "The 'Profile&Preferences' link");
     @Getter
-    Button HomeLink = new Button(homeLink, "Click on the 'Home' link");
+    Button HomeLink = new Button(homeLink, "The 'Home' link in sidebar menu");
     @Getter
-    Button TransactionsLink = new Button(transactionsLink, "Click on the 'Transactions' link");
+    Link AgentSignOutLink = new Link(agentSignOutLink, "The 'Sign out' link");
     @Getter
-    Button PoliciesLink = new Button(policiesLink, "Click on the 'Policies' link");
+    Button TransactionsLink = new Button(transactionsLink, "The 'Transactions' link in sidebar menu");
     @Getter
-    Button ClientsLink = new Button(clientsLink, "Click on the 'Accounts' link");
+    Button PoliciesLink = new Button(policiesLink, "The 'Policies' link in sidebar menu");
     @Getter
-    Button ContactsLink = new Button(contactsLink, "Click on the 'Contacts' link");
+    Button ClientsLink = new Button(clientsLink, "The 'Accounts' link in sidebar menu");
     @Getter
-    Button FormsLink = new Button(formsLink,"Click on the 'Forms' link");
+    Button ContactsLink = new Button(contactsLink, "The 'Contacts' link in sidebar menu");
+    @Getter
+    Button FormsLink = new Button(formsLink,"The 'Forms' link in sidebar menu");
     @Getter
     Button SettingsButton = new Button(settingsButton, "Settings button");
+    @Getter
+    TextField HomePageHeader = new TextField(homePageHeader, "The home page header");
+    @Getter
+    TextField ClientsPageHeader = new TextField(clientsPageHeader, "The 'Clients' label is visible");
+    @Getter
+    TextField TransactionsPageHeader = new TextField(transactionsPageHeader,"The header of the 'Transactions' page");
+    @Getter
+    TextField PoliciesPageHeader = new TextField(policiesPageHeader, "The 'Policies' label is visible");
+    @Getter
+    TextField ContactsPageHeader = new TextField(contactsPageHeader,"Header of the 'Contacts' page");
+    @Getter
+    TextField FormsPageHeader = new TextField(formsPageHeader,"The forms page header with text 'Please select the forms you would like to use in your next transaction'.");
 
     @Step("Click on the 'Clients' link from the sidebar menu")
     public ClientsPage clickOnClientsLink() {
@@ -55,6 +78,12 @@ public class HomePage {
         DriverManager.WebDriverWait();
         getContactsLink().clickButton();
         return new ContactsPage();
+    }
+    @Step("Click on the 'Sign out' link")
+    public SignInPage clickSignOutLink(){
+        DriverManager.WebDriverWait();
+        getAgentSignOutLink().clickLink();
+        return new SignInPage();
     }
     @Step("Click on the 'Forms' link from the sidebar menu")
     public FormsPage clickOnFormsLink(){
