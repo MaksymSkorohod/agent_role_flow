@@ -63,37 +63,37 @@ public class HomePage {
 
     @Step("Click on the 'Clients' link from the sidebar menu")
     public ClientsPage clickOnClientsLink() {
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getClientsLink().clickButton();
         return new ClientsPage();
     }
     @Step("Click on the 'Transactions' link from the sidebar menu")
     public TransactionsPage clickOnTransactionsLink(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getTransactionsLink().clickButton();
         return new TransactionsPage();
     }
     @Step("Click on the 'Contact' link from the sidebar menu")
     public ContactsPage clickOnContactsLink(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getContactsLink().clickButton();
         return new ContactsPage();
     }
     @Step("Click on the 'Sign out' link")
     public SignInPage clickSignOutLink(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getAgentSignOutLink().clickLink();
         return new SignInPage();
     }
     @Step("Click on the 'Forms' link from the sidebar menu")
     public FormsPage clickOnFormsLink(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getFormsLink().clickButton();
         return new FormsPage();
     }
     @Step("Click on the 'Policies' link from the sidebar menu")
     public PoliciesPage clickOnPoliciesLink(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getPoliciesLink().clickButton();
         return new PoliciesPage();
     }
@@ -104,13 +104,13 @@ public class HomePage {
     }
     @Step("Click on the 'Profile&Preferences' link")
     public ProfileAndPreferencesPage clickOnProfilePreferencesLink(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getProfilePreferencesLink().clickButton();
         return new ProfileAndPreferencesPage();
     }
     @Step("Click on the 'Settings' button")
     public SettingsPage clickOnSettingsButton(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getSettingsButton().clickButton();
         return new SettingsPage();
     }

@@ -38,17 +38,17 @@ public class TestBase {
                 .clickSignInButton();
     }
     protected void fillSettingsPage(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         settingsPage = homePage
                 .clickOnSettingsButton();
     }
     protected void fillClientsPage(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         clientsPage = homePage
                 .clickOnClientsLink();
     }
     protected void fillTransactionPage() {
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         transactionPage = homePage
                 .clickOnTransactionsLink();
     }

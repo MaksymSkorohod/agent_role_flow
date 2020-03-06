@@ -44,19 +44,19 @@ public class TransactionsPage extends AbstractPage{
     }
     @Step("Click on the 'New transaction' button")
     public TransactionsPage clickOnNewTransactionButton(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getNewTransactionButton().clickButton();
         return this;
     }
     @Step("Select and click on the 'Start workflow' button")
     public TransactionsPage clickStartWorkflowButton(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getSelectStartWorkflow().clickButton();
         return this;
     }
     @Step("Select and click on the 'Select forms' button")
     public TransactionsPage clickSelectFormsButton(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getSelectFromTheForms().clickButton();
         return this;
     }

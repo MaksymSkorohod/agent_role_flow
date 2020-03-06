@@ -45,37 +45,37 @@ public class SettingsPage extends AbstractPage {
 
     @Step("Click on the Brokerage information link")
     public BrokerageInformationPage clickOnBrokerageInformation(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getBrokerageInformation().clickButton();
         return new BrokerageInformationPage();
     }
     @Step("Click on the Manage users link")
     public ManageUsersPage clickOnManageUsers(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getManageUsers().clickButton();
         return new ManageUsersPage();
     }
     @Step("Click on the Carriers link")
     public CarriersSettingsPage clickOnCarriersSettings(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getCarriersSettings().clickButton();
         return new CarriersSettingsPage();
     }
     @Step("Click on the Transaction settings link")
     public TransactionSettingsPage clickOnTransactionSettings(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getTransactionSettings().clickButton();
         return new TransactionSettingsPage();
     }
     @Step("Click on the Development portal link")
     public DevelopmentPortalPage clickOnDevelopmentPortal(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getDevelopmentPortal().clickButton();
         return new DevelopmentPortalPage();
     }
     @Step("Click on the Business line link")
     public BusinessLineSettingsPage clickOnBusinessLineSettings(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getBusinessLineSettings().clickButton();
         return new BusinessLineSettingsPage();
     }

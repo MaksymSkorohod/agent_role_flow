@@ -23,7 +23,7 @@ public class PoliciesPage extends AbstractPage {
 
     @Step("Click on the policy name from the table on the 'Policies' page")
     public PoliciesPage clickOnPolicyFromTable(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getPolicyNameInPoliciesTable().clickLink();
         return this;
     }

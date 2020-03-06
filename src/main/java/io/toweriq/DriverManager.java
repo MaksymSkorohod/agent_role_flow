@@ -46,7 +46,7 @@ public class DriverManager {
         getDriver().navigate().to(url);
     }
 
-    public static void WebDriverWait(){
-        threadDriver.get().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-    }
+//    public static void WebDriverWait(){
+//        threadDriver.get().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+//    }
 }

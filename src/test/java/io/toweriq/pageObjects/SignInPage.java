@@ -54,7 +54,7 @@ public class SignInPage {
     }
     @Step("Enter email into the 'Email Address field'")
     public SignInPage typeEmail(String email) {
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getEmailField().setText(email);
         System.out.println(email);
         return this;
@@ -92,7 +92,7 @@ public class SignInPage {
     }
 
     public ResetPasswordPage clickForgotPassword(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getForgotPassword().clickButton();
         return new ResetPasswordPage();
     }

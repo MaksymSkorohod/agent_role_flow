@@ -99,7 +99,7 @@ public class FormsPage extends AbstractPage {
     }
     @Step("Select an option from the 'Associated client' drop-down field")
     public FormsPage selectOptionFromAssociatedClientField(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getAssociatedClientOption().clickOption();
         return this;
     }
@@ -110,13 +110,13 @@ public class FormsPage extends AbstractPage {
     }
     @Step("Select the 'New business' option from the 'Transaction type' drop-down field'")
     public FormsPage selectNewBusinessOption(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getNewBusinessTypeOption().clickOption();
         return this;
     }
     @Step("Select the 'Renewal' option from the 'Transaction type' drop-down field'")
     public FormsPage selectRenewalOption(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getRenewalTypeOption().clickOption();
         return this;
     }

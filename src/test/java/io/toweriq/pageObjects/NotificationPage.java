@@ -39,18 +39,18 @@ public class NotificationPage extends AbstractPage{
     @Step("Click on the 'Profile' tab")
     public ProfileAndPreferencesPage clickOnProfileTab(){
         getClickOnProfileTab().clickButton();
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         return new ProfileAndPreferencesPage();
     }
     @Step("Setting all notifications for In-app")
     public NotificationPage clickOnInappForAll(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getSetAllNotificationsInApp().clickButton();
         return this;
     }
     @Step("Setting all notifications for Email")
     public NotificationPage clickOnEmailForAll(){
-        DriverManager.WebDriverWait();
+//        DriverManager.WebDriverWait();
         getSetAllNotificationsEmail().clickButton();
         return this;
     }
