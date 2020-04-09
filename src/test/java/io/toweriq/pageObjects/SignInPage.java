@@ -54,7 +54,7 @@ public class SignInPage {
     }
     @Step("Enter email into the 'Email Address field'")
     public SignInPage typeEmail(String email) {
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getEmailField().setText(email);
         System.out.println(email);
         return this;
@@ -62,6 +62,7 @@ public class SignInPage {
     @Step("The warning message for 'Email Address' field is shown")
     public void  checkEmailErrorText(String expected) {
         String actual = getErrorEmailField().getText();
+        DriverManager.WebDriverWait();
         System.out.println("actual is: " + actual);
         System.out.println("expected is: " + expected);
         Assert.assertEquals(actual, expected);
@@ -75,6 +76,7 @@ public class SignInPage {
 
     @Step("The warning message that password does not match")
     public void checkPasswordErrorText(String expected) throws InterruptedException {
+        DriverManager.WebDriverWait();
         String actualText = getWrongPassword().getText();
         System.out.println(actualText);
         System.out.println(expected);
@@ -92,7 +94,7 @@ public class SignInPage {
     }
 
     public ResetPasswordPage clickForgotPassword(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getForgotPassword().clickButton();
         return new ResetPasswordPage();
     }

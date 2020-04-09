@@ -16,6 +16,7 @@ public class FormsPage extends AbstractPage {
     private By startTransactionModal = By.xpath("//div[@role='presentation']/div[@role='document']/div[@role='dialog']");
     private By transactionNameField = By.id("transactionName");
     private By associatedClientDropDownField = By.id("client");
+    private By associatedClientSearchField = By.xpath("//input[@id='select-client-search']");
     private By associatedClientOption = By.xpath("//div[@id='client']//div[3]");
     private By transactionTypeDropDownField = By.id("transactionType");
     private By newBusinessType = By.xpath("//div[2]/div[text()='New business']");
@@ -41,6 +42,8 @@ public class FormsPage extends AbstractPage {
     InputField TransactionNameField = new InputField(transactionNameField, "The 'Transaction name' input field");
     @Getter
     DropDownList AssociatedClientDropDownField = new DropDownList(associatedClientDropDownField, "The 'Associated client' drop-down field'");
+    @Getter
+    InputField AssociatedClientSearchField = new InputField(associatedClientSearchField, "The Associated client search field");
     @Getter
     DropDownOption AssociatedClientOption = new DropDownOption(associatedClientOption, "The option from the 'Associated client' drop-down field'");
     @Getter
@@ -94,12 +97,19 @@ public class FormsPage extends AbstractPage {
     }
     @Step("Click on the 'Associated client' drop-down field")
     public FormsPage clickOnAssociatedClientField(){
+        DriverManager.WebDriverWait();
         getAssociatedClientDropDownField().click();
+        return this;
+    }
+    @Step("Enter client name into the 'Search' field for associated clients")
+    public FormsPage enterClientNameForSearchAssociatedClients(String associatedClient){
+        DriverManager.WebDriverWait();
+        getAssociatedClientSearchField().setText(associatedClient);
         return this;
     }
     @Step("Select an option from the 'Associated client' drop-down field")
     public FormsPage selectOptionFromAssociatedClientField(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getAssociatedClientOption().clickOption();
         return this;
     }

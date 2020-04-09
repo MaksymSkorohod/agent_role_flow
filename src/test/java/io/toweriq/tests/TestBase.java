@@ -31,24 +31,24 @@ public class TestBase {
     public void signIn() {
         System.out.println("test");
         homePage = new SignInPage()
-                .clearEmailField()
+//                .clearEmailField()
                 .typeEmail("toweriqautotest+1@gmail.com")
                 .typePassword("Vfrcbv82")
                 .setRememberMe(true)
                 .clickSignInButton();
     }
     protected void fillSettingsPage(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         settingsPage = homePage
                 .clickOnSettingsButton();
     }
     protected void fillClientsPage(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         clientsPage = homePage
                 .clickOnClientsLink();
     }
     protected void fillTransactionPage() {
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         transactionPage = homePage
                 .clickOnTransactionsLink();
     }

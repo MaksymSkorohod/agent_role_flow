@@ -196,7 +196,7 @@ public class ClientsPage extends AbstractPage {
     }
     @Step("Click on the 'Create and return' button")
     public ClientsPage clickOnCreateAndReturnButton(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getCreateAndReturnButton().clickButton();
         return this;
     }
@@ -250,25 +250,25 @@ public class ClientsPage extends AbstractPage {
     }
     @Step("Click on the 'X' button to close 'Edit client' window")
     public ClientsPage clickOnXButton(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getCloseClientEditMode().clickButton();
         return this;
     }
     @Step("Click on the 'New policy' link from the client landing page")
     public ClientsPage clickOnNewPolicy(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getNewPolicyLink().clickLink();
         return  this;
     }
     @Step("Select 'From transaction' option for the creation of the new policy")
     public ClientsPage selectFromTransactionOption(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getCreatePolicyFromTransaction().clickLink();
         return this;
     }
     @Step("Select 'Manual input' option for the creation of the new policy")
     public ClientsPage selectFromManualInput(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getCreatePolicyManual().clickLink();
         return this;
     }
@@ -295,13 +295,13 @@ public class ClientsPage extends AbstractPage {
     }
     @Step("Enter carrier name into the search field for the 'Carrier' dropdown")
     public ClientsPage searchFieldForCarriers(String carrier){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getCarrierDropDownSearchField().setText(carrier);
         return this;
     }
     @Step("Select the carrier option")
     public ClientsPage selectCarrier(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getCarrierNameOption().clickOption();
         return this;
     }
@@ -312,7 +312,7 @@ public class ClientsPage extends AbstractPage {
     }
     @Step("Select the line of business option")
     public ClientsPage selectLineOfBusiness(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getLineOfBusinessOption().clickOption();
         return this;
     }
@@ -323,7 +323,7 @@ public class ClientsPage extends AbstractPage {
     }
     @Step("Click on the 'Today' button")
     public ClientsPage clickTodayButton(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getTodayButtonForInceptionDate().clickButton();
         return  this;
     }
@@ -334,13 +334,13 @@ public class ClientsPage extends AbstractPage {
     }
     @Step("Click on the next month button")
     public ClientsPage clickNextMonth(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getNextMonthController().clickButton();
         return this;
     }
     @Step("Select current date of the next month")
     public ClientsPage selectCurrentDate(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getCurrentDate().clickLink();
         return this;
     }

@@ -100,19 +100,19 @@ public class ContactsPage extends AbstractPage{
     }
     @Step("Click on the 'x' button to close 'Create new contact' modal")
     public ContactsPage clickToCloseCreateContactModal(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getCloseCreateContactModal().clickButton();
         return this;
     }
     @Step("Click on the 'Client' drop-down field")
     public ContactsPage clickOnClientDropDownField(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getClickOnClientDropDownField().click();
         return this;
     }
     @Step("Enter text into the 'Search account' field")
     public ContactsPage enterTextIntoSearchAccountField(String text){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getEnterClientNameForSearch().setText(text);
         return this;
     }
@@ -141,7 +141,7 @@ public class ContactsPage extends AbstractPage{
     }
     @Step("Enter phone number of the contact")
     public ContactsPage typePhoneNumberOfContact(String phone){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getEnterContactPhoneNumber().setText(phone);
         System.out.println(phone);
         return this;
@@ -179,7 +179,7 @@ public class ContactsPage extends AbstractPage{
     }
     @Step("Click on 'Back to contact' link")
     public ContactsPage clickBackToContact(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getBackToContactLink().clickLink();
         return this;
     }
@@ -190,20 +190,20 @@ public class ContactsPage extends AbstractPage{
     }
     @Step("Click on the contact link in the table")
     public ContactsPage clickOnContactLinkName(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getContactNameInTable().clickLink();
         return this;
     }
     @Step("Get header text of the contact's landing page")
     public ContactsPage contactHeaderText(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getContactLandingPageHeader().getText();
         System.out.println();
         return this;
     }
     @Step("Click on the 'Edit contact' button")
     public ContactsPage clickOnEditContactButton(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getEditContactButton().clickButton();
         return this;
     }
@@ -219,7 +219,7 @@ public class ContactsPage extends AbstractPage{
     }
     @Step("Clear 'Phone number' field")
     public ContactsPage clearPhoneField(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getEnterContactPhoneNumber().clear();
         return this;
     }

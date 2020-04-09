@@ -19,6 +19,17 @@ public class TransactionsPage extends AbstractPage{
     private By transactionsTable = By.id("transactions-table");
     private By landingPageHeader = By.xpath("//*[@id=\"root\"]/div[1]//div[2]//div[1]//h1");
     private By transactionNameInTable = By.xpath("//table[@id='transactions-table']//tbody//tr[1]/td[2]/div");
+    private By transactionsHeaderLink = By.xpath("//div[@id='root']//div/h1//a[@href='/transactions']");
+    private By firstTransactionInTable = By.xpath("//table[@id='transactions-table']/tbody/tr[1]/td[2]//a");
+    private By transactionArchiveButton = By.id("transactionArchive");
+    private By transactionFormsTab = By.id("transactionTabForms");
+    private By addFormButton = By.xpath("//div[@id='root']//div[2]//button[text()='Add form']");
+    private By schedulesTab = By.id("transactionTabSchedules");
+    private By addScheduleButton = By.xpath("//div[@id='root']//div[2]//button[text()='Add schedule']");
+    private By attachmentsTab = By.id("transactionTabAttachments");
+    private By addAttachmentButton = By.xpath("//div[@id='root']//div[2]//button[text()='Add attachment']");
+    private By eSignaturesTab = By.id("transactionTabE-signatures");
+    private By addSignatureButton = By.xpath("//div[@id='root']//div[2]//button[text()='Add signature']");
 
     @Getter
     TextField TransactionsPageHeader = new TextField(transactionsPageHeader,"The header of the 'Transactions' page");
@@ -34,6 +45,28 @@ public class TransactionsPage extends AbstractPage{
     TextField LandingPageOpen = new TextField(landingPageHeader, "The landing page of the transaction is open");
     @Getter
     Link TransactionNameInTable = new Link(transactionNameInTable,"The transaction name in the table on the 'Transactions' page");
+    @Getter
+    Link TransactionsLinkInHeader = new Link(transactionsHeaderLink, "The 'Transactions' header link in the sidebar menu");
+    @Getter
+    Link FirstTransactionInTable = new Link(firstTransactionInTable, "The first transaction in the table on the 'Transactions' page");
+    @Getter
+    Button TransactionsArchiveButton = new Button(transactionArchiveButton, "The 'Archive transaction' button");
+    @Getter
+    Button TransactionFormsTab = new Button(transactionFormsTab, "The 'Forms' tab");
+    @Getter
+    Button AddFormButton = new Button(addFormButton, "The '+Add form' button");
+    @Getter
+    Button SchedulesTab = new Button(schedulesTab,"The 'Schedules' tab");
+    @Getter
+    Button AddScheduleButton = new Button(addScheduleButton, "The '+Add schedule' button");
+    @Getter
+    Button AttachmentsTab = new Button(attachmentsTab, "The 'Attachments' tab");
+    @Getter
+    Button AddAttachmentButton = new Button(addAttachmentButton, "The '+Add attachment' button");
+    @Getter
+    Button ESignaturesTab = new Button(eSignaturesTab, "The 'E-signature' tab");
+    @Getter
+    Button AddSignatureButton = new Button(addSignatureButton, "The '+Add signature' button");
 
 
     @Step("Enter text into the 'Search' field")
@@ -63,6 +96,51 @@ public class TransactionsPage extends AbstractPage{
     @Step("Click on the transaction name from the table on the 'Transactions' page")
     public TransactionsPage clickOnTransactionName(){
         getTransactionNameInTable().clickLink();
+        return this;
+    }
+    @Step("Click on the 'Transactions' link on the header of the transaction landing page")
+    public TransactionsPage clickTransactionsHeaderLink(){
+        getTransactionsLinkInHeader().clickLink();
+        return this;
+    }
+    @Step("Click on the 'Forms' tab")
+    public TransactionsPage clickOnFormsTab(){
+        getTransactionFormsTab().clickButton();
+        return this;
+    }
+    @Step("Click on the '+Add form' button")
+    public TransactionsPage clickOnAddFormButton(){
+        getAddFormButton().clickButton();
+        return this;
+    }
+    @Step("Click on the 'Schedules' tab")
+    public TransactionsPage clickOnSchedulesTab(){
+        getSchedulesTab().clickButton();
+        return this;
+    }
+    @Step("Click on the '+Add schedule' button")
+    public TransactionsPage clickOnAddScheduleButton(){
+        getAddScheduleButton().clickButton();
+        return this;
+    }
+    @Step("Click on the 'Attachments' tab")
+    public TransactionsPage clickOnAttachmentsTab(){
+        getAttachmentsTab().clickButton();
+        return this;
+    }
+    @Step("Click on the '+Add attachment' button")
+    public TransactionsPage clickOnAddAttachmentButton(){
+        getAddAttachmentButton().clickButton();
+        return this;
+    }
+    @Step("Click on the 'E-signature' tab")
+    public TransactionsPage clickOnESignatureTab(){
+        getESignaturesTab().clickButton();
+        return this;
+    }
+    @Step("Click on the '+Add signature' button")
+    public TransactionsPage clickOnAddSignatureButton(){
+        getAddSignatureButton().clickButton();
         return this;
     }
 }

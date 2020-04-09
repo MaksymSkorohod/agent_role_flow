@@ -35,6 +35,7 @@ public class FormsPageTests extends TestBase {
         formsPage
                 .typeTransactionName(generateTransactionName())
                 .clickOnAssociatedClientField()
+                .enterClientNameForSearchAssociatedClients("Test")
                 .selectOptionFromAssociatedClientField()
                 .clickOnTransactionTypeField()
                 .selectRenewalOption()
@@ -54,6 +55,7 @@ public class FormsPageTests extends TestBase {
         formsPage
                 .typeTransactionName(generateTransactionName())
                 .clickOnAssociatedClientField()
+                .enterClientNameForSearchAssociatedClients("Test")
                 .selectOptionFromAssociatedClientField()
                 .clickOnTransactionTypeField()
                 .selectNewBusinessOption()
@@ -73,6 +75,7 @@ public class FormsPageTests extends TestBase {
         formsPage
                 .typeTransactionName(generateTransactionName())
                 .clickOnAssociatedClientField()
+                .enterClientNameForSearchAssociatedClients("Test")
                 .selectOptionFromAssociatedClientField()
                 .clickOnTransactionTypeField()
                 .selectRenewalOption()

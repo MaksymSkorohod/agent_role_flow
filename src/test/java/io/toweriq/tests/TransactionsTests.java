@@ -50,5 +50,16 @@ public class TransactionsTests extends TestBase {
                 .getLandingPageOpen().isExists();
     }
 
+    @Test(description = "Overview transactions landing page tabs")
+    public void tabsOverview(){
+        fillTransactionPage();
+        transactionPage
+                .clickOnTransactionName()
+                .clickOnSchedulesTab()
+                .clickOnAttachmentsTab()
+                .clickOnESignatureTab()
+                .clickOnFormsTab();
+    }
+
 }
 
