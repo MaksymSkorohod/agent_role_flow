@@ -19,8 +19,8 @@ public class SignInPage {
     private By agree = By.xpath("//input[@id='agree']");
     private By signInButton = By.id("signInBtn");
     private By signUpNow = By.cssSelector("[href='\\/agency']");
-    private By emailErrorMessage = By.xpath("//*[@for='email']/../div[contains(@class, 'ValidationError-root')]");
-    private By passwordErrorMessage = By.xpath("//*[@for='password']/../div[contains(@class, 'ValidationError-root')]");
+    private By emailErrorMessage = By.id("email_field_error");
+    private By passwordErrorMessage = By.id("password_field_error");
     private By profileLink = By.id("accountProfile");
 
 
