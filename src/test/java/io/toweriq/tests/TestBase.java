@@ -19,7 +19,7 @@ public class TestBase {
     protected TransactionsPage transactionPage;
     protected PoliciesPage policiesPage;
     protected ContactsPage contactsPage;
-    protected FormsPage formsPage;
+    protected LibraryPage libraryPage;
     protected ProfileAndPreferencesPage profilePage;
     protected SettingsPage settingsPage;
 
@@ -34,8 +34,12 @@ public class TestBase {
 //                .clearEmailField()
                 .typeEmail("toweriqautotest+1@gmail.com")
                 .typePassword("Vfrcbv82")
-                .setRememberMe(true)
                 .clickSignInButton();
+    }
+    public void signOutFromPortal() {
+        homePage
+                .clickOnProfileIcon()
+                .clickSignOutLink();
     }
     protected void fillSettingsPage(){
         DriverManager.WebDriverWait();
@@ -61,8 +65,8 @@ public class TestBase {
                 .clickOnContactsLink();
     }
     protected void fillFormsPage(){
-        formsPage = homePage
-                .clickOnFormsLink();
+        libraryPage = homePage
+                .clickOnLibraryLink();
     }
     protected void fillProfilePage(){
         profilePage = homePage

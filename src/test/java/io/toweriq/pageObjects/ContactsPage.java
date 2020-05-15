@@ -24,17 +24,17 @@ public class ContactsPage extends AbstractPage{
     private By successWindow = By.xpath("//div[@role='presentation']/div[@role='document']");
     private By sendInviteButton = By.id("send-latter-button-modal");
     private By sendInviteLaterButton = By.id("cancel-button-modal");
-    private By createNewClientLink = By.id("selectBox-client");
-    private By clientNameField = By.id("name");
-    private By createClientButton = By.id("create-client-button-confirm");
+    private By createNewProspectLink = By.id("selectBox-prospect");
+    private By prospectNameField = By.id("name");
+    private By createClientButton = By.id("create-contact-button-confirm");// the id need to be changed to "create-client-button-confirm"
     private By cancelCreateClientButton = By.id("create-client-button-cancel");
-    private By backToContactLink = By.xpath("//div[@id='client-dialog-title']/p");
+    private By backToContactLink = By.xpath("//div[@id='contact-dialog-title']/p");
     private By contactTable = By.id("contacts-table");
     private By contactNameInTable = By.xpath("//table[@id='contacts-table']/tbody/tr[1]/td[1]/div/a");
     private By contactLandingPageHeader = By.xpath("//div[@id='root']//h1");
     private By editContactButton = By.id("contactLandingEdit");
     private By updateContactButton = By.id("update-account-button-confirm");
-    private By cancelUpdateContactButton = By.id("update-account-button-cancel");
+    private By cancelUpdateContactButton = By.id("create-contact-button-cancel"); // the id need to be changed to "update-account-button-cancel"
 
 
     @Getter
@@ -70,9 +70,9 @@ public class ContactsPage extends AbstractPage{
     @Getter
     Button SendInviteLaterButton = new Button(sendInviteLaterButton,"Click on the 'Later' button");
     @Getter
-    Link CreateNewClientLink = new Link(createNewClientLink,"Click on '+Create new client' link");
+    Link CreateNewProspectLink = new Link(createNewProspectLink,"Click on '+Create new prospect' link");
     @Getter
-    InputField ClientNameField = new InputField(clientNameField,"Enter the name on a new company into the 'Client name' field");
+    InputField ProspectNameField = new InputField(prospectNameField,"Enter the name on a new company into the 'Prospect name' field");
     @Getter
     Link BackToContactLink = new Link(backToContactLink,"Click on 'Back to contact' link");
     @Getter
@@ -98,13 +98,7 @@ public class ContactsPage extends AbstractPage{
         getCreateContactButton().clickButton();
         return this;
     }
-    @Step("Click on the 'x' button to close 'Create new contact' modal")
-    public ContactsPage clickToCloseCreateContactModal(){
-        DriverManager.WebDriverWait();
-        getCloseCreateContactModal().clickButton();
-        return this;
-    }
-    @Step("Click on the 'Client' drop-down field")
+    @Step("Click on the 'Client or prospect' drop-down field")
     public ContactsPage clickOnClientDropDownField(){
         DriverManager.WebDriverWait();
         getClickOnClientDropDownField().click();
@@ -166,14 +160,14 @@ public class ContactsPage extends AbstractPage{
         getSendInviteLaterButton().clickButton();
         return this;
     }
-    @Step("Click on the '+ Create new client' link")
-    public ContactsPage clickOnCreateClientLink(){
-        getCreateNewClientLink().clickLink();
+    @Step("Click on the '+ Create new prospect' link")
+    public ContactsPage clickOnCreateProspectLink(){
+        getCreateNewProspectLink().clickLink();
         return this;
     }
-    @Step("Enter the name of the new company into the 'Client name' field")
-    public ContactsPage enterCompanyName(String company){
-        getClientNameField().setText(company);
+    @Step("Enter the name of the new company into the 'Prospect name' field")
+    public ContactsPage enterProspectName(String company){
+        getProspectNameField().setText(company);
         System.out.println(company);
         return this;
     }

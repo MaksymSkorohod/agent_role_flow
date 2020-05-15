@@ -26,7 +26,7 @@ public class ClientsTests extends TestBase {
                 .typeFirsNameForPrimaryContact(generateContactFirstName())
                 .typeLastNameForPrimaryContact(generateContactLastName())
                 .typeEmailForPrimaryContact(generateContactEmail())
-                .clickOnCloseButton();
+                .clickOnCancelButton();
     }
 
     @Test (description = "Creating new Client")
@@ -43,6 +43,9 @@ public class ClientsTests extends TestBase {
                 .typeEmailForPrimaryContact(generateContactEmail())
                 .clickOnCreateAndReturnButton()
                 .getThePrimaryContactBlock().isExists();
+        homePage
+                .clickOnProfileIcon()
+                .clickSignOutLink();
     }
 
     @Test(description = "Check if warning message appear for not filling out the 'First name' field for the primary contact")
@@ -124,38 +127,6 @@ public class ClientsTests extends TestBase {
                 .clickOnEditClientButton()
                 .clickOnXButton()
                 .getEditClientDialogWindow().isEnable();
-    }
-    @Test(description = "Creating the new manually policy from the client's landing page")
-    public void createNewManualPolicyFromClientPage(){
-        fillClientsPage();
-        clientsPage
-                .getClientsPageHeader().isExists();
-        clientsPage
-                .clickOnAnotherClientFromTable()
-                .clickOnNewPolicy()
-                .selectFromManualInput()
-                .clickNextToCreatePolicy()
-                .typePolicyNumber(generatePolicyNumber())
-                .clickCarrierDropDown()
-                .searchFieldForCarriers("Elephant.com")
-                .selectCarrier()
-                .clickLineOfBusinessDropDown()
-                .selectLineOfBusiness()
-                .clickInceptionDatePicker()
-                .clickTodayButton()
-                .clickExpirationDatePicker()
-                .clickNextMonth()
-                .clickNextMonth()
-                .selectCurrentDate()
-                .clickAttachFilesButton()
-                .choosePdfFile()
-                .clickAttachFileButton()
-                .selectPolicyFile()
-                .clickConfirmFileType()
-                .typePremiumSum("800000")
-                .typeAggregateLimitSum("500000")
-                .typeDeductibleSum("300000")
-                .confirmPolicyCreationButton();
     }
 
     private String generateClientName() {

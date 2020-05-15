@@ -15,10 +15,8 @@ public class SignInTests extends TestBase {
     @Test(description = "Successful Sign In")
     public void signInTest() {
         new SignInPage()
-//                .clearEmailField()
                 .typeEmail("toweriqautotest+1@gmail.com")
                 .typePassword("Vfrcbv82")
-                .setRememberMe(true)
                 .clickSignInButton()
                 .getUserIcon().isExists();
     }
@@ -28,7 +26,6 @@ public class SignInTests extends TestBase {
         new SignInPage()
                 .typeEmail("  ")
                 .typePassword("Vfrcbv82")
-                .setRememberMe(true)
                 .clickWithWrongCredentials()
                 .checkEmailErrorText("Email is required and should not be less than 6 characters long");
     }
@@ -38,7 +35,6 @@ public class SignInTests extends TestBase {
         new SignInPage()
                 .typeEmail("toweriqautotestgmail.com")
                 .typePassword("Vfrcbv82")
-                .setRememberMe(true)
                 .clickWithWrongCredentials()
                 .checkEmailErrorText("Email is not valid, only letters (a-z), numbers (0-9), and periods (.) are allowed.");
     }
@@ -48,7 +44,6 @@ public class SignInTests extends TestBase {
         new SignInPage()
                 .typeEmail("toweriqautotest+1@gmail.com")
                 .typePassword("Vfrcbv19821111111")
-                .setRememberMe(true)
                 .clickWithWrongCredentials()
                 .getWrongPassword().isExists();
         new SignInPage()

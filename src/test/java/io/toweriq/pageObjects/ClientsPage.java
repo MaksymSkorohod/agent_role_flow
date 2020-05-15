@@ -16,8 +16,8 @@ public class ClientsPage extends AbstractPage {
     private By primaryContactFirstNameField = By.id("firstName");
     private By primaryContactLastNameField = By.id("lastName");
     private By primaryContactEmailField = By.id("email");
-    private By createAndReturnButton = By.id("create-contact-button-confirm");
-    private By closeButton = By.cssSelector("div#account-dialog-title svg[role='img'] > path");
+    private By createAndReturnButton = By.id("create-client-button-confirm");
+    private By cancelButton = By.id("create-client-button-cancel");
     private By firstNameFieldIsRequired = By.xpath("//*[@id='new-client-form']/div[1]/div[2]/div[1]/div[text()='This field is required']");
     private By lastNameFieldIsRequired = By.xpath("//*[@id='new-client-form']/div[1]/div[2]/div[2]/div[text()='This field is required']");
     private By emailFieldIsRequired = By.xpath("//*[@id='new-client-form']/div[1]/div[2]/div[3]/div[text()='This field is required']");
@@ -29,7 +29,7 @@ public class ClientsPage extends AbstractPage {
     private By clientLandingPageHeader = By.xpath("//div[@id='root']//h1");
     private By clientEditButton = By.id("accountEdit");
     private By editClientDialogWindow = By.xpath("//div[@role='presentation']/div[@role='document']/div[@role='dialog']");
-    private By closeClientEditMode = By.xpath("//div[@id='account-dialog-title']//button[@type='button']");
+    private By closeClientEditMode = By.id("create-client-button-cancel");
     private By newPolicyLink = By.id("accountNewPolicy");
     private By createPolicyFromTransaction = By.id("connectionType0");
     private By createPolicyManual = By.id("connectionType1");
@@ -77,7 +77,7 @@ public class ClientsPage extends AbstractPage {
     @Getter
     Button CreateAndReturnButton = new Button(createAndReturnButton,"The 'Create and return' button");
     @Getter
-    Button CloseNewClientWindowButton = new Button(closeButton, "The 'X' button to close 'New Client' window");
+    Button CancelButton = new Button(cancelButton, "The 'Cancel' button to close 'New Client' window");
     @Getter
     TextField TheFirstNameFieldIsRequired = new TextField(firstNameFieldIsRequired, "Message 'This field is required' for the 'First name' field");
     @Getter
@@ -99,7 +99,7 @@ public class ClientsPage extends AbstractPage {
     @Getter
     Button EditClientButton = new Button(clientEditButton,"The 'Edit client' button");
     @Getter
-    Button CloseClientEditMode = new Button(closeClientEditMode,"The 'X' button to close 'Edit client' window");
+    Button CloseClientEditMode = new Button(closeClientEditMode,"The 'Cancel' button to close 'Edit client' window");
     @Getter
     DialogContainer EditClientDialogWindow = new DialogContainer(editClientDialogWindow,"The 'Edit client' window");
     @Getter
@@ -200,9 +200,9 @@ public class ClientsPage extends AbstractPage {
         getCreateAndReturnButton().clickButton();
         return this;
     }
-    @Step("Click on the 'X' button")
-    public ClientsPage clickOnCloseButton(){
-        getCloseNewClientWindowButton().clickButton();
+    @Step("Click on the 'Cancel' button")
+    public ClientsPage clickOnCancelButton(){
+        getCancelButton().clickButton();
         return this;
     }
     @Step("The warning message for 'First name' field for the primary contact is shown")

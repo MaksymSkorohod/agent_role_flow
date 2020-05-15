@@ -1,6 +1,5 @@
 package io.toweriq.tests;
 
-import io.toweriq.pageObjects.HomePage;
 import org.testng.annotations.Test;
 
 public class HomePageTests extends TestBase {
@@ -22,8 +21,13 @@ public class HomePageTests extends TestBase {
                 .clickOnContactsLink()
                 .getContactsPageHeader().isExists();
         homePage
-                .clickOnFormsLink()
-                .getFormsPageHeader().isExists();
+                .clickOnLibraryLink()
+                .getLibraryPageHeader().isExists();
     }
-
+    @Test(description = "The 'Sign out' test")
+    public void signOutFromPortal(){
+        homePage
+                .clickOnProfileIcon()
+                .clickSignOutLink();
+    }
 }

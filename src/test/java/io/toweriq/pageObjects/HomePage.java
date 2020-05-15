@@ -15,7 +15,7 @@ public class HomePage {
     private By policiesLink = By.id("sidebarMenuItemPolicies");
     private By clientsLink = By.id("sidebarMenuItemClients");
     private By contactsLink = By.id("sidebarMenuItemContacts");
-    private By formsLink = By.id("sidebarMenuItemForms");
+    private By libraryLink = By.id("sidebarMenuItemLibrary");
     private By profileLink = By.id("accountProfile");
     private By preferencesLink = By.id("accountPreferences");
     private By agentSignOutLink = By.id("accountSignOut");
@@ -26,6 +26,7 @@ public class HomePage {
     private By policiesPageHeader = By.xpath("//h1[text()='Policies']");
     private By contactsPageHeader = By.xpath("//h1[text()='Contacts']");
     private By formsPageHeader = By.xpath("//div[@id='root']//div[2]//h1");
+
 
 
     @Getter
@@ -45,7 +46,7 @@ public class HomePage {
     @Getter
     Button ContactsLink = new Button(contactsLink, "The 'Contacts' link in sidebar menu");
     @Getter
-    Button FormsLink = new Button(formsLink,"The 'Forms' link in sidebar menu");
+    Button LibraryLink = new Button(libraryLink,"The 'Forms' link in sidebar menu");
     @Getter
     Button SettingsButton = new Button(settingsButton, "Settings button");
     @Getter
@@ -81,15 +82,15 @@ public class HomePage {
     }
     @Step("Click on the 'Sign out' link")
     public SignInPage clickSignOutLink(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getAgentSignOutLink().clickLink();
         return new SignInPage();
     }
     @Step("Click on the 'Forms' link from the sidebar menu")
-    public FormsPage clickOnFormsLink(){
+    public LibraryPage clickOnLibraryLink(){
 //        DriverManager.WebDriverWait();
-        getFormsLink().clickButton();
-        return new FormsPage();
+        getLibraryLink().clickButton();
+        return new LibraryPage();
     }
     @Step("Click on the 'Policies' link from the sidebar menu")
     public PoliciesPage clickOnPoliciesLink(){

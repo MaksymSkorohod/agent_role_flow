@@ -72,8 +72,8 @@ public class ContactsTests extends TestBase {
                 .clickOnCreateContactButton()
                 .clickOnClientDropDownField()
                 .enterTextIntoSearchAccountField("Black Widow")
-                .clickOnCreateClientLink()
-                .enterCompanyName(generateClientName())
+                .clickOnCreateProspectLink()
+                .enterProspectName(generateProspectName())
                 .clickCreateClientButton()
                 .typeFirsNameOfContact(generateContactFirstName())
                 .typeLastNameOfContact(generateContactLastName())
@@ -93,9 +93,10 @@ public class ContactsTests extends TestBase {
                 .clickOnCreateContactButton()
                 .clickOnClientDropDownField()
                 .enterTextIntoSearchAccountField("Black Widow")
-                .clickOnCreateClientLink()
+                .clickOnCreateProspectLink()
+                .enterProspectName("Black Widow")
                 .clickBackToContact()
-                .clickToCloseCreateContactModal();
+                .clickOnCancelButton();
     }
     @Test(description = "Open contact's landing page")
     public void openContactLandingPage(){
@@ -107,7 +108,7 @@ public class ContactsTests extends TestBase {
                 .contactHeaderText();
     }
 
-    @Test(description = "Editing contacts information")
+    @Test(description = "Open 'Edit contacts' page")
     public void editContactInformation(){
         fillContactsPage();
         contactsPage
@@ -115,10 +116,7 @@ public class ContactsTests extends TestBase {
         contactsPage
                 .clickOnContactLinkName()
                 .clickOnEditContactButton()
-                .getEnterContactPhoneNumber().clear();
-        contactsPage
-                .clearPhoneField()
-                .cancelUpdateContact();
+               .cancelUpdateContact();
     }
 
 
@@ -148,7 +146,7 @@ public class ContactsTests extends TestBase {
         System.out.println(phoneNumber);
         return phoneNumber;
     }
-    private String generateClientName() {
+    private String generateProspectName() {
         Random random = new Random();
         int d = random.nextInt(1000) + 1;
         String name = "Test Client " + d;
