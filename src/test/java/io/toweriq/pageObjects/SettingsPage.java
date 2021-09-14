@@ -9,49 +9,68 @@ import org.openqa.selenium.By;
 
 public class SettingsPage extends AbstractPage {
 
-    private By logoImage = By.xpath("//img[@alt='LogoImg']");
+    private By sideSettingsButton = By.id("sidebarMenuItemSettings");
     private By settingsPageHeader = By.xpath("//h1[text()='Settings']");
-    private By brokerageInformationLink = By.id("settings-brokerage-management");
-    private By manageUsersLink = By.id("settings-users-management");
-    private By carriersLink = By.id("settings-carriers-management");
-    private By transactionSettingLink = By.id("settings-transactions-management");
-    private By developmentPortalLink = By.id("settings-development-portal");
-    private By businessLineLink = By.id("settings-business-line");
+    private By brokerageInformationTab = By.xpath("//div[@id='root']//div[@role='button']//p[text()='Brokerage information']");
+    private By brokerageInformationHeader = By.xpath("//div[@id='root']//div//h1");
+    private By manageUsersTab = By.xpath("//*[@id=\"root\"]/div/div[2]/div[1]/div[2]/div/div[2]//div[1]//div/p");
+    private By manageUsersHeader = By.xpath("//div[@id='root']//div//h1");
+    private By carriersTab = By.xpath("//*[@id=\"root\"]/div/div[2]/div[1]/div[2]/div/div[3]//div[1]//div/p");
+    private By carriersHeader = By.xpath("//div[@id='root']//div//h1");
+    private By developmentPortalTab = By.xpath("//*[@id=\"root\"]/div/div[2]/div[1]/div[2]/div/div[4]/div/div[1]/div[1]/div/p");
+    private By schemaDefinitionHeader = By.xpath("//div[@id='root']//div//h1");
+    private By businessLineTab = By.xpath("//*[@id=\"root\"]/div/div[2]/div[1]/div[2]/div/div[5]");
+    private By businessLineHeader = By.xpath("//div[@id='root']//div//h1");
+    private By brandingStylesTab = By.xpath("//*[@id=\"root\"]//div[@role='button']//p[text()='Branding & styles']");
+    private By brandingStylesHeader = By.xpath("//div[@id='root']//div//h1");
+    private By subscriptionsTab = By.xpath("//*[@id=\"root\"]//div[@role='button']//p[text()='Subscriptions']");
+    private By invoicesSubTab = By.xpath("//*[@id=\"root\"]//div[@role='button']//p[text()='Invoices']");
+    private By invoicesHeader = By.xpath("//div[@id='root']//div//h1");
+    private By addRemoveLicensesSubTab = By.xpath("//*[@id=\"root\"]//div[@role='button']//p[text()='Add & remove licenses']");
+    private By addRemoveLicensesHeader = By.xpath("//div[@id='root']//div//h1");
+    private By assignLicensesSubTab = By.xpath("//*[@id=\"root\"]//div[@role='button']//p[text()='Assign user licenses']");
+
+
+
+
 
 
     @Getter
-    Button LogoImage = new Button(logoImage, "Logo Image");
+    Button SettingsButton = new Button(sideSettingsButton, "The 'Settings' button in sidebar menu");
     @Getter
-    TextField SettingsPageHeader = new TextField(settingsPageHeader,"The settings page header is visible");
+    TextField SettingsPageHeader = new TextField(settingsPageHeader, "The page header of the Settings page");
     @Getter
-    Button BrokerageInformation = new Button(brokerageInformationLink, "Brokerage information link");
+    Button BrokerageInformation = new Button(brokerageInformationTab, "The 'Brokerage information' tab");
     @Getter
-    Button ManageUsers = new Button(manageUsersLink, "Manage users link");
+    TextField BrokerageInformationPageHeader = new TextField(brokerageInformationHeader, "The page header of the 'Brokerage Information' page");
     @Getter
-    Button CarriersSettings = new Button(carriersLink, "Carriers link");
+    Button ManageUsers = new Button(manageUsersTab, "The 'Manage users' tab");
     @Getter
-    Button TransactionSettings = new Button(transactionSettingLink, "Transaction settings link");
+    TextField ManageUsersHeader = new TextField(manageUsersHeader, "The page header of the 'Manage Users' tab");
     @Getter
-    Button DevelopmentPortal = new Button(developmentPortalLink, "Development portal link");
+    Button CarriersSettings = new Button(carriersTab, "Carriers link");
     @Getter
-    Button BusinessLineSettings = new Button(businessLineLink, "Business line link");
+    Button DevelopmentPortal = new Button(developmentPortalTab, "Development portal link");
+    @Getter
+    Button BusinessLineSettings = new Button(businessLineTab, "Business line link");
 
 
-    @Step("Click on the logo to return on the Home page")
-    public SettingsPage clickOnLogo(){
-        getLogoImage().clickButton();
-        return this;
+
+    @Step("Click on the 'Settings' button")
+    public SettingsPage clickOnSettingsButton(){
+        DriverManager.WebDriverWait();
+        getSettingsButton().clickButton();
+        return new SettingsPage();
     }
-
-    @Step("Click on the Brokerage information link")
+    @Step("Click on the 'Brokerage information' tab")
     public BrokerageInformationPage clickOnBrokerageInformation(){
 //        DriverManager.WebDriverWait();
         getBrokerageInformation().clickButton();
         return new BrokerageInformationPage();
     }
-    @Step("Click on the Manage users link")
+    @Step("Click on the 'Manage users' tab")
     public ManageUsersPage clickOnManageUsers(){
-//        DriverManager.WebDriverWait();
+        DriverManager.WebDriverWait();
         getManageUsers().clickButton();
         return new ManageUsersPage();
     }
@@ -60,12 +79,6 @@ public class SettingsPage extends AbstractPage {
 //        DriverManager.WebDriverWait();
         getCarriersSettings().clickButton();
         return new CarriersSettingsPage();
-    }
-    @Step("Click on the Transaction settings link")
-    public TransactionSettingsPage clickOnTransactionSettings(){
-//        DriverManager.WebDriverWait();
-        getTransactionSettings().clickButton();
-        return new TransactionSettingsPage();
     }
     @Step("Click on the Development portal link")
     public DevelopmentPortalPage clickOnDevelopmentPortal(){

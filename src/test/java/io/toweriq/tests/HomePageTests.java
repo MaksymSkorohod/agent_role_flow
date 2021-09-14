@@ -9,20 +9,41 @@ public class HomePageTests extends TestBase {
         homePage
                 .getHomePageHeader().isExists();
         homePage
-                .clickOnClientsLink()
-                .getClientsPageHeader().isExists();
+                .clickOnContactsButton()
+                .getAllContactsPageHeader().isExists();
         homePage
-                .clickOnTransactionsLink()
-                .getTransactionsPageHeader().isExists();
+                .clickOnCompaniesButton()
+                .getAllCompaniesPageHeader().isExists();
         homePage
-                .clickOnPoliciesLink()
+                .clickOnPoliciesButton()
                 .getPoliciesPageHeader().isExists();
         homePage
-                .clickOnContactsLink()
-                .getContactsPageHeader().isExists();
+                .clickOnTransactionsButton()
+                .getTransactionsPageHeader().isExists();
         homePage
-                .clickOnLibraryLink()
+                .clickOnSubmissionsButton()
+                .getSubmissionPageHeader().isExists();
+        homePage
+                .clickOnLibraryButton()
                 .getLibraryPageHeader().isExists();
+        homePage
+                .clickOnCustomFormsButton()
+                .getCustomFormsPageHeader().isExists();
+        homePage
+                .clickOnProposalsButton()
+                .getProposalsPageHeader().isExists();
+        homePage
+                .clickOnPortalsButton()
+                .getPortalsPageHeader().isExists();
+        homePage
+                .clickOnESignatureButton()
+                .getESignaturePageHeader().isExists();
+        homePage
+                .clickOnSettingsButton()
+                .getSettingsPageHeader().isExists();
+        homePage
+                .clickOnProfileIcon()
+                .clickSignOutLink();
     }
     @Test(description = "The 'Sign out' test")
     public void signOutFromPortal(){

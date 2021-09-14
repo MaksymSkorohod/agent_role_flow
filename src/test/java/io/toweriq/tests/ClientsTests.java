@@ -7,140 +7,112 @@ import java.util.Random;
 public class ClientsTests extends TestBase {
 
 
-    @Test(description = "Open 'Clients' page")
+    @Test(description = "Open 'Companies' page")
     public void openClientsPage(){
-        fillClientsPage();
-        clientsPage
-                .getClientsPageHeader().isExists();
+        fillCompanyPage();
+        companiesPage
+                .getAllCompaniesPageHeader().isExists();
+    }
+    @Test(description = "Creating a new Insured Company from the 'All Companies' page")
+    public void createInsuredCompany(){
+        fillCompanyPage();
+        companiesPage
+                .getAllCompaniesPageHeader().isExists();
+        companiesPage
+                .clickOnCompanyCreateButton()
+                .selectClientOption()
+                .clickNextButton()
+                .typeClientName(generateClientName())
+                .clickLifecycleDropdown()
+                .selectInsuredStage()
+                .typeUrl(generateClientUrl())
+                .clickOnFinishButton();
+//                .checkSuccessCompanyCreated("company was created!");
+    }
+    @Test(description = "Creating a new 'Prospect' from the 'All Companies' page")
+    public void createNewProspect(){
+        fillCompanyPage();
+        companiesPage
+                .getAllCompaniesPageHeader().isExists();
+        companiesPage
+                .clickOnCompanyCreateButton()
+                .selectClientOption()
+                .clickNextButton()
+                .typeClientName(generateClientName())
+                .clickLifecycleDropdown()
+                .selectProspectStage()
+                .typeUrl(generateClientUrl())
+                .clickOnFinishButton();
+    }
+
+    @Test(description = "Creating a new 'Lead' from the 'All Companies' page")
+    public void createNewLead(){
+        fillCompanyPage();
+        companiesPage
+                .getAllCompaniesPageHeader().isExists();
+        companiesPage
+                .clickOnCompanyCreateButton()
+                .selectClientOption()
+                .clickNextButton()
+                .typeClientName(generateClientName())
+                .clickLifecycleDropdown()
+                .selectLeadStage()
+                .typeUrl(generateClientUrl())
+                .clickOnFinishButton()
+                .getSuccessCompanyCreationMessage().isExists();
     }
 
     @Test(description = "Cancel creation of the new Client")
     public void clickOnCancelButtonForCreatingClient() {
-        fillClientsPage();
-        clientsPage
-                .getClientsPageHeader().isExists();
-        clientsPage
-                .clickOnClientCreateButton()
+        fillCompanyPage();
+        companiesPage
+                .getAllCompaniesPageHeader().isExists();
+        companiesPage
+                .clickOnCompanyCreateButton()
+                .selectClientOption()
+                .clickNextButton()
                 .typeClientName(generateClientName())
+                .clickLifecycleDropdown()
+                .selectLeadStage()
                 .typeUrl(generateClientUrl())
-                .typeFirsNameForPrimaryContact(generateContactFirstName())
-                .typeLastNameForPrimaryContact(generateContactLastName())
-                .typeEmailForPrimaryContact(generateContactEmail())
                 .clickOnCancelButton();
     }
-
-    @Test (description = "Creating new Client")
-    public void createAccount(){
-        fillClientsPage();
-        clientsPage
-                .getClientsPageHeader().isExists();
-        clientsPage
-                .clickOnClientCreateButton()
+    @Test(description = "Creating the Prospect company with the primary contact")
+    public void createProspectWithTheContact(){
+        fillCompanyPage();
+        companiesPage
+                .getAllCompaniesPageHeader().isExists();
+        companiesPage
+                .clickOnCompanyCreateButton()
+                .selectClientOption()
+                .clickNextButton()
                 .typeClientName(generateClientName())
+                .clickLifecycleDropdown()
+                .selectProspectStage()
                 .typeUrl(generateClientUrl())
+                .clickPrimaryContactDropdown()
+                .typeSomeNameInSearchField("Blah Blah")
+                .clickCreateNewContactLink()
                 .typeFirsNameForPrimaryContact(generateContactFirstName())
                 .typeLastNameForPrimaryContact(generateContactLastName())
                 .typeEmailForPrimaryContact(generateContactEmail())
-                .clickOnCreateAndReturnButton()
-                .getThePrimaryContactBlock().isExists();
-        homePage
-                .clickOnProfileIcon()
-                .clickSignOutLink();
+                .clickCreateForPrimaryContact();
     }
 
-    @Test(description = "Check if warning message appear for not filling out the 'First name' field for the primary contact")
-    public void warningMessagesForPrimaryContactFirstNameField(){
-        fillClientsPage();
-        clientsPage
-                .getClientsPageHeader().isExists();
-        clientsPage
-                .clickOnClientCreateButton()
-                .typeClientName(generateClientName())
-                .typeUrl(generateClientUrl())
-                .typeLastNameForPrimaryContact(generateContactLastName())
-                .typeEmailForPrimaryContact(generateContactEmail())
-                .clickOnCreateAndReturnButton()
-                .checkFirstNameFieldWarningText("This field is required");
-    }
 
-    @Test(description = "Check if warning message appear for not filling out the 'Last name' field for the primary contact")
-    public void warningMessagesForPrimaryContactLastNameField(){
-        fillClientsPage();
-        clientsPage
-                .getClientsPageHeader().isExists();
-        clientsPage
-                .clickOnClientCreateButton()
-                .typeClientName(generateClientName())
-                .typeUrl(generateClientUrl())
-                .typeFirsNameForPrimaryContact(generateContactFirstName())
-                .typeEmailForPrimaryContact(generateContactEmail())
-                .clickOnCreateAndReturnButton()
-                .checkLastNameFieldWarningText("This field is required");
-    }
-
-    @Test(description = "Check if warning message appear for not filling out the 'Email' field for the primary contact")
-    public void warningMessagesForPrimaryContactEmailField(){
-        fillClientsPage();
-        clientsPage
-                .getClientsPageHeader().isExists();
-        clientsPage
-                .clickOnClientCreateButton()
-                .typeClientName(generateClientName())
-                .typeUrl(generateClientUrl())
-                .typeFirsNameForPrimaryContact(generateContactFirstName())
-                .typeLastNameForPrimaryContact(generateContactLastName())
-                .clickOnCreateAndReturnButton()
-                .checkEmailFieldWarningText("This field is required");
-    }
-
-    @Test(description = "Check if error message appear for not valid email address for the primary contact")
-    public void errorMessagesForPrimaryContactEmailField(){
-        fillClientsPage();
-        clientsPage
-                .getClientsPageHeader().isExists();
-        clientsPage
-                .clickOnClientCreateButton()
-                .typeClientName(generateClientName())
-                .typeUrl(generateClientUrl())
-                .typeFirsNameForPrimaryContact(generateContactFirstName())
-                .typeLastNameForPrimaryContact(generateContactLastName())
-                .typeEmailForPrimaryContact("chitauriwarriormail.com")
-                .clickOnCreateAndReturnButton()
-                .checkEmailErrorMessage("Contact email is not valid");
-    }
-    @Test(description = "Open the Client's landing page")
-    public void openClientLandingPage(){
-        fillClientsPage();
-        clientsPage
-                .getClientsPageHeader().isExists();
-        clientsPage
-                .clickOnClientFromTable()
-                .getClientLandingPageHeader().isExists();
-    }
-    @Test(description = "Open 'Edit' mode from the client landing page")
-    public void openEditModeForClient(){
-        fillClientsPage();
-        clientsPage
-                .getClientsPageHeader().isExists();
-        clientsPage
-                .clickOnClientFromTable()
-                .clickOnEditClientButton()
-                .clickOnXButton()
-                .getEditClientDialogWindow().isEnable();
-    }
 
     private String generateClientName() {
         Random random = new Random();
-        int a = random.nextInt(1000) + 1;
-        String name = "Test Client " + a;
+        int a = random.nextInt(10000) + 1;
+        String name = "Test Company " + a;
         System.out.println(name);
         return name;
     }
 
     private String generateClientUrl() {
         Random random = new Random();
-        int b = random.nextInt(1000) + 1;
-        String url = "www.testclient" + b + ".com";
+        int b = random.nextInt(10000) + 1;
+        String url = "www.testcompany" + b + ".com";
         System.out.println(url);
         return url;
     }
@@ -161,7 +133,7 @@ public class ClientsTests extends TestBase {
 
     private String generateContactEmail() {
         Random random = new Random();
-        int d = random.nextInt(1000) + 1;
+        int d = random.nextInt(10000) + 1;
         String email = "chitauriwarrior" + d + "@mail.com";
         System.out.println(email);
         return email;

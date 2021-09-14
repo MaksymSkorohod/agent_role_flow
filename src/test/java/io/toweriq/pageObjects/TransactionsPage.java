@@ -2,10 +2,7 @@ package io.toweriq.pageObjects;
 
 import io.qameta.allure.Step;
 import io.toweriq.DriverManager;
-import io.toweriq.Elements.Button;
-import io.toweriq.Elements.InputField;
-import io.toweriq.Elements.Link;
-import io.toweriq.Elements.TextField;
+import io.toweriq.Elements.*;
 import lombok.Getter;
 import org.openqa.selenium.By;
 
@@ -13,11 +10,22 @@ public class TransactionsPage extends AbstractPage{
 
     private By transactionsPageHeader = By.xpath("//h1[text()='Transactions']");
     private By searchOnTransactionPage = By.id("tiq-transaction-search-input");
-    private By newTransactionButton = By.id("transactionsCreate");
-    private By startWorkflow = By.xpath("//div[@role='tooltip']//p[.='Start workflow']");
-    private By selectFromTheForms = By.xpath("//div[@role='tooltip']//p[.='Select forms']");
     private By transactionsTable = By.id("transactions-table");
-    private By landingPageHeader = By.xpath("//*[@id=\"root\"]/div[1]//div[2]//div[1]//h1");
+    private By newTransactionButton = By.id("transactionsCreate");
+    private By transactionForPersonalClient = By.id("squareImagecheckBoxItempersonal_client");
+    private By transactionForCommercialClient = By.id("squareImagecheckBoxItemcommercial_client,");
+    private By startTransactionNextButton = By.id("createTSNext");
+    private By transactionDialogTitle = By.id("transaction-dialog-title");
+    private By transactionNameField = By.id("transactionName");
+    private By associatedClientOrProspectDropdown = By.id("client");
+    private By selectClientSearch= By.id("select-client-search");
+    private By personalClientNameOption = By.xpath("//div[@id='client']//div[text()='Personal Client 1']");
+    private By commercialClientNameOption = By.xpath("//*[@id=\"client\"]/div[2]/div[2]");
+    private By transactionTypeDropdown = By.id("transactionType");
+    private By newBusinessOption = By.xpath("//div[@id='transactionType']//div[text() ='New business']");
+    private By renewalOption = By.xpath("//div[@id='transactionType']//div[text() ='Renewal']");
+    private By finishTransactionCreationButton = By.id("createTSFinish");
+    private By landingPageHeader = By.id("transaction-landing-page");
     private By transactionNameInTable = By.xpath("//table[@id='transactions-table']//tbody//tr[1]/td[2]/div");
     private By transactionsHeaderLink = By.xpath("//div[@id='root']//div/h1//a[@href='/transactions']");
     private By firstTransactionInTable = By.xpath("//table[@id='transactions-table']/tbody/tr[1]/td[2]//a");
@@ -34,13 +42,37 @@ public class TransactionsPage extends AbstractPage{
     @Getter
     TextField TransactionsPageHeader = new TextField(transactionsPageHeader,"The header of the 'Transactions' page");
     @Getter
+    Table TransactionsTable = new Table(transactionsTable, "");
+    @Getter
     InputField SearchForTransaction = new InputField(searchOnTransactionPage,"Search field on 'Transactions' page");
     @Getter
     Button NewTransactionButton = new Button(newTransactionButton, "Click on 'New transaction' button");
     @Getter
-    Button SelectStartWorkflow = new Button(startWorkflow, "Select to create new transaction from workflow");
+    Link TransactionForPersonalClient = new Link(transactionForPersonalClient, "The 'Personal Client' option");
     @Getter
-    Button SelectFromTheForms = new Button(selectFromTheForms, "Select to create new transaction from the worms");
+    Link TransactionForCommercialClient = new Link(transactionForCommercialClient, "The 'Commercial Client' option");
+    @Getter
+    Button StartTransactionNextButton = new Button(startTransactionNextButton, "The 'Next' button");
+    @Getter
+    TextField TransactionDialogTitle = new TextField(transactionDialogTitle, "The 'Start a transaction' modal window");
+    @Getter
+    InputField TransactionNameField = new InputField(transactionNameField, "The 'Transaction name' input field");
+    @Getter
+    Link AssociatedClientOrProspectDropdown = new Link(associatedClientOrProspectDropdown, "The 'Associated client or prospect' dropdown field");
+    @Getter
+    InputField SearchFieldForClientName = new InputField(selectClientSearch, "The 'Search' field for the 'Associated client or prospect' dropdown");
+    @Getter
+    Button PersonalClientNameOption = new Button(personalClientNameOption, "The Personal client's name option in the 'Associated client or prospect' dropdown field");
+    @Getter
+    Button CommercialClientNameOption = new Button(commercialClientNameOption, "The Commercial client's name option in the 'Associated client or prospect' dropdown field");
+    @Getter
+    Link TransactionTypeDropdown = new Link(transactionTypeDropdown, "The 'Transaction type' dropdown field");
+    @Getter
+    Link NewBusinessOption = new Link(newBusinessOption, "The 'New Business' option in the 'Transaction type' dropdown");
+    @Getter
+    Link RenewalOption = new Link(renewalOption, "The 'Renewal' option in the 'Transaction type' dropdown");
+    @Getter
+    Button FinishTransactionCreationButton = new Button(finishTransactionCreationButton, "The 'Finish' button to complete the creation of the new transaction");
     @Getter
     TextField LandingPageOpen = new TextField(landingPageHeader, "The landing page of the transaction is open");
     @Getter
@@ -81,18 +113,72 @@ public class TransactionsPage extends AbstractPage{
         getNewTransactionButton().clickButton();
         return this;
     }
-    @Step("Select and click on the 'Start workflow' button")
-    public TransactionsPage clickStartWorkflowButton(){
-//        DriverManager.WebDriverWait();
-        getSelectStartWorkflow().clickButton();
+    @Step("Select the 'Personal client' option")
+    public TransactionsPage selectPersonalClientOption(){
+        getTransactionForPersonalClient().clickLink();
         return this;
     }
-    @Step("Select and click on the 'Select forms' button")
-    public TransactionsPage clickSelectFormsButton(){
-//        DriverManager.WebDriverWait();
-        getSelectFromTheForms().clickButton();
+    @Step("Select the 'Commercial client' option")
+    public TransactionsPage selectCommercialClientOption(){
+        getTransactionForCommercialClient().clickLink();
         return this;
     }
+    @Step("Click on the 'Next' button")
+    public TransactionsPage clickOnNextButtonToContinue(){
+        getStartTransactionNextButton().clickButton();
+        return this;
+    }
+    @Step("Enter the transaction name into the 'Transaction name' input field")
+    public TransactionsPage enterTransactionName(String transactionName){
+        getTransactionNameField().setText(transactionName);
+        System.out.println(transactionName);
+        return this;
+    }
+    @Step("Click on the 'Associated client or prospect' dropdown field")
+    public TransactionsPage clickOnAssociatedClientProspectDropdown(){
+        getAssociatedClientOrProspectDropdown().clickLink();
+        return this;
+    }
+    @Step("Search for the client name")
+    public TransactionsPage searchClientName(String clientName){
+        getSearchFieldForClientName().setText(clientName);
+        System.out.println(clientName);
+        return this;
+    }
+    @Step("Select the Personal Client name")
+    public TransactionsPage selectNameOfPersonalClient(){
+        DriverManager.WebDriverWait();
+        getPersonalClientNameOption().clickButton();
+        return this;
+    }
+    @Step("Select the Commercial Client name")
+    public TransactionsPage selectNameOfCommercialClient(){
+        DriverManager.WebDriverWait();
+        getCommercialClientNameOption().clickButton();
+        return this;
+    }
+    @Step("Click on the 'Transaction type' dropdown field")
+    public TransactionsPage clickOnTransactionTypeDropdown(){
+        getTransactionTypeDropdown().clickLink();
+        return this;
+    }
+    @Step("Select the 'New business' option inside the 'Transaction type' dropdown field")
+    public TransactionsPage selectNewBusinessType(){
+        getNewBusinessOption().clickLink();
+        return this;
+    }
+    @Step("Select the 'Renewal' option inside the 'Transaction type' dropdown field")
+    public TransactionsPage selectRenewalType(){
+        getRenewalOption().clickLink();
+        return this;
+    }
+    @Step("Click on the 'Finish' button to complete the transaction creation")
+    public TransactionsPage clickOnFinishButton(){
+        DriverManager.WebDriverWait();
+        getFinishTransactionCreationButton().clickButton();
+        return this;
+    }
+
     @Step("Click on the transaction name from the table on the 'Transactions' page")
     public TransactionsPage clickOnTransactionName(){
         getTransactionNameInTable().clickLink();

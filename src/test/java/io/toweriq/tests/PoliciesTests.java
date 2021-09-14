@@ -17,6 +17,6 @@ public class PoliciesTests extends TestBase {
                 .getPoliciesPageHeader().isExists();
         policiesPage
                 .clickOnPolicyFromTable()
-                .getPolicyLandingPageHeader().isExists();
+                .getPolicyLandingPage().isExists();
     }
 }

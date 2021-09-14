@@ -6,118 +6,132 @@ import java.util.Random;
 
 public class ContactsTests extends TestBase {
 
-    @Test(description = "Open 'Contacts' page")
+    @Test(description = "Move between contact tabs")
+    public void movingBetweencontactsTabs(){
+        fillContactsPage();
+        contactsPage
+                .getAllContactsPageHeader();
+        contactsPage
+                .clickOnClientsTabInSubmenu()
+                .getContactsPageHeaders().isExists();
+        contactsPage
+                .clickOnPersonalClientsTab()
+                .getContactsPageHeaders().isExists();
+        contactsPage
+                .clickOnColleaguesTab()
+                .getContactsPageHeaders().isExists();
+        contactsPage
+                .clickOnUnderwritersTab()
+                .getContactsPageHeaders().isExists();
+    }
+
+    @Test(description = "Open 'Contacts' landing page")
     public void openContactsPage(){
         fillContactsPage();
         contactsPage
-                .getContactsPageHeader().isExists();
+                .getAllContactsPageHeader().isExists();
     }
-    @Test(description = "Create the Contact user for the existing Client")
-    public void createContactForExistingClient(){
+    @Test(description = "Create simple Rolodex contact user (Email address only)")
+    public void createRolodexEmailOnly(){
         fillContactsPage();
         contactsPage
-                .getContactsPageHeader().isExists();
+                .getAllContactsPageHeader().isExists();
         contactsPage
                 .clickOnCreateContactButton()
-                .clickOnClientDropDownField()
-                .selectFirstOptionFromClientList()
+                .typeEmailOfContact(generateContactEmail())
+                .clickOnFinishButton()
+                .getSuccessPopUp().isExists();
+    }
+    @Test(description = "Create the Rolodex contact user (First and Last Name only)")
+    public void createRolodexNamesOnly(){
+        fillContactsPage();
+        contactsPage
+                .getAllContactsPageHeader().isExists();
+        contactsPage
+                .clickOnCreateContactButton()
                 .typeFirsNameOfContact(generateContactFirstName())
                 .typeLastNameOfContact(generateContactLastName())
-                .typeEmailOfContact(generateContactEmail())
-                .typePhoneNumberOfContact(generatePhoneNumber())
-                .clickOnCreateAndReturnButton()
-                .getSuccessPopUp().isExists();
-        contactsPage
-                .clickOnSendInviteButton();
+                .clickOnFinishButton()
+                .getSuccessPopUp();
     }
-    @Test(description = "Create the Contact user for the existing Client and send invite for him later")
+    @Test(description = "Create the Rolodex contact user (Email, First Name, Last Name)")
     public void createContactAndSendInviteLater(){
         fillContactsPage();
         contactsPage
-                .getContactsPageHeader().isExists();
+                .getAllContactsPageHeader().isExists();
         contactsPage
                 .clickOnCreateContactButton()
-                .clickOnClientDropDownField()
-                .selectFirstOptionFromClientList()
+                .typeEmailOfContact(generateContactEmail())
                 .typeFirsNameOfContact(generateContactFirstName())
                 .typeLastNameOfContact(generateContactLastName())
-                .typeEmailOfContact(generateContactEmail())
                 .typePhoneNumberOfContact(generatePhoneNumber())
-                .clickOnCreateAndReturnButton()
+                .clickOnFinishButton()
                 .getSuccessPopUp().isExists();
-        contactsPage
-                .clickOnSendInviteLaterButton();
     }
-    @Test(description = "Cancel creation of the new Contact for the existing Client")
-    public void cancelContactCreation(){
-        fillContactsPage();
-        contactsPage
-                .getContactsPageHeader().isExists();
-        contactsPage
-                .clickOnCreateContactButton()
-                .clickOnClientDropDownField()
-                .selectFirstOptionFromClientList()
-                .typeFirsNameOfContact(generateContactFirstName())
-                .typeLastNameOfContact(generateContactLastName())
-                .typeEmailOfContact(generateContactEmail())
-                .typePhoneNumberOfContact(generatePhoneNumber())
-                .clickOnCancelButton();
+    @Test(description = "Create the Rolodex contact user from the Company landing page(First Name and Last Name name only)")
+    public void createRolodexFromCompanyLandingOnlyNames(){
+        fillCompanyPage();
+        companiesPage
+                .getCompaniesPageHeader().isExists();
+        companiesPage
+                .clickOnClientsTab()
+                .clickOnClientFromTable()
+                .clickContactsTabFromCompanyLandingPage()
+                .clickOtherContactsFromCompanyLandingPage()
+                .clickAddContactFromOtherContactsSubTab()
+                .clickCreateContactFromAssociateOthersCompany()
+                .enterFirstNameRolodex(generateContactFirstName())
+                .enterLastNameRolodex(generateContactLastName())
+                .clickFinishButtonForRolodex();
     }
-    @Test(description = "Creating new Client from the 'Contacts' page")
-    public void creatingNewClientFromContactsPage() {
-        fillContactsPage();
-        contactsPage
-                .getContactsPageHeader().isExists();
-        contactsPage
-                .clickOnCreateContactButton()
-                .clickOnClientDropDownField()
-                .enterTextIntoSearchAccountField("Black Widow")
-                .clickOnCreateProspectLink()
-                .enterProspectName(generateProspectName())
-                .clickCreateClientButton()
-                .typeFirsNameOfContact(generateContactFirstName())
-                .typeLastNameOfContact(generateContactLastName())
-                .typeEmailOfContact(generateContactEmail())
-                .typePhoneNumberOfContact(generatePhoneNumber())
-                .clickOnCreateAndReturnButton()
-                .getSuccessPopUp().isExists();
-        contactsPage
-                .clickOnSendInviteLaterButton();
-    }
-    @Test(description = "Close 'Create new contact' window")
-    public void closeCreateNewContactWindow(){
-        fillContactsPage();
-        contactsPage
-                .getContactsPageHeader().isExists();
-        contactsPage
-                .clickOnCreateContactButton()
-                .clickOnClientDropDownField()
-                .enterTextIntoSearchAccountField("Black Widow")
-                .clickOnCreateProspectLink()
-                .enterProspectName("Black Widow")
-                .clickBackToContact()
-                .clickOnCancelButton();
-    }
-    @Test(description = "Open contact's landing page")
-    public void openContactLandingPage(){
-        fillContactsPage();
-        contactsPage
-                .getContactsPageHeader().isExists();
-        contactsPage
-                .clickOnContactLinkName()
-                .contactHeaderText();
+    @Test(description = "Create the Rolodex contact user from the Company landing page(Emails only)")
+    public void createRolodexFromCompanyLandingOnlyEmails(){
+        fillCompanyPage();
+        companiesPage
+                .getCompaniesPageHeader().isExists();
+        companiesPage
+                .clickOnClientsTab()
+                .clickOnClientFromTable()
+                .clickContactsTabFromCompanyLandingPage()
+                .clickOtherContactsFromCompanyLandingPage()
+                .clickAddContactFromOtherContactsSubTab()
+                .clickCreateContactFromAssociateOthersCompany()
+                .enterEmailAddressOfNewRolodexUser(generateContactEmail())
+                .clickFinishButtonForRolodex();
     }
 
-    @Test(description = "Open 'Edit contacts' page")
-    public void editContactInformation(){
+    @Test(description = "Set personal profile for the new created user")
+    public void setPersonalProfile(){
         fillContactsPage();
         contactsPage
-                .getContactsPageHeader().isExists();
+                .getAllContactsPageHeader().isExists();
         contactsPage
-                .clickOnContactLinkName()
-                .clickOnEditContactButton()
-               .cancelUpdateContact();
+                .clickOnCreateContactButton()
+                .typeEmailOfContact(generateContactEmail())
+                .typeFirsNameOfContact(generateContactFirstName())
+                .typeLastNameOfContact(generateContactLastName())
+                .typePhoneNumberOfContact(generatePhoneNumber())
+                .clickOnFinishButton()
+                .getSuccessPopUp().isExists();
     }
+
+    @Test(description = "Create new email from the Contact landing page")
+    public void createEmailFromContactPage(){
+        fillContactsPage();
+        contactsPage
+                .getAllContactsPageHeader().isExists();
+        contactsPage
+                .clickOnClientsTabInSubmenu()
+                .clickOnFirstCommercialContactFromTeble()
+                .getContactLandingPage();
+        contactsPage
+                .clickOnCompaniesTab()
+                .clickOnEmailButton()
+                .enterSubjectForEmail(generateEmailSubject());
+//                .enterDodyOfEmail("Test email text")
+//                .clickOnSendButtonForEmail();
+    }
+
 
 
     private String generateContactFirstName() {
@@ -152,5 +166,12 @@ public class ContactsTests extends TestBase {
         String name = "Test Client " + d;
         System.out.println(name);
         return name;
+    }
+    private String generateEmailSubject() {
+        Random random = new Random();
+        int d = random.nextInt(1000) + 1;
+        String subject = "Hello test letter - " + d;
+        System.out.println(subject);
+        return subject;
     }
 }

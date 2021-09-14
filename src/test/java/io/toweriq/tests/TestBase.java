@@ -15,11 +15,16 @@ import static io.toweriq.DriverManager.killDriver;
 public class TestBase {
 
     protected HomePage homePage;
-    protected ClientsPage clientsPage;
+    protected ProgramsPage programsPage;
+    protected LeadsPage leadsPage;
+    protected ProspectsPage prospectsPage;
+    protected CompaniesPage companiesPage;
     protected TransactionsPage transactionPage;
     protected PoliciesPage policiesPage;
     protected ContactsPage contactsPage;
     protected LibraryPage libraryPage;
+    protected SignaturePage signaturePage;
+    protected PortalsPage portalsPage;
     protected ProfileAndPreferencesPage profilePage;
     protected SettingsPage settingsPage;
 
@@ -31,50 +36,72 @@ public class TestBase {
     public void signIn() {
         System.out.println("test");
         homePage = new SignInPage()
-//                .clearEmailField()
-                .typeEmail("toweriqautotest+1@gmail.com")
+                .typeEmail("toweriqautotest1@gmail.com")
                 .typePassword("Vfrcbv82")
                 .clickSignInButton();
     }
-    public void signOutFromPortal() {
-        homePage
-                .clickOnProfileIcon()
-                .clickSignOutLink();
+    protected void fillHomePage(){
+        DriverManager.WebDriverWait();
+        homePage = homePage
+                .clickOnHomeButton();
     }
+
     protected void fillSettingsPage(){
         DriverManager.WebDriverWait();
         settingsPage = homePage
                 .clickOnSettingsButton();
     }
-    protected void fillClientsPage(){
+//    protected void fillProgramsPage(){
+//        DriverManager.WebDriverWait();
+//        programsPage = homePage
+//                .clickOnProgramsLink();
+//    }
+//    protected void fillLeadsPage(){
+//        DriverManager.WebDriverWait();
+//        leadsPage = homePage
+//                .clickOnLeadsLink();
+//    }
+//    protected void fillProspectsPage(){
+//        DriverManager.WebDriverWait();
+//        prospectsPage = homePage
+//                .clickOnProspectsLink();
+//    }
+    protected void fillCompanyPage(){
         DriverManager.WebDriverWait();
-        clientsPage = homePage
-                .clickOnClientsLink();
+        companiesPage = homePage
+                .clickOnCompaniesButton();
     }
     protected void fillTransactionPage() {
         DriverManager.WebDriverWait();
         transactionPage = homePage
-                .clickOnTransactionsLink();
+                .clickOnTransactionsButton();
     }
     protected void fillPoliciesPage(){
         policiesPage = homePage
-                .clickOnPoliciesLink();
+                .clickOnPoliciesButton();
     }
     protected void fillContactsPage(){
         contactsPage = homePage
-                .clickOnContactsLink();
+                .clickOnContactsButton();
     }
-    protected void fillFormsPage(){
+    protected void fillLibraryPage(){
         libraryPage = homePage
-                .clickOnLibraryLink();
+                .clickOnLibraryButton();
+    }
+    protected void fillSignaturePage(){
+        signaturePage = homePage
+                .clickOnESignatureButton();
+    }
+    protected void fillPortalsPage(){
+        portalsPage = homePage
+                .clickOnPortalsButton();
     }
     protected void fillProfilePage(){
         profilePage = homePage
                 .clickOnProfilePreferencesLink();
     }
-    @AfterMethod
-    public void close(){
-      killDriver();
-    }
-
+//    @AfterMethod
+//    public void close(){
+//        killDriver();
+//    }
 }

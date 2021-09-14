@@ -1,7 +1,8 @@
 package io.toweriq.tests;
 
-import io.toweriq.pageObjects.TransactionsPage;
 import org.testng.annotations.Test;
+
+import java.util.Random;
 
 public class TransactionsTests extends TestBase {
 
@@ -21,25 +22,60 @@ public class TransactionsTests extends TestBase {
                     .clickOnNewTransactionButton();
         }
 
-
-    @Test(description = "Click on 'New transaction' button and choose 'Start workflow' option")
-    public void chooseStartWorkflowOption(){
+    @Test(description = "Create new transaction for the Personal Clients")
+    public void createNewTransactionForPersonalClient(){
         fillTransactionPage();
         transactionPage
                 .getTransactionsPageHeader().isExists();
         transactionPage
                 .clickOnNewTransactionButton()
-                .clickStartWorkflowButton();
+                .selectPersonalClientOption()
+                .clickOnNextButtonToContinue()
+                .enterTransactionName(generatePersonalTransactionName())
+                .clickOnAssociatedClientProspectDropdown()
+                .searchClientName("Personal Client 1")
+                .selectNameOfPersonalClient()
+                .clickOnTransactionTypeDropdown()
+                .selectNewBusinessType()
+                .clickOnFinishButton()
+                .clickOnFinishButton();
     }
 
-    @Test(description = "Click on 'New transaction' button and choose 'Select forms' option")
-    public void chooseSelectFormsOption(){
+    @Test(description = "Create new transaction for the Commercial Clients")
+    public void createNewTransactionForCommercialClient(){
         fillTransactionPage();
         transactionPage
                 .getTransactionsPageHeader().isExists();
         transactionPage
                 .clickOnNewTransactionButton()
-                .clickSelectFormsButton();
+                .selectCommercialClientOption()
+                .clickOnNextButtonToContinue()
+                .enterTransactionName(generateCommercialTransactionName())
+                .clickOnAssociatedClientProspectDropdown()
+                .selectNameOfCommercialClient()
+                .clickOnTransactionTypeDropdown()
+                .selectNewBusinessType();
+    }
+
+    @Test(description = "Create transaction from the company landing page")
+    public void createNewTransactionFromCompanyLangingPage(){
+        fillCompanyPage();
+        companiesPage
+                .getAllCompaniesPageHeader().isExists();
+        companiesPage
+                .clickOnClientsTab()
+                .getCompaniesPageHeader().isExists();
+        companiesPage
+                .clickOnClientFromTable()
+                .getClientsLandingPageHeader().isExists();
+        companiesPage
+                .clickOnTransactionsTabOnCompanyLandingPage()
+                .clickOnAddTransaction()
+                .enterTransactionName(generateCommercialTransactionName())
+                .clickOnTransactionTypeDropdownField()
+                .selectNewBusinessType()
+                .clickOnFinishTransactionButton();
+
     }
 
     @Test(description = "Open the transaction's landing page")
@@ -59,6 +95,21 @@ public class TransactionsTests extends TestBase {
                 .clickOnAttachmentsTab()
                 .clickOnESignatureTab()
                 .clickOnFormsTab();
+    }
+
+    private String generatePersonalTransactionName() {
+        Random random = new Random();
+        int a = random.nextInt(10000) + 1;
+        String name = "Personal Client Transaction " + a;
+        System.out.println(name);
+        return name;
+    }
+    private String generateCommercialTransactionName() {
+        Random random = new Random();
+        int a = random.nextInt(10000) + 1;
+        String name = "Commercial Client Transaction " + a;
+        System.out.println(name);
+        return name;
     }
 
 }

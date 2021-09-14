@@ -8,7 +8,7 @@ public class LibraryPageTests extends TestBase {
 
     @Test(description = "Open 'Forms' page")
     public void openFormsPage(){
-        fillFormsPage();
+        fillLibraryPage();
         libraryPage
                 .getLibraryPageHeader().isExists();
     }

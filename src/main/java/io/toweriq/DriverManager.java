@@ -12,7 +12,9 @@ public class DriverManager {
 
     private static ThreadLocal<WebDriver> threadDriver = new ThreadLocal();
 
-    private DriverManager(){}
+    public DriverManager(){
+        getDriver().manage().window().maximize(); /// HERE
+    }
 
     public static WebDriver getDriver(){
         if(threadDriver.get()==null){
@@ -47,6 +49,8 @@ public class DriverManager {
     }
 
     public static void WebDriverWait(){
-        threadDriver.get().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        threadDriver.get().manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//        threadDriver.get().manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
     }
+
 }

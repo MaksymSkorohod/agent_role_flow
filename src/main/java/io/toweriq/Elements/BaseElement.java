@@ -11,6 +11,7 @@ import static io.toweriq.DriverManager.getDriver;
 
 public class BaseElement {
     private By locator;
+    private By locatorTarget;
     private String description;
     private String lastBorder;
     private WebElement lastElement;
@@ -20,12 +21,28 @@ public class BaseElement {
         this.description = description;
     }
 
+    public BaseElement(By locator, By locatorTarget, String description){
+        this.locator = locator;
+        this.locatorTarget = locatorTarget;
+        this.description = description;
+    }
+
     protected By getLocator(){
         return locator;
     }
 
+    protected By getLocatorTarget(){
+        return locatorTarget;
+    }
+
     protected WebElement get(){
         WebElement element = getDriver().findElement(locator);
+        highlight(element);
+        return element;
+    }
+
+    protected WebElement getTarget(){
+        WebElement element = getDriver().findElement(locatorTarget);
         highlight(element);
         return element;
     }
@@ -88,7 +105,6 @@ public class BaseElement {
             }
         }
     }
-
     private void waitUntil(){
 
     }
