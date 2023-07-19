@@ -14,30 +14,52 @@ public class TransactionsPage extends AbstractPage{
     private By newTransactionButton = By.id("transactionsCreate");
     private By transactionForPersonalClient = By.id("squareImagecheckBoxItempersonal_client");
     private By transactionForCommercialClient = By.id("squareImagecheckBoxItemcommercial_client,");
-    private By startTransactionNextButton = By.id("createTSNext");
     private By transactionDialogTitle = By.id("transaction-dialog-title");
-    private By transactionNameField = By.id("transactionName");
-    private By associatedClientOrProspectDropdown = By.id("client");
-    private By selectClientSearch= By.id("select-client-search");
     private By personalClientNameOption = By.xpath("//div[@id='client']//div[text()='Personal Client 1']");
-    private By commercialClientNameOption = By.xpath("//*[@id=\"client\"]/div[2]/div[2]");
+    private By commercialClientNameOption = By.id("Marvel_Studios");
+    private By associatedClientOrProspectDropdown = By.id("client");
+    private By optionsListClient = By.id("optionsList_client");
+    private By selectClientSearch = By.id("select-client-search");
+    private By associatedClientSelect = By.id("Marvel_Studios");
+    private By associatedYearDropdown = By.id("transactionYear");
+    private By optionsListTransactionYear = By.id("optionsList_transactionYear");
+    private By associatedYear2022 = By.id("2022");
+    private By associatedYear2023 = By.id("2023");
+    private By associatedYear2024 = By.id("2024");
     private By transactionTypeDropdown = By.id("transactionType");
-    private By newBusinessOption = By.xpath("//div[@id='transactionType']//div[text() ='New business']");
-    private By renewalOption = By.xpath("//div[@id='transactionType']//div[text() ='Renewal']");
+    private By newBusinessOption = By.id("New_business");
+    private By renewalOption = By.id("Renewal");
     private By finishTransactionCreationButton = By.id("createTSFinish");
-    private By landingPageHeader = By.id("transaction-landing-page");
+    private By transactionsLinkOnLandingPage = By.xpath("//div[@id='root']//div/h1/a[@href='/transactions']");
+    private By transactionLandingPageHeader = By.id("transaction-landing-page");
     private By transactionNameInTable = By.xpath("//table[@id='transactions-table']//tbody//tr[1]/td[2]/div");
     private By transactionsHeaderLink = By.xpath("//div[@id='root']//div/h1//a[@href='/transactions']");
     private By firstTransactionInTable = By.xpath("//table[@id='transactions-table']/tbody/tr[1]/td[2]//a");
     private By transactionArchiveButton = By.id("transactionArchive");
-    private By transactionFormsTab = By.id("transactionTabForms");
-    private By addFormButton = By.xpath("//div[@id='root']//div[2]//button[text()='Add form']");
-    private By schedulesTab = By.id("transactionTabSchedules");
-    private By addScheduleButton = By.xpath("//div[@id='root']//div[2]//button[text()='Add schedule']");
-    private By attachmentsTab = By.id("transactionTabAttachments");
-    private By addAttachmentButton = By.xpath("//div[@id='root']//div[2]//button[text()='Add attachment']");
-    private By eSignaturesTab = By.id("transactionTabE-signatures");
-    private By addSignatureButton = By.xpath("//div[@id='root']//div[2]//button[text()='Add signature']");
+    private By tabsOnTransactionLandingPage = By.xpath("//div[@id='root']//div[1]/div[2]/div[@role='button']");
+    private By transactionTabWorkspace = By.xpath("//div[@id='transactionTabWorkspace']/p");
+    private By transactionFormsSubTab = By.id("transactionTabForms");
+    private By addFormButton = By.id("add-form-btn");
+    private By theFormForTransaction = By.xpath("//table[@id='companies-table']//tr[1]/td[1]");
+    private By doneButtonForAddingForm = By.id("done");
+    private By emailButtonOnTransactionPage = By.id("action-email-btn");
+    private By subjectFieldNewEmail = By.id("subject");
+    private By emailTextArea = By.cssSelector(".ql-container.ql-snow > .ql-blank.ql-editor");
+    private By sendButtonForEmail = By.xpath("//div[@id='crm-draggable-wrapper']/div[@class='react-draggable']//div[text()='Send']");
+    private By noteButtonOnTransactionPage = By.id("action-note-btn");
+    private By taskButtonOnTransactionPage = By.id("action-task-btn");
+    private By transactionSubTabClientRecordForms = By.id("transactionTabClientRecordForms");
+    private By transactionSubTabSchedules = By.id("transactionTabSchedules");
+    private By addScheduleButton = By.id("add-schedule-btn");
+    private By transactionSubTabAttachments = By.id("transactionTabAttachments");
+    private By addAttachmentButton = By.id("add-attachment-btn");
+    private By transactionSubTabESignatures = By.id("transactionTabE-signatures");
+    private By addSignatureButton = By.id("add-signature-btn");
+    private By transactionTabEmails = By.id("transactionTabEmails");
+    private By transactionTabNotes = By.id("transactionTabNotes");
+    private By transactionTabTasks = By.xpath("//div[@id='transactionTabTasks']/p");
+    private By userRoleDropDown = By.cssSelector("[class='css-1pcexqc-container select-component']");
+
 
     @Getter
     TextField TransactionsPageHeader = new TextField(transactionsPageHeader,"The header of the 'Transactions' page");
@@ -52,29 +74,39 @@ public class TransactionsPage extends AbstractPage{
     @Getter
     Link TransactionForCommercialClient = new Link(transactionForCommercialClient, "The 'Commercial Client' option");
     @Getter
-    Button StartTransactionNextButton = new Button(startTransactionNextButton, "The 'Next' button");
-    @Getter
     TextField TransactionDialogTitle = new TextField(transactionDialogTitle, "The 'Start a transaction' modal window");
-    @Getter
-    InputField TransactionNameField = new InputField(transactionNameField, "The 'Transaction name' input field");
-    @Getter
-    Link AssociatedClientOrProspectDropdown = new Link(associatedClientOrProspectDropdown, "The 'Associated client or prospect' dropdown field");
-    @Getter
-    InputField SearchFieldForClientName = new InputField(selectClientSearch, "The 'Search' field for the 'Associated client or prospect' dropdown");
     @Getter
     Button PersonalClientNameOption = new Button(personalClientNameOption, "The Personal client's name option in the 'Associated client or prospect' dropdown field");
     @Getter
     Button CommercialClientNameOption = new Button(commercialClientNameOption, "The Commercial client's name option in the 'Associated client or prospect' dropdown field");
     @Getter
+    Link AssociatedClientOrProspectDropdown = new Link(associatedClientOrProspectDropdown, "The 'Associated client or prospect' dropdown field");
+    @Getter
+    DropDownList OptionsListClient = new DropDownList(optionsListClient, "The 'Associated client or prospect' option list");
+    @Getter
+    InputField SearchFieldForClientName = new InputField(selectClientSearch, "The 'Search' field for the 'Associated client or prospect' dropdown");
+    @Getter
+    DropDownOption AssociatedClientSelect = new DropDownOption(associatedClientSelect,"The name of the selected client");
+    @Getter
+    Link AssociatedYear = new Link(associatedYearDropdown, "The 'Associated year' dropdown field");
+    @Getter
+    DropDownList OptionsListTransactionYear = new DropDownList(optionsListTransactionYear, "The 'Associated year' dropdown list");
+    @Getter
+    DropDownOption AssociatedYear2022 = new DropDownOption(associatedYear2022,"The '2022' option from the 'Associated year' dropdown list");
+    @Getter
+    DropDownOption AssociatedYear2023 = new DropDownOption(associatedYear2023,"The '2023' option from the 'Associated year' dropdown list");
+    @Getter
+    DropDownOption AssociatedYear2024 = new DropDownOption(associatedYear2024,"The '2024' option from the 'Associated year' dropdown list");
+    @Getter
     Link TransactionTypeDropdown = new Link(transactionTypeDropdown, "The 'Transaction type' dropdown field");
     @Getter
-    Link NewBusinessOption = new Link(newBusinessOption, "The 'New Business' option in the 'Transaction type' dropdown");
+    DropDownOption NewBusinessOption = new DropDownOption(newBusinessOption, "The 'New Business' option in the 'Transaction type' dropdown");
     @Getter
-    Link RenewalOption = new Link(renewalOption, "The 'Renewal' option in the 'Transaction type' dropdown");
+    DropDownOption RenewalOption = new DropDownOption(renewalOption, "The 'Renewal' option in the 'Transaction type' dropdown");
     @Getter
     Button FinishTransactionCreationButton = new Button(finishTransactionCreationButton, "The 'Finish' button to complete the creation of the new transaction");
     @Getter
-    TextField LandingPageOpen = new TextField(landingPageHeader, "The landing page of the transaction is open");
+    TextField TransactionLandingPageOpen = new TextField(transactionLandingPageHeader, "The landing page of the transaction is open");
     @Getter
     Link TransactionNameInTable = new Link(transactionNameInTable,"The transaction name in the table on the 'Transactions' page");
     @Getter
@@ -84,21 +116,47 @@ public class TransactionsPage extends AbstractPage{
     @Getter
     Button TransactionsArchiveButton = new Button(transactionArchiveButton, "The 'Archive transaction' button");
     @Getter
-    Button TransactionFormsTab = new Button(transactionFormsTab, "The 'Forms' tab");
+    Tab TabsOnTransactionLandingPage = new Tab(tabsOnTransactionLandingPage, "The tabs on the transaction landing page");
+    @Getter
+    Link TransactionsLinkLandingPage = new Link(transactionsLinkOnLandingPage,"The 'Transactions' link on the transaction landing page");
+    @Getter
+    Tab TransactionTabWorkspace = new Tab(transactionTabWorkspace,"The 'Information' tab on the company landing page");
+    @Getter
+    Tab TransactionFormsSubTab = new Tab(transactionFormsSubTab, "The 'Forms' tab");
     @Getter
     Button AddFormButton = new Button(addFormButton, "The '+Add form' button");
     @Getter
-    Button SchedulesTab = new Button(schedulesTab,"The 'Schedules' tab");
+    Button TheFormForTransaction = new Button(theFormForTransaction, "The form for the transaction");
+    @Getter
+    Button DoneButtonForAddingForm = new Button(doneButtonForAddingForm, "The 'Done' button for adding the forms too transactions");
+    @Getter
+    Button EmailButtonOnTransactionPage = new Button(emailButtonOnTransactionPage,"The 'Email' button on the transaction landing page");
+    @Getter
+    Button NoteButtonOnTransactionPage = new Button(noteButtonOnTransactionPage,"The 'Note' button on the transaction landing page");
+    @Getter
+    Button TaskButtonOnTransactionPage = new Button(taskButtonOnTransactionPage,"The 'Task' button on the transaction landing page");
+    @Getter
+    Tab TransactionSubTabClientRecordForms = new Tab(transactionSubTabClientRecordForms,"The 'Client record forms' sub tab on the company landing page");
+    @Getter
+    Tab TransactionSubTabSchedules = new Tab(transactionSubTabSchedules,"The 'Schedules' sub tab on the company landing page");
     @Getter
     Button AddScheduleButton = new Button(addScheduleButton, "The '+Add schedule' button");
     @Getter
-    Button AttachmentsTab = new Button(attachmentsTab, "The 'Attachments' tab");
+    Tab TransactionSubTabAttachments = new Tab(transactionSubTabAttachments, "The 'Attachments' sub tab on the company landing page");
     @Getter
     Button AddAttachmentButton = new Button(addAttachmentButton, "The '+Add attachment' button");
     @Getter
-    Button ESignaturesTab = new Button(eSignaturesTab, "The 'E-signature' tab");
+    Tab TransactionSubTabESignatures = new Tab(transactionSubTabESignatures, "The 'E-signature' sub tab on the company landing page");
     @Getter
     Button AddSignatureButton = new Button(addSignatureButton, "The '+Add signature' button");
+    @Getter
+    Tab TransactionTabEmails = new Tab(transactionTabEmails,"The 'Emails' tab on the company landing page");
+    @Getter
+    Tab TransactionTabNotes = new Tab(transactionTabNotes, "The 'Notes' tab on the company landing page");
+    @Getter
+    Tab TransactionTabTasks = new Tab(transactionTabTasks, "The 'Tasks' tab on the company landing page");
+    @Getter
+    DropDownList UserRoleDropDownField = new DropDownList(userRoleDropDown, "The 'Select a user role' area on the transaction landing page");
 
 
     @Step("Enter text into the 'Search' field")
@@ -109,7 +167,6 @@ public class TransactionsPage extends AbstractPage{
     }
     @Step("Click on the 'New transaction' button")
     public TransactionsPage clickOnNewTransactionButton(){
-//        DriverManager.WebDriverWait();
         getNewTransactionButton().clickButton();
         return this;
     }
@@ -123,17 +180,6 @@ public class TransactionsPage extends AbstractPage{
         getTransactionForCommercialClient().clickLink();
         return this;
     }
-    @Step("Click on the 'Next' button")
-    public TransactionsPage clickOnNextButtonToContinue(){
-        getStartTransactionNextButton().clickButton();
-        return this;
-    }
-    @Step("Enter the transaction name into the 'Transaction name' input field")
-    public TransactionsPage enterTransactionName(String transactionName){
-        getTransactionNameField().setText(transactionName);
-        System.out.println(transactionName);
-        return this;
-    }
     @Step("Click on the 'Associated client or prospect' dropdown field")
     public TransactionsPage clickOnAssociatedClientProspectDropdown(){
         getAssociatedClientOrProspectDropdown().clickLink();
@@ -145,16 +191,29 @@ public class TransactionsPage extends AbstractPage{
         System.out.println(clientName);
         return this;
     }
-    @Step("Select the Personal Client name")
-    public TransactionsPage selectNameOfPersonalClient(){
-        DriverManager.WebDriverWait();
-        getPersonalClientNameOption().clickButton();
+    @Step("Click on the name of the searched client")
+    public TransactionsPage clickOnTheClientName(){
+        getAssociatedClientSelect().clickOption();
         return this;
     }
-    @Step("Select the Commercial Client name")
-    public TransactionsPage selectNameOfCommercialClient(){
-        DriverManager.WebDriverWait();
-        getCommercialClientNameOption().clickButton();
+    @Step("Click on the 'Associated year' dropdown")
+    public TransactionsPage clickOnAssociatedYearDropDown(){
+        getAssociatedYear().clickLink();
+        return this;
+    }
+    @Step("Select the 2022 option from the 'Associated year' dropdown")
+    public TransactionsPage clickOn2022Option(){
+        getAssociatedYear2022().clickOption();
+        return this;
+    }
+    @Step("Select the 2023 option from the 'Associated year' dropdown")
+    public TransactionsPage clickOn2023Option(){
+        getAssociatedYear2023().clickOption();
+        return this;
+    }
+    @Step("Select the 2024 option from the 'Associated year' dropdown")
+    public TransactionsPage clickOn2024Option(){
+        getAssociatedYear2024().clickOption();
         return this;
     }
     @Step("Click on the 'Transaction type' dropdown field")
@@ -164,21 +223,20 @@ public class TransactionsPage extends AbstractPage{
     }
     @Step("Select the 'New business' option inside the 'Transaction type' dropdown field")
     public TransactionsPage selectNewBusinessType(){
-        getNewBusinessOption().clickLink();
+        getNewBusinessOption().clickOption();
         return this;
     }
     @Step("Select the 'Renewal' option inside the 'Transaction type' dropdown field")
     public TransactionsPage selectRenewalType(){
-        getRenewalOption().clickLink();
+        getRenewalOption().clickOption();
         return this;
     }
     @Step("Click on the 'Finish' button to complete the transaction creation")
     public TransactionsPage clickOnFinishButton(){
-        DriverManager.WebDriverWait();
+        DriverManager.waitForElementVisible(finishTransactionCreationButton,5);
         getFinishTransactionCreationButton().clickButton();
         return this;
     }
-
     @Step("Click on the transaction name from the table on the 'Transactions' page")
     public TransactionsPage clickOnTransactionName(){
         getTransactionNameInTable().clickLink();
@@ -189,9 +247,21 @@ public class TransactionsPage extends AbstractPage{
         getTransactionsLinkInHeader().clickLink();
         return this;
     }
+    @Step("Click on the 'Transactions' button")
+    public TransactionsPage clickOnTransactionsLink(){
+        DriverManager.webDriverWait();
+      getTransactionsLinkLandingPage().clickLink();
+      return this;
+    }
+    @Step("Click on the 'Workspace' tab on the transaction landing page")
+    public TransactionsPage clickOnWorkspaceTab(){
+        DriverManager.getWaiter(2);
+        getTransactionTabWorkspace().clickTab();
+        return this;
+    }
     @Step("Click on the 'Forms' tab")
-    public TransactionsPage clickOnFormsTab(){
-        getTransactionFormsTab().clickButton();
+    public TransactionsPage clickOnFormsSubTab(){
+        getTransactionFormsSubTab().clickTab();
         return this;
     }
     @Step("Click on the '+Add form' button")
@@ -199,9 +269,34 @@ public class TransactionsPage extends AbstractPage{
         getAddFormButton().clickButton();
         return this;
     }
+    @Step("Click on the Form")
+    public TransactionsPage clickOnTheForm(){
+        getTheFormForTransaction().clickButton();
+        return this;
+    }
+    @Step("Click on the 'Done' button on the 'Add forms' modal")
+    public TransactionsPage clickOnDoneButton(){
+        getDoneButtonForAddingForm().clickButton();
+        return this;
+    }
+    @Step("Click on the 'Email' button on the transaction landing page")
+    public TransactionsPage clickEmailButtonOnTransactionPage (){
+        getEmailButtonOnTransactionPage().clickButton();
+        return this;
+    }
+    @Step("Click on the 'Note' button on the transaction landing page")
+    public TransactionsPage clickNoteButtonOnTransactionPage (){
+        getNoteButtonOnTransactionPage().clickButton();
+        return this;
+    }
+    @Step("Click on the 'Task' button on the transaction landing page")
+    public TransactionsPage clickTaskButtonOnTransactionPage (){
+        getTaskButtonOnTransactionPage().clickButton();
+        return this;
+    }
     @Step("Click on the 'Schedules' tab")
-    public TransactionsPage clickOnSchedulesTab(){
-        getSchedulesTab().clickButton();
+    public TransactionsPage clickOnSchedulesSubTab(){
+        getTransactionSubTabSchedules().clickTab();
         return this;
     }
     @Step("Click on the '+Add schedule' button")
@@ -211,7 +306,7 @@ public class TransactionsPage extends AbstractPage{
     }
     @Step("Click on the 'Attachments' tab")
     public TransactionsPage clickOnAttachmentsTab(){
-        getAttachmentsTab().clickButton();
+        getTransactionSubTabAttachments().clickTab();
         return this;
     }
     @Step("Click on the '+Add attachment' button")
@@ -221,12 +316,35 @@ public class TransactionsPage extends AbstractPage{
     }
     @Step("Click on the 'E-signature' tab")
     public TransactionsPage clickOnESignatureTab(){
-        getESignaturesTab().clickButton();
+        getTransactionSubTabESignatures().clickTab();
         return this;
     }
     @Step("Click on the '+Add signature' button")
     public TransactionsPage clickOnAddSignatureButton(){
         getAddSignatureButton().clickButton();
+        return this;
+    }
+    @Step("Click on the 'Emails' tab on the transaction landing page")
+    public TransactionsPage clickOnEmailsTab(){
+        DriverManager.waitForElementVisible(transactionTabEmails,10);
+        getTransactionTabEmails().clickTab();
+        return this;
+    }
+    @Step("Click on the 'Notes' tab on the transaction landing page")
+    public TransactionsPage clickOnNotesTab(){
+        getTransactionTabNotes().clickTab();
+        return this;
+    }
+    @Step("Click on the 'Tasks' tab on the transaction landing page")
+    public TransactionsPage clickOnTasksTab(){
+        DriverManager.waitForElementVisible(transactionTabTasks,3);
+        getTransactionTabTasks().clickTab();
+        return this;
+    }
+    @Step("Click on the 'Select a user role' dropdown")
+    public TransactionsPage clickOnSelectRoleDropdown(){
+        DriverManager.getWaiter(5);
+        getUserRoleDropDownField().click();
         return this;
     }
 }

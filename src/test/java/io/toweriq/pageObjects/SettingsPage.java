@@ -58,7 +58,7 @@ public class SettingsPage extends AbstractPage {
 
     @Step("Click on the 'Settings' button")
     public SettingsPage clickOnSettingsButton(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getSettingsButton().clickButton();
         return new SettingsPage();
     }
@@ -70,7 +70,7 @@ public class SettingsPage extends AbstractPage {
     }
     @Step("Click on the 'Manage users' tab")
     public ManageUsersPage clickOnManageUsers(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getManageUsers().clickButton();
         return new ManageUsersPage();
     }

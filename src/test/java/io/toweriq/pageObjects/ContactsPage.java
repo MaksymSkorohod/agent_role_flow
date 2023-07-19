@@ -5,11 +5,10 @@ import io.toweriq.DriverManager;
 import io.toweriq.Elements.*;
 import lombok.Getter;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 public class ContactsPage extends AbstractPage{
 
-    private By allContactsPageHeader = By.xpath("//div[@id='root']//h1");
+    private By allContactsPageHeader = By.xpath("//h1[text()='Commercial clients']");
     private By allContactsTab = By.id("All contacts");
     private By clientsTab = By.id("Clients");
     private By commercialClientsSubTab = By.id("Commercial");
@@ -20,7 +19,7 @@ public class ContactsPage extends AbstractPage{
     private By allContactsPageTab = By.id("transactionTabAllContacts");
     private By myContactsPageTab = By.id("transactionTabMyContacts");
     private By commercialPageTable = By.id("companies-table");
-    private By commercialContactNameInTable = By.xpath(" //table[@id='companies-table']/tbody/tr[1]/td[1]/div/a");
+    private By commercialContactNameInTable = By.xpath("//table[@id='companies-table']/tbody/tr[1]/td[1]/div/a");
     private By secondCommercialContactNameInTable = By.xpath("//table[@id='companies-table']/tbody/tr[2]/td[1]/div/a");
     private By commercialContactLandingPageHeader = By.xpath("//div[@id='root']//div/h1/a[@href='/contacts/all']");
     private By createContactButton = By.id("create-contact-button");
@@ -28,11 +27,30 @@ public class ContactsPage extends AbstractPage{
     private By contactFirstNameField = By.id("firstName");
     private By contactLastNameField = By.id("lastName");
     private By contactPhoneNumberField = By.id("phone");
+    private By permissionTemplateDropDownField = By.id("businessRole");
+    private By administratorTemplateOption = By.xpath("//div[@id='businessRole']//div[text()='Administrator']");
+    private By collaboratorTemplateOption = By.xpath("//div[@id='businessRole']//div[text()='Collaborator']");
+    private By editContactAdditionalPermission = By.xpath("//form[@id='new-rolodex-crm-contact-form']//span[text()='Edit contact']");
+    private By viewPoliciesAdditionalPermission = By.xpath("//form[@id='new-rolodex-crm-contact-form']//span[text()='View Policies']");
+    private By allTransactionsAdditionalPermission = By.xpath("//form[@id='new-rolodex-crm-contact-form']//span[text()='All Transactions']");
+    private By allPoliciesAdditionalPermission = By.xpath("//form[@id='new-rolodex-crm-contact-form']//span[text()='All Policies']");
+    private By shareItemsWithingTransactionAdditionalPermission = By.xpath("//form[@id='new-rolodex-crm-contact-form']//span[text()='Share items withing a transaction']");
+    private By requestClaimsAdditionalPermission = By.xpath("//form[@id='new-rolodex-crm-contact-form']//span[text()='Request Claims']");
+    private By requestEndorsementAdditionalPermission = By.xpath("//form[@id='new-rolodex-crm-contact-form']//span[text()='Request Endorsement']");
+    private By requestCertificateAdditionalPermission = By.xpath("//form[@id='new-rolodex-crm-contact-form']//span[text()='Request Certificate']");
     private By createAndReturnButton = By.id("createCompanyFinish");
     private By cancelButton = By.id("createCompanyCancel");
     private By successWindow = By.xpath("//div[@id='root']//div[@class='notifications-wrapper']");
     private By createProfileDropdown = By.id("profile");
     private By createNewProfileLink = By.id("selectBox-profile");
+    private By selectTypeOfProfile = By.xpath("//form[@id='new-crm-profile-root-form']//div[@id='profile']");
+    private By personalClientType = By.xpath("//div[@id='profile']//div[text()='Personal client']");
+    private By commercialClientType = By.xpath("//div[@id='profile']//div[text()='Commercial client']");
+    private By companyDropDownField = By.id("company");
+    private By selectCompanySearch = By.id("select-company-search");
+    private By companyFromDropDownList1 = By.cssSelector("#optionsList_company [data-for='option-itemy_1']");
+    private By saveAndReturnButtonForEdit = By.id("createCompanyFinish");
+
     private By actionEmailButton = By.id("action-email-btn");
     private By subjectInputFieldForEmail = By.id("subject");
     private By emailBodySpace = By.xpath("//div[@id='crm-draggable-wrapper']/div[@class='react-draggable react-draggable-dragged']//div/div[5]/div[1]/div/div[1]");
@@ -41,8 +59,6 @@ public class ContactsPage extends AbstractPage{
     private By actionTaskButton = By.id("action-task-btn");
     private By openedEmailNoteTaskWindow = By.id("crm-draggable-wrapper");
     private By companiesTabOnContactLanding = By.id("transactionTabCompanies");
-
-
     private By sendInviteButton = By.id("send-latter-button-modal");
     private By sendInviteLaterButton = By.id("cancel-button-modal");
     private By createNewProspectLink = By.id("selectBox-prospect");
@@ -93,15 +109,51 @@ public class ContactsPage extends AbstractPage{
     @Getter
     InputField EnterContactPhoneNumber =new InputField(contactPhoneNumberField,"Enter contact's phone number into the 'Phone number' field");
     @Getter
+    Button PermissionTemplateDropDownField = new Button(permissionTemplateDropDownField, "The 'Permission template' dropdown field");
+    @Getter
+    Button AdministratorTemplateOption = new Button(administratorTemplateOption, "The 'Administrator' option");
+    @Getter
+    Button CollaboratorTemplateOption = new Button(collaboratorTemplateOption, "The 'Collaborator' option");
+    @Getter
+    Check EditContactAdditionalPermission = new Check(editContactAdditionalPermission, "The 'Edit contact' option for the 'Additional permission'");
+    @Getter
+    Check ViewPoliciesAdditionalPermission = new Check(viewPoliciesAdditionalPermission, "The 'View Policies' option for the 'Additional permission'");
+    @Getter
+    Check AllTransactionsAdditionalPermission = new Check(allTransactionsAdditionalPermission, "The 'All Transactions' option for the 'Additional permission'");
+    @Getter
+    Check AllPoliciesAdditionalPermission = new Check(allPoliciesAdditionalPermission, "The 'All Policies' option for the 'Additional permission'");
+    @Getter
+    Check ShareItemsWithingTransactionAdditionalPermission = new Check(shareItemsWithingTransactionAdditionalPermission, "The 'Share items withing a transaction' option for the 'Additional permission'");
+    @Getter
+    Check RequestClaimsAdditionalPermission = new Check(requestClaimsAdditionalPermission, "The 'Request Claims' option for the 'Additional permission'");
+    @Getter
+    Check RequestEndorsementAdditionalPermission = new Check(requestEndorsementAdditionalPermission, "The 'Request Endorsement' option for the 'Additional permission'");
+    @Getter
+    Check RequestCertificateAdditionalPermission = new Check(requestCertificateAdditionalPermission, "The 'Request Certificate' option for the 'Additional permission'");
+    @Getter
     Button FinishButton = new Button(createAndReturnButton,"Click on the 'Finish' button");
     @Getter
-    Button cancelButtonForNewContact =new Button(cancelButton,"Click on the 'Cancel' button");
+    Button CancelButtonForNewContact =new Button(cancelButton,"Click on the 'Cancel' button");
     @Getter
     TextField SuccessPopUp = new TextField(successWindow,"Success pop-up window appears");
     @Getter
     Button CreateProfileDropdown = new Button(createProfileDropdown,"The 'Assigned profile' dropdown on the Contact landing page");
     @Getter
     Link CreateNewProfileLink = new Link(createNewProfileLink, "The '+Create new profile' link");
+    @Getter
+    Button SelectTypeOfProfile = new Button(selectTypeOfProfile,"The 'Profile' dropdown field for the profile type");
+    @Getter
+    Button PersonalClientType = new Button(personalClientType,"The 'Personal client' type option");
+    @Getter
+    Button CommercialClientType = new Button(commercialClientType, "The 'Commercial client' type option");
+    @Getter
+    Button CompanyDropDownField = new Button(companyDropDownField, "The 'Company' selection dropdown");
+    @Getter
+    InputField SelectCompanySearch = new InputField(selectCompanySearch,"The search field for the search the company");
+    @Getter
+    Button CompanyFromDropDownList1 = new Button(companyFromDropDownList1,"The second company from the list");
+    @Getter
+    Button SaveAndReturnButtonForEdit = new Button(saveAndReturnButtonForEdit,"The 'Save and Return' button on the 'Assign new profile' modal");
     @Getter
     Button ActionEmailButton = new Button(actionEmailButton, "The 'Email' button on the Contact landing page");
     @Getter
@@ -173,6 +225,7 @@ public class ContactsPage extends AbstractPage{
     }
     @Step("Click on the first commercial contact from the 'Commercial clients' table")
     public ContactsPage clickOnFirstCommercialContactFromTeble(){
+        DriverManager.getWaiter(3);
         getCommercialContactNameInTable().clickLink();
         return this;
     }
@@ -206,9 +259,66 @@ public class ContactsPage extends AbstractPage{
     }
     @Step("Enter phone number of the contact")
     public ContactsPage typePhoneNumberOfContact(String phone){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getEnterContactPhoneNumber().setText(phone);
         System.out.println(phone);
+        return this;
+    }
+    @Step("Click on the 'Permission template' dropdown field")
+    public ContactsPage clickOnPermissionTemplateDropdownField(){
+        getPermissionTemplateDropDownField().clickButton();
+        return this;
+    }
+    @Step("Select the 'Administrator' role from the 'Permission template' dropdown field")
+    public ContactsPage selectAdministratorRole(){
+        DriverManager.getWaiter(4);
+        getAdministratorTemplateOption().clickButton();
+        return this;
+    }
+    @Step("Select the 'Collaborator' role from the 'Permission template' dropdown field")
+    public ContactsPage selectCollaboratorRole() {
+        DriverManager.getWaiter(4);
+        getCollaboratorTemplateOption().clickButton();
+        return this;
+    }
+    @Step("Check the 'Edit contact' additional permission")
+    public ContactsPage checkEditContactAdditionalPermission(){
+        getEditContactAdditionalPermission().select();
+        return this;
+    }
+    @Step("Check the 'View Policies' additional permission")
+    public ContactsPage checkViewPoliciesAdditionalPermission(){
+        getViewPoliciesAdditionalPermission().select();
+        return this;
+    }
+    @Step("Check the 'All Transactions' additional permission")
+    public ContactsPage checkAllTransactionsAdditionalPermission(){
+        getAllTransactionsAdditionalPermission().select();
+        return this;
+    }
+    @Step("Check the 'All Policies' additional permission")
+    public ContactsPage checkAllPoliciesAdditionalPermission(){
+        getAllPoliciesAdditionalPermission().select();
+        return this;
+    }
+    @Step("Check the 'Share items withing a transaction' additional permission")
+    public ContactsPage checkShareItemsWithingTransactionsAdditionalPermission(){
+        getShareItemsWithingTransactionAdditionalPermission().select();
+        return this;
+    }
+    @Step("Check the 'Request Claims' additional permission")
+    public ContactsPage checkRequestClaimsAdditionalPermission(){
+        getRequestClaimsAdditionalPermission().select();
+        return this;
+    }
+    @Step("Check the 'Request Endorsement' additional permission")
+    public ContactsPage checkRequestEndorsementAdditionalPermission(){
+        getRequestEndorsementAdditionalPermission().select();
+        return this;
+    }
+    @Step("Check the 'Request Certificate' additional permission")
+    public ContactsPage checkRequestCertificateAdditionalPermission(){
+        getRequestCertificateAdditionalPermission().select();
         return this;
     }
     @Step("Click on the 'Create and return' button")
@@ -221,29 +331,75 @@ public class ContactsPage extends AbstractPage{
        getCancelButtonForNewContact().clickButton();
         return this;
     }
+    @Step("Click on the 'Profile' dropdown")
+    public ContactsPage clickOnProfileDropdown(){
+        DriverManager.getWaiter(4);
+        getCreateProfileDropdown().clickButton();
+        return this;
+    }
+    @Step("Click on the '+Create new profile' link")
+    public ContactsPage clickCreateNewProfile(){
+        DriverManager.getWaiter(2);
+        getCreateNewProfileLink().clickLink();
+        return this;
+    }
+    @Step("Click on the 'Profile' dropdown")
+    public ContactsPage clickProfileDropDown(){
+        getSelectTypeOfProfile().clickButton();
+        return this;
+    }
+    @Step("Select the 'Personal client' type")
+    public ContactsPage selectPersonalClientType(){
+        DriverManager.getWaiter(3);
+        getPersonalClientType().clickButton();
+        return this;
+    }
+    @Step("Select the 'Commercial client' type")
+    public ContactsPage selectCommercialClientType(){
+        DriverManager.getWaiter(3);
+        getCommercialClientType().clickButton();
+        return this;
+    }
+    @Step("Click on the 'Company' dropdown")
+    public ContactsPage companySelectDropDown(){
+        getCompanyDropDownField().clickButton();
+        return this;
+    }
+    @Step("Click on the second company from the list")
+    public ContactsPage clickOnCompanyName(){
+        DriverManager.getWaiter(3);
+        getCompanyFromDropDownList1().clickButton();
+        return this;
+    }
+    @Step("Click on the 'Save and return' button on the 'Assign new profile' modal")
+    public ContactsPage clickOnSaveAndReturnButton(){
+        getSaveAndReturnButtonForEdit().clickButton();
+        return this;
+    }
+
     @Step("Click on the 'Email' button from the Contact landing page")
     public ContactsPage clickOnEmailButton(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getActionEmailButton().clickButton();
         return this;
     }
     @Step("Enter the subject of the letter into the 'Subject' input field")
     public ContactsPage enterSubjectForEmail(String emailSubject){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getSubjectInputFieldForEmail().setText(emailSubject);
         System.out.println(emailSubject);
         return this;
     }
     @Step("Enter the text into the Email")
     public ContactsPage enterDodyOfEmail(String text) {
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getEmailBodySpace().setText(text);
         System.out.println(text);
         return this;
     }
     @Step("Click on the 'Send' button for the new enail")
     public ContactsPage clickOnSendButtonForEmail(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getSendButtonForEmail().clickButton();
         return this;
     }
@@ -280,7 +436,7 @@ public class ContactsPage extends AbstractPage{
     }
     @Step("Click on 'Back to contact' link")
     public ContactsPage clickBackToContact(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getBackToContactLink().clickLink();
         return this;
     }
@@ -291,20 +447,20 @@ public class ContactsPage extends AbstractPage{
     }
     @Step("Click on the contact link in the table")
     public ContactsPage clickOnContactLinkName(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getContactNameInTable().clickLink();
         return this;
     }
     @Step("Get header text of the contact's landing page")
     public ContactsPage contactLendingPage(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getContactLandingPage().getText();
         System.out.println();
         return this;
     }
     @Step("Click on the 'Edit contact' button")
     public ContactsPage clickOnEditContactButton(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getEditContactButton().clickButton();
         return this;
     }
@@ -320,7 +476,7 @@ public class ContactsPage extends AbstractPage{
     }
     @Step("Clear 'Phone number' field")
     public ContactsPage clearPhoneField(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getEnterContactPhoneNumber().clear();
         return this;
     }

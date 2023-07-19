@@ -2,9 +2,7 @@ package io.toweriq.pageObjects;
 
 import io.qameta.allure.Step;
 import io.toweriq.DriverManager;
-import io.toweriq.Elements.Button;
-import io.toweriq.Elements.Link;
-import io.toweriq.Elements.TextField;
+import io.toweriq.Elements.*;
 import lombok.Getter;
 import org.openqa.selenium.By;
 
@@ -32,6 +30,26 @@ public class HomePage {
     private By profileLink = By.id("accountProfile");
     private By preferencesLink = By.id("accountPreferences");
     private By agentSignOutLink = By.id("accountSignOut");
+    private By pipelinesTab = By.id("Pipelines");
+    private By dashboardsSubTab = By.id("Dashboards");
+    private By pipelinesDashboardsPageHeader = By.xpath("//div[@id='root']//div/div/div//h1");
+    private By activityTab = By.id("Activity");
+    private By notificationsTab = By.id("Notifications");
+    private By notificationPageHeader = By.xpath("//div[@id='root']//div/div/div/h3[text()='Notifications']");
+    private By emailsTab = By.id("Emails");
+    private By emailsPageHeader = By.xpath("//div[@id='root']//div/div/div/h3[text()='Emails']");
+    private By inboxSubTab = By.id("Inbox");
+    private By sentSubTab = By.id("Sent");
+    private By hiddenSubTab = By.id("Hidden");
+    private By notesTab = By.id("Notes");
+    private By notesPageHeader = By.xpath("//div[@id='root']//div/div/div/h3[text()='Notes']");
+    private By tasksTab = By.id("Tasks");
+    private By tasksPageHeader = By.xpath("//div[@id='root']//div/div/div/h3[text()='Tasks']");
+    private By addATaskButton = By.xpath("//div[@id='root']//div[3]/div[3]/p/span[.='Add a task']");
+    private By taskModalWindow = By.xpath("//div[@id='crm-draggable-wrapper']/div[@class='react-draggable react-draggable-dragged']//h5");
+    private By iWantToInputField = By.xpath("//div[@id='crm-draggable-wrapper']/div[@class='react-draggable']//div/div[2]/div[2]/div/div/input");
+    private By describeTheTask = By.xpath("//div[@id='crm-draggable-wrapper']/div[@class='react-draggable']//div/div[3]/div[1]/div[@class='ql-container ql-snow']");
+    private By saveButtonForTask = By.xpath("//div[@id='crm-draggable-wrapper']/div[@class='react-draggable']//div/div[5]/div[1]/button");
 
     @Getter
     Button SidebarButton = new Button(pageSidebar, "The 'Sidebar menu' button in sidebar menu");
@@ -79,6 +97,46 @@ public class HomePage {
     Button UserIcon = new Button(profileLink, "The User's profile icon");
     @Getter
     Button ProfilePreferencesLink = new Button(preferencesLink, "The 'Profile&Preferences' link");
+    @Getter
+    Tab PipelinesTab = new Tab(pipelinesTab, "The 'Pipelines' tab");
+    @Getter
+    Tab DashboardsSubTab = new Tab(dashboardsSubTab, "The 'Dashboards' sub tab");
+    @Getter
+    TextField PipelinesDashboardsPageHeader = new TextField(pipelinesDashboardsPageHeader, "The Pipelines / Dashboards page header");
+    @Getter
+    Tab ActivityTab = new Tab(activityTab,"The 'Activity' tab");
+    @Getter
+    Tab NotificationsTab = new Tab (notificationsTab, "The 'Notifications' tab");
+    @Getter
+    TextField NotificationPageHeader = new TextField(notificationPageHeader,"The Notifications page header");
+    @Getter
+    Tab EmailsTab = new Tab(emailsTab, "The 'Emails' tab");
+    @Getter
+    TextField EmailsPageHeader = new TextField(emailsPageHeader, "The Emails page header");
+    @Getter
+    Tab InboxSubTab = new Tab(inboxSubTab, "The 'Inbox' emails sub tab");
+    @Getter
+    Tab SentSubTab = new Tab(sentSubTab, "The 'Sent' emails sub tab");
+    @Getter
+    Tab HiddenSubTab = new Tab(hiddenSubTab, "The 'Hidden' emails sub tab");
+    @Getter
+    Tab NotesTab = new Tab(notesTab, "The 'Notes' tab");
+    @Getter
+    TextField NotesPageHeader = new TextField(notesPageHeader, "The Notes page header");
+    @Getter
+    Tab TasksTab = new Tab(tasksTab, "The 'Tasks' tab");
+    @Getter
+    TextField TasksPageHeader = new TextField(tasksPageHeader, "The Tasks page header");
+    @Getter
+    Button AddATaskButton = new Button(addATaskButton, "The 'Add a task' button on the 'Activity feed' page");
+    @Getter
+    DialogContainer TaskModalWindow = new DialogContainer(taskModalWindow, "The 'New task' modal window");
+    @Getter
+    InputField IWantToInputField = new InputField(iWantToInputField, "The 'I want to' input field for the task subjects");
+    @Getter
+    InputField DescribeTheTask = new InputField(describeTheTask, "The text area for the task");
+    @Getter
+    Button SaveButtonForTask = new Button(saveButtonForTask, "The 'Save' button for the task");
 
     @Step("Click on the 'Home' button from the sidebar menu")
     public HomePage clickOnHomeButton(){
@@ -92,19 +150,16 @@ public class HomePage {
     }
     @Step("Click on the 'Companies' button from the sidebar menu")
     public CompaniesPage clickOnCompaniesButton() {
-//        DriverManager.WebDriverWait();
         getCompaniesButton().clickButton();
         return new CompaniesPage();
     }
     @Step("Click on the 'Policies' button from the sidebar menu")
     public PoliciesPage clickOnPoliciesButton(){
-//        DriverManager.WebDriverWait();
         getPoliciesButton().clickButton();
         return new PoliciesPage();
     }
     @Step("Click on the 'Transactions' button from the sidebar menu")
     public TransactionsPage clickOnTransactionsButton(){
-//        DriverManager.WebDriverWait();
         getTransactionsButton().clickButton();
         return new TransactionsPage();
     }
@@ -115,37 +170,34 @@ public class HomePage {
     }
     @Step("Click on the 'Library' button from the sidebar menu")
     public LibraryPage clickOnLibraryButton(){
-//        DriverManager.WebDriverWait();
         getLibraryButton().clickButton();
         return new LibraryPage();
     }
     @Step("Click on the 'Custom Forms' button from the sidebar menu")
     public CustomFormsPage clickOnCustomFormsButton(){
-//        DriverManager.WebDriverWait();
         getCustomFormsButton().clickButton();
         return new CustomFormsPage();
     }
     @Step("Click on the 'Proposals template' button from the sidebar menu")
     public ProposalsPage clickOnProposalsButton(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getProposalsButton().clickButton();
         return new ProposalsPage();
     }
     @Step("Click on the 'Portals' portals from the sidebar menu")
     public PortalsPage clickOnPortalsButton(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getPortalsButton().clickButton();
         return new PortalsPage();
     }
     @Step("Click on the 'E-signature' button from the sidebar menu")
     public SignaturePage clickOnESignatureButton(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getSignatureButton().clickButton();
         return new SignaturePage();
     }
     @Step("Click on the 'Settings' button")
     public SettingsPage clickOnSettingsButton(){
-//        DriverManager.WebDriverWait();
         getSettingsButton().clickButton();
         return new SettingsPage();
     }
@@ -156,15 +208,82 @@ public class HomePage {
     }
     @Step("Click on the 'Profile&Preferences' link")
     public ProfileAndPreferencesPage clickOnProfilePreferencesLink(){
-//        DriverManager.WebDriverWait();
         getProfilePreferencesLink().clickButton();
         return new ProfileAndPreferencesPage();
     }
     @Step("Click on the 'Sign out' link")
     public SignInPage clickSignOutLink(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getAgentSignOutLink().clickLink();
         return new SignInPage();
+    }
+    @Step("Click on the 'Pipeline' tab")
+    public HomePage clickOnPipelineTab(){
+        getPipelinesTab().clickTab();
+        return this;
+    }
+    @Step("Click on the 'Dashboard' sub tab")
+    public HomePage clickOnDashboardSubTab(){
+        getDashboardsSubTab().clickTab();
+        return this;
+    }
+    @Step("Click on the 'Activity' tab")
+    public HomePage clickOnActivityTab(){
+        getActivityTab().clickTab();
+        return this;
+    }
+    @Step("Click on the 'Notifications' tab")
+    public HomePage clickOnNotificationsTab(){
+        getNotificationsTab().clickTab();
+        return this;
+    }
+    @Step("Click on the 'Emails' tab")
+    public HomePage clickOnEmailsTab(){
+        getEmailsTab().clickTab();
+        return this;
+    }
+    @Step("Click on the 'Sent' emails sub tab")
+    public HomePage clickOnSentEmailsSubTab(){
+        getSentSubTab().clickTab();
+        return this;
+    }
+    @Step("Click on the 'Hidden' emails sub tab")
+    public HomePage clickOnTheHiddenSubTab(){
+        getHiddenSubTab().clickTab();
+        return this;
+    }
+    @Step("Click on the 'Notes' tab")
+    public HomePage clickOnNotesTab(){
+        getNotesTab().clickTab();
+        return this;
+    }
+    @Step("Click on the 'Tasks' tab")
+    public HomePage clickOnTasksTab(){
+        getTasksTab().clickTab();
+        return this;
+    }
+    @Step("Click on the 'Add a task' button")
+    public HomePage clickAddTaskButton(){
+        DriverManager.webDriverWait();
+        getAddATaskButton().clickButton();
+        return this;
+    }
+    @Step ("Enter the subject for the task")
+    public HomePage enterSubjectForTask(String taskSubject){
+        getIWantToInputField().setText(taskSubject);
+        System.out.println(taskSubject);
+        return this;
+    }
+    @Step("Enter the text for the task into the 'Text' area")
+    public HomePage enterTextForTask(String taskText){
+        getDescribeTheTask().setText(taskText);
+        System.out.println(taskText);
+        return this;
+    }
+    @Step("Click on the 'Save' button for the task")
+    public HomePage clickSaveButtonForTask(){
+        getSaveButtonForTask().clickButton();
+        return this;
     }
 
 

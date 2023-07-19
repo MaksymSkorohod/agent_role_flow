@@ -37,28 +37,59 @@ public class CompaniesPage extends AbstractPage {
     private By companyCreationMessage = By.xpath("//div[@id='root']//div[@class='notification-message']//div[text() = 'company was created!']");
     private By companiesPageTable = By.id("companies-table");
     private By clientNameInTable = By.xpath("//table[@id='companies-table']/tbody/tr[1]/td[1]/div/a");
-    private By secondClientNameInTable = By.xpath("//table[@id='accounts-table']/tbody/tr[2]/td[1]/div/a");
+    private By secondClientNameInTable = By.xpath("//table[@id='companies-table']/tbody/tr[2]/td[1]/div/a");
     private By firstRowInClientsTable = By.xpath("//table[@id='accounts-table']//tr[1]//td[1]");
     private By clientLandingPage = By.id("account-landing-page");
     private By clientEditButton = By.id("accountEdit");
     private By closeClientEditMode = By.id("create-client-button-cancel");
+    private By clientInformationTab = By.xpath("//div[@id='transactionTabClientInformation']/p");
+    private By schedulesDropDown = By.cssSelector("div:nth-of-type(2) > button#tabDropDown");
+    private By schedulesOption = By.xpath("//body/div[@role='tooltip']/div/p[1]");
+    private By clientActionButton = By.id("clientActionsButton");
+    private By addSchedule = By.xpath("//body/div[@role='tooltip']//div[text()='Add schedule']");
+    private By createScheduleModal = By.id("schedule-dialog-title");
+    private By blankScheduleOption = By.id("type0");
+    private By createScheduleNextButton = By.id("create-schedule-button-next");
+    private By firstScheduleInTheList = By.id("template-73456669776131547321349741207");
+
     private By contactTabCompanyLanding = By.id("transactionTabContacts");
     private By transactionsTabOfClient = By.id("transactionTabTransactions");
+    private By subTabClientContacts = By.id("transactionTabClientContacts");
     private By subTabOtherContacts = By.id("transactionTabOtherContacts");
-    private By createOtherContactButton = By.id("create-contact-button");
+    private By createContactButton = By.id("create-client-contact-button");
     private By createNewRolodexButton = By.xpath("//form[@id='select-rolodex-company-form']//div[2]/button");
     private By emailFieldForNewRolodex = By.id("email");
     private By firstNameFieldForNewRolodex = By.id("firstName");
     private By lastNameFieldForNewRolodex = By.id("lastName");
     private By phoneFieldForNewRolodex = By.id("phone");
+    private By permissionTemplateDropDownField = By.id("businessRole");
+    private By administratorTemplateOption = By.xpath("//div[@id='businessRole']//div[text()='Administrator']");
+    private By collaboratorTemplateOption = By.xpath("//div[@id='businessRole']//div[text()='Collaborator']");
+    private By editContactAdditionalPermission = By.xpath("//form[@id='new-rolodex-crm-contact-form']//span[text()='Edit contact']");
+    private By viewPoliciesAdditionalPermission = By.xpath("//form[@id='new-rolodex-crm-contact-form']//span[text()='View Policies']");
+    private By allTransactionsAdditionalPermission = By.xpath("//form[@id='new-rolodex-crm-contact-form']//span[text()='All Transactions']");
+    private By allPoliciesAdditionalPermission = By.xpath("//form[@id='new-rolodex-crm-contact-form']//span[text()='All Policies']");
+    private By shareItemsWithingTransactionAdditionalPermission = By.xpath("//form[@id='new-rolodex-crm-contact-form']//span[text()='Share items withing a transaction']");
+    private By requestClaimsAdditionalPermission = By.xpath("//form[@id='new-rolodex-crm-contact-form']//span[text()='Request Claims']");
+    private By requestEndorsementAdditionalPermission = By.xpath("//form[@id='new-rolodex-crm-contact-form']//span[text()='Request Endorsement']");
+    private By requestCertificateAdditionalPermission = By.xpath("//form[@id='new-rolodex-crm-contact-form']//span[text()='Request Certificate']");
     private By createContactFinishButton = By.id("createCompanyFinish");
     private By addTransactionButton = By.id("create-transaction-button");
     private By starTransactionModal = By.id("transaction-dialog-title");
-    private By transactionNameField = By.id("transactionName");
     private By transactionTypeDropdownField = By.id("transactionType");
-    private By newTransactionType = By.xpath("//*[@id=\"transactionType\"]/div[2]/div[1]");
-    private By renewalTransaction = By.xpath("//*[@id=\"transactionType\"]/div[2]/div[2]");
+    private By associatedYearDropdown = By.id("transactionYear");
+    private By optionsListTransactionYear = By.id("optionsList_transactionYear");
+    private By associatedYear2021 = By.id("2021");
+    private By associatedYear2022 = By.id("2022");
+    private By associatedYear2023 = By.id("2023");
+    private By transactionTypeDropdown = By.id("transactionType");
+    private By newBusinessOption = By.id("New_business");
+    private By renewalOption = By.id("Renewal");
     private By finishTransactionButton = By.id("createTSFinish");
+
+
+//    private By profileSelect0 = By.xpath("//form[@id='personal-info-form']/div//div[@data-select='Select-0']"); // the selectors for the Profile on the login page for the Contact users
+//    private By profileSelect1 = By.xpath("//form[@id='personal-info-form']/div//div[@data-select='Select-1']");//
 
     @Getter
     TextField AllCompaniesPageHeader = new TextField(allCompaniesPageHeader, "The 'Clients' label is visible");
@@ -126,12 +157,34 @@ public class CompaniesPage extends AbstractPage {
     Button EditClientButton = new Button(clientEditButton,"The 'Edit client' button");
     @Getter
     Button CloseClientEditMode = new Button(closeClientEditMode,"The 'Cancel' button to close 'Edit client' window");
+
     @Getter
-    Tab ContactTabCompanyLanding = new Tab (contactTabCompanyLanding, "The 'Contacts' tab on the company landing page");
+    Button ClientInformationTab = new Button(clientInformationTab, "The 'Client information' tab on the company landing page");
+    @Getter
+    Button SchedulesDropDown = new Button(schedulesDropDown, "The 'Schedule' dropdown button");
+    @Getter
+    Button SchedulesOption = new Button(schedulesOption,"The 'Schedule' option in the 'Schedule' dropdown");
+    @Getter
+    Button ClientActionButton = new Button(clientActionButton, "The 'Action' button");
+    @Getter
+    Button AddSchedule = new Button(addSchedule, "The 'Add schedule' button");
+    @Getter
+    TextField CreateScheduleModal = new TextField(createScheduleModal,"The 'Create schedule' title");
+    @Getter
+    Button BlankScheduleOption = new Button(blankScheduleOption, "The 'Blank schedule' option in the 'Create schedule' modal");
+    @Getter
+    Button CreateScheduleNextButton = new Button(createScheduleNextButton, "The 'Next' button on the 'Create schedule' modal");
+    @Getter
+    Button FirstScheduleInTheList =new Button(firstScheduleInTheList, "The first schedule in the list on the 'Create schedule' modal");
+
+    @Getter
+    Tab ContactTabCompanyLanding = new Tab (contactTabCompanyLanding, "The 'Other contacts' sub tab on the company landing page");
+    @Getter
+    Tab SubTabClientContacts = new Tab (subTabClientContacts,"The 'Client contacts' sub tab on the company landing page");
     @Getter
     Tab SubTabOtherContacts = new Tab (subTabOtherContacts, "The 'Other contacts' sub tab on the company landing page");
     @Getter
-    Button AddOtherContactButton = new Button(createOtherContactButton, "The 'Add contact' button on the 'Other contacts' sub tab on the company landing page");
+    Button AddContactButton = new Button(createContactButton, "The 'Add contact' button on the 'Other contacts' sub tab on the company landing page");
     @Getter
     Button CreateNewRolodexButton = new Button(createNewRolodexButton, "The '+Create contact' button on the 'Associate others to company' modal window");
     @Getter
@@ -143,6 +196,28 @@ public class CompaniesPage extends AbstractPage {
     @Getter
     InputField PhoneFieldForNewRolodex = new InputField(phoneFieldForNewRolodex, "The 'Phone number' input field");
     @Getter
+    Button PermissionTemplateDropDownField = new Button(permissionTemplateDropDownField, "The 'Permission template' dropdown field");
+    @Getter
+    Button AdministratorTemplateOption = new Button(administratorTemplateOption, "The 'Administrator' option");
+    @Getter
+    Button CollaboratorTemplateOption = new Button(collaboratorTemplateOption, "The 'Collaborator' option");
+    @Getter
+    Check EditContactAdditionalPermission = new Check(editContactAdditionalPermission, "The 'Edit contact' option for the 'Additional permission'");
+    @Getter
+    Check ViewPoliciesAdditionalPermission = new Check(viewPoliciesAdditionalPermission, "The 'View Policies' option for the 'Additional permission'");
+    @Getter
+    Check AllTransactionsAdditionalPermission = new Check(allTransactionsAdditionalPermission, "The 'All Transactions' option for the 'Additional permission'");
+    @Getter
+    Check AllPoliciesAdditionalPermission = new Check(allPoliciesAdditionalPermission, "The 'All Policies' option for the 'Additional permission'");
+    @Getter
+    Check ShareItemsWithingTransactionAdditionalPermission = new Check(shareItemsWithingTransactionAdditionalPermission, "The 'Share items withing a transaction' option for the 'Additional permission'");
+    @Getter
+    Check RequestClaimsAdditionalPermission = new Check(requestClaimsAdditionalPermission, "The 'Request Claims' option for the 'Additional permission'");
+    @Getter
+    Check RequestEndorsementAdditionalPermission = new Check(requestEndorsementAdditionalPermission, "The 'Request Endorsement' option for the 'Additional permission'");
+    @Getter
+    Check RequestCertificateAdditionalPermission = new Check(requestCertificateAdditionalPermission, "The 'Request Certificate' option for the 'Additional permission'");
+    @Getter
     Button CreateContactFinishButton = new Button(createContactFinishButton, "The 'Finish' button for creating Rolodex user");
     @Getter
     Tab TransactionsTabOfClient = new Tab(transactionsTabOfClient, "The 'Transactions' tab on the company landing page");
@@ -151,13 +226,23 @@ public class CompaniesPage extends AbstractPage {
     @Getter
     TextField StarTransactionModal = new TextField(starTransactionModal,"The 'Start a transaction' modal window");
     @Getter
-    InputField TransactionNameField = new InputField(transactionNameField, "The 'Transaction' input field");
-    @Getter
     Link TransactionTypeDropdownField = new Link(transactionTypeDropdownField,"The 'Transaction type' dropdown field");
     @Getter
-    Link NewTransactionType = new Link(newTransactionType, "The 'New transaction' type");
+    Link AssociatedYear = new Link(associatedYearDropdown, "The 'Associated year' dropdown field");
     @Getter
-    Link RenewalTransactionType = new Link(renewalTransaction, "The 'Renewal' transaction type");
+    DropDownList OptionsListTransactionYear = new DropDownList(optionsListTransactionYear, "The 'Associated year' dropdown list");
+    @Getter
+    DropDownOption AssociatedYear2021 = new DropDownOption(associatedYear2021,"The '2021' option from the 'Associated year' dropdown list");
+    @Getter
+    DropDownOption AssociatedYear2022 = new DropDownOption(associatedYear2022,"The '2022' option from the 'Associated year' dropdown list");
+    @Getter
+    DropDownOption AssociatedYear2023 = new DropDownOption(associatedYear2023,"The '2023' option from the 'Associated year' dropdown list");
+    @Getter
+    Link TransactionTypeDropdown = new Link(transactionTypeDropdown, "The 'Transaction type' dropdown field");
+    @Getter
+    DropDownOption NewBusinessOption = new DropDownOption(newBusinessOption, "The 'New Business' option in the 'Transaction type' dropdown");
+    @Getter
+    DropDownOption RenewalOption = new DropDownOption(renewalOption, "The 'Renewal' option in the 'Transaction type' dropdown");
     @Getter
     Button FinishTransactionButton = new Button(finishTransactionButton, "The 'Finish' button to complete creation of the transaction");
 
@@ -251,7 +336,6 @@ public class CompaniesPage extends AbstractPage {
     @Step("Enter the first name of the primary contact")
     public CompaniesPage typeFirsNameForPrimaryContact(String name){
         getPrimaryContactFirstName().setText(name);
-        System.out.println(name);
         return this;
     }
     @Step("Enter the last name of the primary contact")
@@ -273,7 +357,7 @@ public class CompaniesPage extends AbstractPage {
     }
     @Step("Click on the 'Finish' button")
     public CompaniesPage clickOnFinishButton(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getFinishButton().clickButton();
         return this;
     }
@@ -284,10 +368,10 @@ public class CompaniesPage extends AbstractPage {
     }
     @Step("The success message that the new Company was creates")
     public void checkSuccessCompanyCreated(String expected){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         String actual = getSuccessCompanyCreationMessage().getText();
         System.out.println("actual is: " + actual);
-        System.out.println("expected is:" +expected);
+        System.out.println("expected is:" + expected);
         Assert.assertEquals(actual,expected);
     }
     @Step("Click on the client name from the table")
@@ -307,8 +391,54 @@ public class CompaniesPage extends AbstractPage {
     }
     @Step("Click on the 'X' button to close 'Edit client' window")
     public CompaniesPage clickOnXButton(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getCloseClientEditMode().clickButton();
+        return this;
+    }
+    @Step("Click on the 'Client information' tab from the company landing page")
+    public CompaniesPage clickClientInformationTab(){
+        DriverManager.waitForElementVisible(clientInformationTab,3);
+        getClientInformationTab().clickButton();
+        return this;
+    }
+    @Step("Click on the 'Schedule' sub tab from the company landing page")
+    public CompaniesPage clickScheduleSubTab(){
+        DriverManager.waitForElementVisible(schedulesDropDown,2);
+        getSchedulesDropDown().clickButton();
+        return this;
+    }
+    @Step("Select the 'Schedule' option")
+    public CompaniesPage clickScheduleOption(){
+        DriverManager.webDriverWait();
+        getSchedulesOption().clickButton();
+        return this;
+    }
+    @Step("Click on the 'Action' button from the 'Schedules' sub tab")
+    public CompaniesPage clickOnActionsButton(){
+        getClientActionButton().clickButton();
+        return this;
+    }
+    @Step("Select the 'Add schedule' option")
+    public CompaniesPage clickAddSchedulesOption(){
+        DriverManager.webDriverWait();
+        getAddSchedule().clickButton();
+        return this;
+    }
+    @Step("Click on the 'Blank schedule' option")
+    public CompaniesPage clickBlankScheduleOption(){
+        getBlankScheduleOption().clickButton();
+        return this;
+    }
+    @Step("Click on the 'Next' button on the 'Create schedule' modal")
+    public CompaniesPage clickNextButtonOnCreateScheduleModal(){
+        DriverManager.webDriverWait();
+        getCreateScheduleNextButton().clickButton();
+        return this;
+    }
+    @Step("Select and click on the first schedule in the list")
+    public CompaniesPage clickOnFirstScheduleInTheList(){
+        DriverManager.getWaiter(3);
+        getFirstScheduleInTheList().clickButton();
         return this;
     }
 
@@ -322,9 +452,15 @@ public class CompaniesPage extends AbstractPage {
         getSubTabOtherContacts().clickTab();
         return this;
     }
+    @Step("Click on the 'Client contacts' sub tab")
+    public CompaniesPage clickClientContactsFromCompanyLandingPage(){
+        getSubTabClientContacts().clickTab();
+        return this;
+    }
     @Step("Click on the 'Add contact' button from the 'Other contacts' sub tab")
-    public CompaniesPage clickAddContactFromOtherContactsSubTab(){
-        getAddOtherContactButton().clickButton();
+    public CompaniesPage clickAddContactButton(){
+        DriverManager.getWaiter(5);
+        getAddContactButton().clickButton();
         return this;
     }
     @Step("Click on the '+ Create contact' button from the 'Associate others to company' modal window")
@@ -356,6 +492,63 @@ public class CompaniesPage extends AbstractPage {
         System.out.println(phone);
         return this;
     }
+    @Step("Click on the 'Permission template' dropdown field")
+    public CompaniesPage clickOnPermissionTemplateDropdownField(){
+        getPermissionTemplateDropDownField().clickButton();
+        return this;
+    }
+    @Step("Select the 'Administrator' role from the 'Permission template' dropdown field")
+    public CompaniesPage selectAdministratorRole(){
+        DriverManager.getWaiter(4);
+        getAdministratorTemplateOption().clickButton();
+        return this;
+    }
+    @Step("Select the 'Collaborator' role from the 'Permission template' dropdown field")
+    public CompaniesPage selectCollaboratorRole() {
+        DriverManager.getWaiter(4);
+        getCollaboratorTemplateOption().clickButton();
+        return this;
+    }
+    @Step("Check the 'Edit contact' additional permission")
+    public CompaniesPage checkEditContactAdditionalPermission(){
+        getEditContactAdditionalPermission().select();
+        return this;
+    }
+    @Step("Check the 'View Policies' additional permission")
+    public CompaniesPage checkViewPoliciesAdditionalPermission(){
+        getViewPoliciesAdditionalPermission().select();
+        return this;
+    }
+    @Step("Check the 'All Transactions' additional permission")
+    public CompaniesPage checkAllTransactionsAdditionalPermission(){
+        getAllTransactionsAdditionalPermission().select();
+        return this;
+    }
+    @Step("Check the 'All Policies' additional permission")
+    public CompaniesPage checkAllPoliciesAdditionalPermission(){
+        getAllPoliciesAdditionalPermission().select();
+        return this;
+    }
+    @Step("Check the 'Share items withing a transaction' additional permission")
+    public CompaniesPage checkShareItemsWithingTransactionsAdditionalPermission(){
+        getShareItemsWithingTransactionAdditionalPermission().select();
+        return this;
+    }
+    @Step("Check the 'Request Claims' additional permission")
+    public CompaniesPage checkRequestClaimsAdditionalPermission(){
+        getRequestClaimsAdditionalPermission().select();
+        return this;
+    }
+    @Step("Check the 'Request Endorsement' additional permission")
+    public CompaniesPage checkRequestEndorsementAdditionalPermission(){
+        getRequestEndorsementAdditionalPermission().select();
+        return this;
+    }
+    @Step("Check the 'Request Certificate' additional permission")
+    public CompaniesPage checkRequestCertificateAdditionalPermission(){
+        getRequestCertificateAdditionalPermission().select();
+        return this;
+    }
     @Step("Click on the 'Finish' button to finish creating new Rolodex user")
     public CompaniesPage clickFinishButtonForRolodex(){
         getCreateContactFinishButton().clickButton();
@@ -372,30 +565,44 @@ public class CompaniesPage extends AbstractPage {
         getAddTransactionButton().clickButton();
         return this;
     }
-    @Step("Enter the transaction name into the 'Transaction name' input field")
-    public CompaniesPage enterTransactionName(String transactionName){
-        getTransactionNameField().setText(transactionName);
-        System.out.println(transactionName);
+    @Step("Click on the 'Associated year' dropdown")
+    public CompaniesPage clickOnAssociatedYearDropDown(){
+        getAssociatedYear().clickLink();
+        return this;
+    }
+    @Step("Select the 2021 option from the 'Associated year' dropdown")
+    public CompaniesPage clickOn2021Option(){
+        getAssociatedYear2021().clickOption();
+        return this;
+    }
+    @Step("Select the 2022 option from the 'Associated year' dropdown")
+    public CompaniesPage clickOn2022Option(){
+        getAssociatedYear2022().clickOption();
+        return this;
+    }
+    @Step("Select the 2023 option from the 'Associated year' dropdown")
+    public CompaniesPage clickOn2023Option(){
+        getAssociatedYear2023().clickOption();
         return this;
     }
     @Step("Click on the 'Transaction type' dropdown field")
-    public CompaniesPage clickOnTransactionTypeDropdownField(){
-        getTransactionTypeDropdownField().clickLink();
+    public CompaniesPage clickOnTransactionTypeDropdown(){
+        getTransactionTypeDropdown().clickLink();
         return this;
     }
     @Step("Select the 'New business' option inside the 'Transaction type' dropdown field")
     public CompaniesPage selectNewBusinessType(){
-        getNewTransactionType().clickLink();
+        getNewBusinessOption().clickOption();
         return this;
     }
     @Step("Select the 'Renewal' option inside the 'Transaction type' dropdown field")
     public CompaniesPage selectRenewalType(){
-        getRenewalTransactionType().clickLink();
+        getRenewalOption().clickOption();
         return this;
     }
     @Step("Click on the 'Finish' button to complete the transaction creation")
     public CompaniesPage clickOnFinishTransactionButton(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getFinishTransactionButton().clickButton();
         return this;
     }

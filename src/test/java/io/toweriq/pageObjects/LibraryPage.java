@@ -77,19 +77,19 @@ public class LibraryPage extends AbstractPage {
     }
     @Step("Click on the 'Bookmarks' tab")
     public LibraryPage bookmarkTab(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getBookmarksTab().clickButton();
         return this;
     }
     @Step("Click on the 'Programs' tab")
     public LibraryPage programsTab(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getProgramsTab().clickButton();
         return this;
     }
     @Step("Click on the 'Forms' tab")
     public LibraryPage formsTab(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getFormsTab().clickButton();
         return this;
     }
@@ -107,19 +107,19 @@ public class LibraryPage extends AbstractPage {
     }
     @Step("Click on the 'Associated client' drop-down field")
     public LibraryPage clickOnAssociatedClientField(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getAssociatedClientDropDownField().click();
         return this;
     }
     @Step("Enter client name into the 'Search' field for associated clients")
     public LibraryPage enterClientNameForSearchAssociatedClients(String associatedClient){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getAssociatedClientSearchField().setText(associatedClient);
         return this;
     }
     @Step("Select an option from the 'Associated client' drop-down field")
     public LibraryPage selectOptionFromAssociatedClientField(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getAssociatedClientOption().clickOption();
         return this;
     }

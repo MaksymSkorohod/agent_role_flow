@@ -75,7 +75,7 @@ public class ProspectsPage extends AbstractPage{
 
     @Step("Click on the 'New prospect' button")
     public ProspectsPage clickNewProspectButton(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getNewProspectButton().clickButton();
         return  this;
     }

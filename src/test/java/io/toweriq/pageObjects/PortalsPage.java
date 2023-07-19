@@ -5,14 +5,14 @@ import io.toweriq.DriverManager;
 import io.toweriq.Elements.*;
 import lombok.Getter;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 public class PortalsPage extends AbstractPage {
 
     private By portalsPageHeader = By.xpath("//h1[text()='Portals']");
     private By createPortalButton = By.xpath("//button/div[text()='Create portal']");
     private By newPortalTitle = By.id("portal-dialog-title");
-    private By portalNameField = By.id("name");
+    private By portalNameField = By.xpath("//input[@id='name']");
     private By redirectUrlField = By.id("redirectUrl");
     private By showNavigation = By.xpath("//form[@id='new-program-form']/div/div[4]//span[1]//input");
     private By showHeading = By.xpath("//form[@id='new-program-form']/div/div[5]");
@@ -78,13 +78,15 @@ public class PortalsPage extends AbstractPage {
     }
     @Step("Enter the name of the portal")
     public PortalsPage typePortalName(String portalName){
-        DriverManager.WebDriverWait();
+        DriverManager.getWaiter(3);
         getPortalNameField().setText(portalName);
+        Assert.assertTrue(true, "portalName");
         System.out.println();
         return this;
     }
     @Step("Enter URL for redirect")
     public PortalsPage typeRedirectUrl(String Url){
+        DriverManager.waitForElementVisible(redirectUrlField,5);
         getRedirectUrlField().setText(Url);
         System.out.println();
         return this;
@@ -136,6 +138,7 @@ public class PortalsPage extends AbstractPage {
     }
     @Step("Click on the 'Cancel' button")
     public PortalsPage cancelButton(){
+        DriverManager.webDriverWait();
         getPortalCancelButton().clickButton();
         return this;
     }
@@ -154,7 +157,7 @@ public class PortalsPage extends AbstractPage {
     }
     @Step("Click on the 'Copy to clipboard' button")
     public PortalsPage copyClipboard(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getCopyToClipboard().clickButton();
         return this;
     }

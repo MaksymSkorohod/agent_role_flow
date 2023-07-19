@@ -6,8 +6,6 @@ import io.toweriq.Elements.*;
 import lombok.Getter;
 import org.openqa.selenium.By;
 
-import java.util.Random;
-
 public class SignaturePage extends AbstractPage {
 
     private By eSignaturePageHeader = By.xpath("//h3[@innertext='E-signatures']");
@@ -68,14 +66,14 @@ public class SignaturePage extends AbstractPage {
     }
     @Step("Enter the name of the e-signature request")
     public SignaturePage enterSignatureName(String signatureName){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getNameForSignatureRequest().setText(signatureName);
         System.out.println();
         return this;
     }
     @Step("Add the description for the e-signature request")
     public SignaturePage addDescription(String signatureDescription){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getDescriptionOfSignature().setText(signatureDescription);
         System.out.println();
         return this;
@@ -92,7 +90,7 @@ public class SignaturePage extends AbstractPage {
     }
     @Step("Select the first file from 'Attach a file' modal")
     public SignaturePage selectFirstFile(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getFileOne().click();
         return this;
     }
@@ -118,13 +116,13 @@ public class SignaturePage extends AbstractPage {
     }
     @Step("Click on the 'Yes' button to return back on the dashboard")
     public SignaturePage clickYesToConfirm(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getConfirmBackToDashboard().clickButton();
         return this;
     }
     @Step("Click on the 'No' button to discard returning on the dashboard")
     public SignaturePage clickNoToConfirm(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getConfirmBackToDashboard().clickButton();
         return this;
     }

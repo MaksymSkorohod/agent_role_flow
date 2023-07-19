@@ -10,7 +10,7 @@ import org.openqa.selenium.By;
 public class PoliciesPage extends AbstractPage {
 
     private By policiesPageHeader = By.xpath("//h1[text()='Policies']");
-    private By policyInPoliciesTable = By.xpath("//table[@id='policies-table']//tr[2]//td[1]//a");
+    private By policyInPoliciesTable = By.xpath("//table[@id='policies-table']//tr[1]/td[1]//a");
     private By policyLandingPage = By.id("policy-landing-page");
 
     @Getter
@@ -22,7 +22,7 @@ public class PoliciesPage extends AbstractPage {
 
     @Step("Click on the policy name from the table on the 'Policies' page")
     public PoliciesPage clickOnPolicyFromTable(){
-        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getPolicyNameInPoliciesTable().clickLink();
         return this;
     }
