@@ -5,6 +5,9 @@ import io.toweriq.DriverManager;
 import io.toweriq.Elements.*;
 import lombok.Getter;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ContactsPage extends AbstractPage{
 
@@ -50,13 +53,13 @@ public class ContactsPage extends AbstractPage{
     private By selectCompanySearch = By.id("select-company-search");
     private By companyFromDropDownList1 = By.cssSelector("#optionsList_company [data-for='option-itemy_1']");
     private By saveAndReturnButtonForEdit = By.id("createCompanyFinish");
-
-    private By actionEmailButton = By.id("action-email-btn");
+    private By initialsOfTheContact = By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/div/div[2]/div/div[1]/div[2]");
+    private By actionEmailButton = By.xpath("//*[@id=\"action-email-btn\"]/div");
     private By subjectInputFieldForEmail = By.id("subject");
-    private By emailBodySpace = By.xpath("//div[@id='crm-draggable-wrapper']/div[@class='react-draggable react-draggable-dragged']//div/div[5]/div[1]/div/div[1]");
-    private By sendButtonForEmail = By.xpath("//div[@id='crm-draggable-wrapper']//button[1]/div[.='Send']");
+    private By emailBodySpace = By.xpath("///*[@id=\"crm-draggable-wrapper\"]/div/div[1]/div/div[2]/div/div[5]/div[1]/div");
+    private By sendButtonForEmail = By.xpath("//*[@id=\"crm-modal-email-send\"]/div[text()='Send']");
     private By actionNoteButton = By.id("action-note-btn");
-    private By actionTaskButton = By.id("action-task-btn");
+    private By actionTaskButton = By.xpath("//*[@id=\"action-task-btn\"]/div");
     private By openedEmailNoteTaskWindow = By.id("crm-draggable-wrapper");
     private By companiesTabOnContactLanding = By.id("transactionTabCompanies");
     private By sendInviteButton = By.id("send-latter-button-modal");
@@ -72,6 +75,10 @@ public class ContactsPage extends AbstractPage{
     private By editContactButton = By.id("contactLandingEdit");
     private By updateContactButton = By.id("update-account-button-confirm");
     private By cancelUpdateContactButton = By.id("createCompanyFinish");
+    private By sendInviteContactModalWindow = By.xpath("/html/body/div[4]/div[3]/div[1]/h1[text()='Success! New contact was created.']");
+    private By closeButtonInviteModalWindow = By.xpath("/html/body/div[4]/div[3]/div[1]/button/div");
+    private By sendInviteButtonInModal = By.xpath("//*[@id=\"send-latter-button-modal\"]/div[text()='Send invite']");
+    private By laterButtonModal = By.xpath("//*[@id=\"cancel-button-modal\"]");
 
 
     @Getter
@@ -155,6 +162,8 @@ public class ContactsPage extends AbstractPage{
     @Getter
     Button SaveAndReturnButtonForEdit = new Button(saveAndReturnButtonForEdit,"The 'Save and Return' button on the 'Assign new profile' modal");
     @Getter
+    TextField InitialsOfTheContact = new TextField(initialsOfTheContact,"Initials of the contact on the cpntact landing page");
+    @Getter
     Button ActionEmailButton = new Button(actionEmailButton, "The 'Email' button on the Contact landing page");
     @Getter
     InputField SubjectInputFieldForEmail = new InputField(subjectInputFieldForEmail, "The 'Subject' input field for the email modal window");
@@ -196,6 +205,15 @@ public class ContactsPage extends AbstractPage{
     Button CancelUpdateContactButton = new Button(cancelUpdateContactButton, "The 'Cancel' button to cancel contact's update");
     @Getter
     Tab CompaniesTabOnContactLanding = new Tab(companiesTabOnContactLanding,"The 'Companies' tab on the Contact landing page");
+    @Getter
+    TextField SendInviteContactModalWindow = new TextField(sendInviteContactModalWindow,"The success message in the modal window.");
+    @Getter
+    Button CloseButtonInviteModalWindow = new Button(closeButtonInviteModalWindow, "The 'Close' button for the send invite modal window");
+    @Getter
+    Button SendInviteButtonInModal = new Button(sendInviteButtonInModal,"The 'Send invite' button for the send invite for the new contact");
+    @Getter
+    Button LaterButtonModal = new Button(laterButtonModal, "The 'Letter' button for the send invite for the new contact");
+
 
 
     @Step("Click on the 'Clients' tab in the sub menu")
@@ -205,6 +223,7 @@ public class ContactsPage extends AbstractPage{
     }
     @Step("Click on the 'Personal' clients tab in the sub menu")
     public ContactsPage clickOnPersonalClientsTab(){
+        DriverManager.webDriverWait();
         getPersonalTab().clickTab();
         return this;
     }
@@ -215,11 +234,13 @@ public class ContactsPage extends AbstractPage{
     }
     @Step("Click on the 'Colleagues' tab in the sub menu")
     public ContactsPage clickOnColleaguesTab(){
+        DriverManager.webDriverWait();
         getColleaguesTab().clickTab();
         return this;
     }
     @Step("Click on the 'Underwriters' tab in the sub menu")
     public ContactsPage clickOnUnderwritersTab(){
+        DriverManager.webDriverWait();
         getUnderwritersTab().clickTab();
         return this;
     }
@@ -323,7 +344,7 @@ public class ContactsPage extends AbstractPage{
     }
     @Step("Click on the 'Create and return' button")
     public ContactsPage clickOnFinishButton(){
-        getFinishButton().clickButton();
+        DriverManager.elementToBeClickable(By.id("createCompanyFinish"));
         return this;
     }
     @Step("Click on the 'Cancel' button")
@@ -410,7 +431,7 @@ public class ContactsPage extends AbstractPage{
     }
     @Step("Click on the 'Task' button from the Contact landing page")
     public ContactsPage clickOnTaskButton(){
-        getActionTaskButton().clickButton();
+        DriverManager.elementToBeClickable(actionTaskButton);
         return this;
     }
     @Step("Click on the 'Send invite' button")
@@ -483,6 +504,16 @@ public class ContactsPage extends AbstractPage{
     @Step("Click on the 'Companies' tab fromm the Contact landing page")
     public ContactsPage clickOnCompaniesTab(){
         getCompaniesTabOnContactLanding().clickTab();
+        return this;
+    }
+    @Step("Click on the 'X' button to close send invite modal window")
+    public ContactsPage clickCloseButtonForSendInviteModal(){
+        getCloseButtonInviteModalWindow().clickButton();
+        return this;
+    }
+    @Step("Click on the 'Send invite' button from the invite modal window")
+    public ContactsPage clickSendInviteButton(){
+        getSendInviteButtonInModal().clickButton();
         return this;
     }
 }

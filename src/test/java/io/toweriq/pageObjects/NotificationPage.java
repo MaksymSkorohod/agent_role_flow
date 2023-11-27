@@ -44,13 +44,13 @@ public class NotificationPage extends AbstractPage{
     }
     @Step("Setting all notifications for In-app")
     public NotificationPage clickOnInappForAll(){
-//        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getSetAllNotificationsInApp().clickButton();
         return this;
     }
     @Step("Setting all notifications for Email")
     public NotificationPage clickOnEmailForAll(){
-//        DriverManager.WebDriverWait();
+        DriverManager.webDriverWait();
         getSetAllNotificationsEmail().clickButton();
         return this;
     }

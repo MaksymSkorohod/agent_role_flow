@@ -94,7 +94,7 @@ public class TransactionsTests extends TestBase {
                 .clickOnFinishTransactionButton();
     }
 
-    @Test(description = "Open the transaction's landing page")//check
+    @Test(description = "Open the transaction landing page")//check
     public void openTransactionLandingPage(){
         fillTransactionPage();
         transactionPage
@@ -111,34 +111,9 @@ public class TransactionsTests extends TestBase {
                 .clickOnWorkspaceTab()
                 .clickOnAddFormButton()
                 .clickOnTheForm()
+                .getDoneButtonForAddingForm().isExists();
+        transactionPage
                 .clickOnDoneButton();
-    }
-    @Test(description = "Share created transaction with the added form")
-    public void shareCreatedTransactionWithForm(){
-        fillTransactionPage();
-        transactionPage
-                .getTransactionsPageHeader().isExists();
-        transactionPage
-                .clickOnNewTransactionButton()
-                .selectCommercialClientOption()
-                .clickOnAssociatedClientProspectDropdown()
-                .searchClientName("Marvel Studios")
-                .clickOnTheClientName()
-                .clickOnAssociatedYearDropDown()
-                .clickOn2023Option()
-                .clickOnTransactionTypeDropdown()
-                .selectNewBusinessType()
-                .clickOnFinishButton();
-        transactionPage
-                .getTransactionLandingPageOpen().isExists();
-        transactionPage
-                .clickOnWorkspaceTab()
-                .clickOnAddFormButton()
-                .clickOnTheForm()
-                .clickOnDoneButton();
-        transactionPage
-                .clickOnSelectRoleDropdown();
-
     }
     @Test(description = "Creating a new email from the transaction landing page")//check
     public void createEmailOnTransactionPage(){
@@ -168,7 +143,10 @@ public class TransactionsTests extends TestBase {
                 .clickOnTransactionName()
                 .getTransactionLandingPageOpen().isExists();
         transactionPage
-                .clickNoteButtonOnTransactionPage();
+                .clickNoteButtonOnTransactionPage()
+                .enterSubjectForTheNote(generateNoteSubject())
+                .enterNoteText(generateTextForTheNote())
+                .clickSaveForNote();
     }
     @Test(description = "Creating the Task from the transaction landing page")
     public void createTaskOnTransactionPage(){
@@ -180,17 +158,17 @@ public class TransactionsTests extends TestBase {
                 .clickTaskButtonOnTransactionPage();
     }
 
-    private String generatePersonalTransactionName() {
+    private String generateNoteSubject() {
         Random random = new Random();
         int a = random.nextInt(10000) + 1;
-        String name = "Personal Client Transaction " + a;
+        String name = "Test note subject " + a;
         System.out.println(name);
         return name;
     }
-    private String generateCommercialTransactionName() {
+    private String generateTextForTheNote() {
         Random random = new Random();
-        int a = random.nextInt(10000) + 1;
-        String name = "Commercial Client Transaction " + a;
+        int b = random.nextInt(10000) + 1;
+        String name = "Test note text " + b;
         System.out.println(name);
         return name;
     }

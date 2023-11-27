@@ -2,18 +2,18 @@ package io.toweriq.pageObjects;
 
 import io.qameta.allure.Step;
 import io.toweriq.DriverManager;
-import io.toweriq.Elements.Button;
-import io.toweriq.Elements.Check;
-import io.toweriq.Elements.InputField;
-import io.toweriq.Elements.TextField;
+import io.toweriq.Elements.*;
 import lombok.Getter;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
 public class SignInPage {
 
-    private By emailField = By.id("email");
-    private By passwordField = By.id("password");
+    private By welcomeBackText = By.xpath("//form[@id='personal-info-form']/div/div/div[1]/p[text()='Welcome back.']");
+    private By emailField = By.xpath("//*[@id=\"email\"]");
+    private By switchButton = By.xpath("//*[@id=\"personal-info-form\"]/div/div/div[1]/p[2]/a[text()='Switch']");
+    private By passwordField = By.xpath("//*[@id=\"password\"]");
+    private By rememberCheckBox = By.xpath("//*[@id=\"remember\"]");
     private By viewPassword = By.cssSelector("[fill]");
     private By forgotPassword = By.xpath("//a[@href='/forgot-password']");
     private By agree = By.xpath("//input[@id='agree']");
@@ -25,13 +25,19 @@ public class SignInPage {
 
 
     @Getter
+    TextField WelcomeBackText = new TextField(welcomeBackText,"The 'Welcome back' title");
+    @Getter
     InputField EmailField = new InputField(emailField, "Email Address");
     @Getter
     TextField ErrorEmailField = new TextField(emailErrorMessage, "Error email message");
     @Getter
+    Button SwitchButton = new Button(switchButton, "The 'Switch' button");
+    @Getter
     InputField PasswordField = new InputField(passwordField, "Password");
     @Getter
     Button ViewPassword = new Button(viewPassword, "Show password");
+    @Getter
+    Button RememberCheckBox = new Button(rememberCheckBox,"The 'Remember me for 30 days' checkbox");
     @Getter
     Button ForgotPassword = new Button(forgotPassword, "Forgot my password");
     @Getter
@@ -54,7 +60,7 @@ public class SignInPage {
     }
     @Step("Enter email into the 'Email Address field'")
     public SignInPage typeEmail(String email) {
-        DriverManager.webDriverWait();
+        DriverManager.elementToBeClickable(emailField);//waitForElementVisible(emailField,10);
         getEmailField().setText(email);
         System.out.println(email);
         return this;
@@ -71,6 +77,16 @@ public class SignInPage {
     public SignInPage typePassword(String password) {
         getPasswordField().setText(password);
         System.out.println(password);
+        return this;
+    }
+    @Step("Click on the 'Switch' button")
+    public SignInPage switchClick(){
+        DriverManager.elementToBeClickable(switchButton);
+        return this;
+    }
+    @Step("Click on the 'Remember me for 30 days' checkbox")
+    public SignInPage clickRememberMeCheckBox(){
+        getRememberCheckBox().clickButton();
         return this;
     }
 
@@ -99,7 +115,6 @@ public class SignInPage {
         return new ResetPasswordPage();
     }
 
-
     public HomePage clickSignInButton() {
         getSignInButton().clickButton();
         return new HomePage();
@@ -109,6 +124,5 @@ public class SignInPage {
         getSignInButton().clickButton();
         return new SignInPage();
     }
-
 
 }

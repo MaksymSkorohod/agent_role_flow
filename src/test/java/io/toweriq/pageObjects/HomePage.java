@@ -9,22 +9,28 @@ import org.openqa.selenium.By;
 public class HomePage {
     private By pageSidebar = By.id("pageSidebar");
     private By sideHomeButton = By.id("sidebarMenuItemHome");
-    private By homePageHeader = By.xpath("//div[@id='root']//h1");
+    private By homePageHeader = By.xpath("//*[@id=\"root\"]/div/div[2]/div[1]/div[2]/div/h3[text()='Activity feed']");
     private By sideContactsButton = By.id("sidebarMenuItemContacts");
-    private By contactPageHeader = By.xpath("//div[@id='root']//h1");
+    private By contactPageHeader = By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/div/div[1]/div[1]/div/h1[text()='All contacts']");
     private By sideCompaniesButton = By.id("sidebarMenuItemCompanies");
-    private By companiesPageHeader = By.xpath("//div[@id='root']//div//h3");
+    private By companiesPageHeader = By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/div/div[1]/div[1]/h1[text()='All companies']");
     private By sidePoliciesButton = By.id("sidebarMenuItemPolicies");
-    private By policiesPageHeader = By.xpath("//div[@id='root']//div/h1");
+    private By policiesPageHeader = By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/div/div[1]/div[1]/h1[text()='Policies']");
     private By sideTransactionsButton = By.id("sidebarMenuItemTransactions");
+    private By transactionPageHeader = By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/div/div[1]/div[1]/h1[text()='Transactions']");
     private By sideSubmissionsButton = By.id ("sidebarMenuItemSubmissions");
+    private By submissionsPageHeader = By.xpath("//*[@id=\"root\"]/div/div[2]/div[1]/div[2]/div/h3[text()='Submissions']");
     private By sideLibraryButton = By.id("sidebarMenuItemLibrary");
+    private By libraryPageHeader = By.xpath("//*[@id=\"root\"]/div/div[2]/div[1]/div[2]/div/h3[text()='Library']");
     private By sideCustomFormsButton = By.id("sidebarMenuItemCustom forms");
+    private By customFormsPageHeader = By.xpath("//*[@id=\"root\"]/div/div[2]/div[1]/div[2]/div/h3[text()='Custom forms']");
     private By sideProposalsButton = By.id("sidebarMenuItemProposals");
+    private By proposalPageHeader = By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/div/div[1]/div[1]/div/h1[text()='Proposals templates']");
     private By sidePortalsButton = By.id("sidebarMenuItemPortals");
     private By portalsPageHeader = By.xpath("//div[@id='root']//div//h1");
-    private By sideSignatureButton = By.id("sidebarMenuItemE-signatures");
+    private By sideESignatureButton = By.id("sidebarMenuItemE-signatures");
     private By signaturesPageHeader = By.xpath("//*[@id=\"root\"]/div/div[2]/div[1]/div[2]/div/h3");
+    private By sideSchedulesButton = By.id("sidebarMenuItemSchedules");
     private By sideSettingsButton = By.id("sidebarMenuItemSettings");
     private By settingsPageHeader = By.xpath("//div[@id='root']//div//h3");
     private By profileLink = By.id("accountProfile");
@@ -47,9 +53,9 @@ public class HomePage {
     private By tasksPageHeader = By.xpath("//div[@id='root']//div/div/div/h3[text()='Tasks']");
     private By addATaskButton = By.xpath("//div[@id='root']//div[3]/div[3]/p/span[.='Add a task']");
     private By taskModalWindow = By.xpath("//div[@id='crm-draggable-wrapper']/div[@class='react-draggable react-draggable-dragged']//h5");
-    private By iWantToInputField = By.xpath("//div[@id='crm-draggable-wrapper']/div[@class='react-draggable']//div/div[2]/div[2]/div/div/input");
+    private By iWantToInputField = By.xpath("//*[@id=\"crm-draggable-wrapper\"]/div/div[1]/div/div[2]/div/div[2]/div[2]/div/div/input");
     private By describeTheTask = By.xpath("//div[@id='crm-draggable-wrapper']/div[@class='react-draggable']//div/div[3]/div[1]/div[@class='ql-container ql-snow']");
-    private By saveButtonForTask = By.xpath("//div[@id='crm-draggable-wrapper']/div[@class='react-draggable']//div/div[5]/div[1]/button");
+    private By saveButtonForTask = By.xpath("//*[@id='crm-draggable-wrapper']//button[text()='Save']");
 
     @Getter
     Button SidebarButton = new Button(pageSidebar, "The 'Sidebar menu' button in sidebar menu");
@@ -72,21 +78,33 @@ public class HomePage {
     @Getter
     Button TransactionsButton = new Button(sideTransactionsButton, "The 'Transactions' button in sidebar menu");
     @Getter
+    TextField TransactionPageHeader = new TextField(transactionPageHeader,"The 'Transactions' page header");
+    @Getter
     Button SubmissionButton = new Button(sideSubmissionsButton, "The 'Transactions' button in sidebar menu");
+    @Getter
+    TextField SubmissionsPageHeader = new TextField(submissionsPageHeader,"The 'Transactions' button in sidebar menu");
     @Getter
     Button LibraryButton = new Button(sideLibraryButton,"The 'Library' button in sidebar menu");
     @Getter
+    TextField LibraryPageHeader = new TextField(libraryPageHeader,"The 'Library' page header");
+    @Getter
     Button CustomFormsButton = new Button(sideCustomFormsButton, "The 'Custom forms' button in sidebar menu");
     @Getter
+    TextField CustomFormsPageHeader = new TextField(customFormsPageHeader, "The 'Custom forms' page header");
+    @Getter
     Button ProposalsButton = new Button(sideProposalsButton, "The 'Proposals' button in sidebar menu");
+    @Getter
+    TextField ProposalPageHeader = new TextField(proposalPageHeader,"The 'Proposals' page header");
     @Getter
     Button PortalsButton = new Button(sidePortalsButton, "The 'Portals' button in sidebar menu");
     @Getter
     TextField PortalsPageHeader = new TextField(portalsPageHeader, "The page header of the Portals template page");
     @Getter
-    Button SignatureButton = new Button(sideSignatureButton,"The 'E-signature' button in sidebar menu");
+    Button ESignatureButton = new Button(sideESignatureButton,"The 'E-signature' button in sidebar menu");
     @Getter
     TextField SignaturesPageHeader = new TextField(signaturesPageHeader, "The page header of the E-Signatures template page");
+    @Getter
+    Button SideSchedulesButton = new Button(sideSchedulesButton, "The 'Schedules' button in sidebar menu");
     @Getter
     Button SettingsButton = new Button(sideSettingsButton, "The 'Settings' button in sidebar menu");
     @Getter
@@ -145,64 +163,68 @@ public class HomePage {
     }
     @Step("Click on the 'Contacts' page from the sidebar menu")
     public ContactsPage clickOnContactsButton(){
-        getContactsButton().clickButton();
+        DriverManager.elementToBeClickable(sideContactsButton);
         return new ContactsPage();
     }
     @Step("Click on the 'Companies' button from the sidebar menu")
     public CompaniesPage clickOnCompaniesButton() {
-        getCompaniesButton().clickButton();
+        DriverManager.elementToBeClickable(sideCompaniesButton);
         return new CompaniesPage();
     }
     @Step("Click on the 'Policies' button from the sidebar menu")
     public PoliciesPage clickOnPoliciesButton(){
-        getPoliciesButton().clickButton();
+        DriverManager.elementToBeClickable(sidePoliciesButton);
         return new PoliciesPage();
     }
     @Step("Click on the 'Transactions' button from the sidebar menu")
     public TransactionsPage clickOnTransactionsButton(){
-        getTransactionsButton().clickButton();
+        DriverManager.elementToBeClickable(sideTransactionsButton);
         return new TransactionsPage();
     }
     @Step("Click on the 'Submissions' button from the sidebar menu")
     public SubmissionsPage clickOnSubmissionsButton(){
-        getSubmissionButton().clickButton();
+        DriverManager.elementToBeClickable(sideSubmissionsButton);
         return new SubmissionsPage();
     }
     @Step("Click on the 'Library' button from the sidebar menu")
     public LibraryPage clickOnLibraryButton(){
-        getLibraryButton().clickButton();
+        DriverManager.elementToBeClickable(sideLibraryButton);
         return new LibraryPage();
     }
     @Step("Click on the 'Custom Forms' button from the sidebar menu")
     public CustomFormsPage clickOnCustomFormsButton(){
-        getCustomFormsButton().clickButton();
+        DriverManager.elementToBeClickable(sideCustomFormsButton);
         return new CustomFormsPage();
     }
     @Step("Click on the 'Proposals template' button from the sidebar menu")
     public ProposalsPage clickOnProposalsButton(){
-        DriverManager.webDriverWait();
-        getProposalsButton().clickButton();
+        DriverManager.elementToBeClickable(sideProposalsButton);
         return new ProposalsPage();
     }
     @Step("Click on the 'Portals' portals from the sidebar menu")
     public PortalsPage clickOnPortalsButton(){
-        DriverManager.webDriverWait();
-        getPortalsButton().clickButton();
+        DriverManager.elementToBeClickable(sidePortalsButton);
         return new PortalsPage();
     }
     @Step("Click on the 'E-signature' button from the sidebar menu")
     public SignaturePage clickOnESignatureButton(){
-        DriverManager.webDriverWait();
-        getSignatureButton().clickButton();
+        DriverManager.elementToBeClickable(sideESignatureButton);
         return new SignaturePage();
     }
+    @Step("Click on the 'Schedules' button from the sidebar menu")
+    public SchedulesPage clickOnSchedulesButton(){
+        DriverManager.elementToBeClickable(sideSchedulesButton);
+        return new SchedulesPage();
+    }
+
     @Step("Click on the 'Settings' button")
     public SettingsPage clickOnSettingsButton(){
-        getSettingsButton().clickButton();
+        DriverManager.elementToBeClickable(sideSettingsButton);
         return new SettingsPage();
     }
     @Step("Click on the Users profile icon")
     public HomePage clickOnProfileIcon(){
+        DriverManager.webDriverWait();
         getUserIcon().clickButton();
         return this;
     }
@@ -234,31 +256,37 @@ public class HomePage {
     }
     @Step("Click on the 'Notifications' tab")
     public HomePage clickOnNotificationsTab(){
+        DriverManager.webDriverWait();
         getNotificationsTab().clickTab();
         return this;
     }
     @Step("Click on the 'Emails' tab")
     public HomePage clickOnEmailsTab(){
+        DriverManager.webDriverWait();
         getEmailsTab().clickTab();
         return this;
     }
     @Step("Click on the 'Sent' emails sub tab")
     public HomePage clickOnSentEmailsSubTab(){
+        DriverManager.webDriverWait();
         getSentSubTab().clickTab();
         return this;
     }
     @Step("Click on the 'Hidden' emails sub tab")
     public HomePage clickOnTheHiddenSubTab(){
+        DriverManager.webDriverWait();
         getHiddenSubTab().clickTab();
         return this;
     }
     @Step("Click on the 'Notes' tab")
     public HomePage clickOnNotesTab(){
+        DriverManager.webDriverWait();
         getNotesTab().clickTab();
         return this;
     }
     @Step("Click on the 'Tasks' tab")
     public HomePage clickOnTasksTab(){
+        DriverManager.webDriverWait();
         getTasksTab().clickTab();
         return this;
     }
@@ -282,9 +310,9 @@ public class HomePage {
     }
     @Step("Click on the 'Save' button for the task")
     public HomePage clickSaveButtonForTask(){
+        DriverManager.webDriverWait();
         getSaveButtonForTask().clickButton();
         return this;
     }
-
 
 }

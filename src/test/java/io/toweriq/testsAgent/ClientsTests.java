@@ -116,9 +116,16 @@ public class ClientsTests extends TestBase {
         companiesPage
                 .clickBlankScheduleOption()
                 .clickNextButtonOnCreateScheduleModal()
+                .enterScheduleNameinSearchField("Fixed Equipment")
                 .getFirstScheduleInTheList().isExists(3);
         companiesPage
-                .clickOnFirstScheduleInTheList();
+                .clickOnFirstScheduleInTheList()
+                .clickNextButtonOnCreateScheduleModal()
+                .enterScheduleName("generateScheduleName")
+                .enterScheduleDescription("generateScheduleDescription")
+                .clickCreateScheduleButton();
+        companiesPage
+                .getSchedulesDropDown().isExists(3);
 
     }
 
@@ -165,5 +172,17 @@ public class ClientsTests extends TestBase {
         String policy = "PN # " + e;
         System.out.println(policy);
         return policy;
+    }
+    private String generateScheduleName(){
+        Random random = new Random();
+        int f = random.nextInt(10000) + 1;
+        String schedule = "Test schedule " + f;
+        System.out.println(schedule);
+        return schedule;
+    }
+    private String generateScheduleDescription() {
+        String description = "Test Schedule description";
+        System.out.println(description);
+        return description;
     }
 }

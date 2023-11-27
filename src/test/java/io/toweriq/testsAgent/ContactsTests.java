@@ -25,13 +25,13 @@ public class ContactsTests extends TestBase {
                 .getContactsPageHeaders().isExists();
     }
 
-    @Test(description = "Open 'Contacts' landing page")//checked
+    @Test(description = "Open 'Contacts' landing page")
     public void openContactsPage(){
         fillContactsPage();
         contactsPage
                 .getAllContactsPageHeader().isExists();
     }
-    @Test(description = "Create simple Rolodex contact user (Email address only)")//checked
+    @Test(description = "Create simple Rolodex contact user (Email address only)")
     public void createRolodexEmailOnly(){
         fillContactsPage();
         contactsPage
@@ -42,7 +42,7 @@ public class ContactsTests extends TestBase {
                 .clickOnFinishButton()
                 .getSuccessPopUp().isExists();
     }
-    @Test(description = "Create the Rolodex contact user (First and Last Name only)")//checked
+    @Test(description = "Create the Rolodex contact user (First and Last Name only)")
     public void createRolodexNamesOnly(){
         fillContactsPage();
         contactsPage
@@ -54,7 +54,7 @@ public class ContactsTests extends TestBase {
                 .clickOnFinishButton()
                 .getSuccessPopUp();
     }
-    @Test(description = "Create the Rolodex contact user (Email, First Name, Last Name)")//checked
+    @Test(description = "Create the Rolodex contact user (Email, First Name, Last Name)")
     public void createContactAndSendInviteLater(){
         fillContactsPage();
         contactsPage
@@ -68,7 +68,7 @@ public class ContactsTests extends TestBase {
                 .clickOnFinishButton()
                 .getSuccessPopUp().isExists();
     }
-    @Test(description = "Create the Rolodex contact user from the Company landing page(First Name and Last Name name only)")//checked
+    @Test(description = "Create the Rolodex contact user from the Company landing page(First Name and Last Name name only)")
     public void createRolodexFromCompanyLandingOnlyNames(){
         fillCompanyPage();
         companiesPage
@@ -84,7 +84,7 @@ public class ContactsTests extends TestBase {
                 .enterLastNameRolodex(generateContactLastName())
                 .clickFinishButtonForRolodex();
     }
-    @Test(description = "Create the Rolodex contact user from the Company landing page(Emails only)")//checked
+    @Test(description = "Create the Rolodex contact user from the Company landing page(Emails only)")
     public void createRolodexFromCompanyLandingOnlyEmails(){
         fillCompanyPage();
         companiesPage
@@ -99,7 +99,7 @@ public class ContactsTests extends TestBase {
                 .enterEmailAddressOfNewRolodexUser(generateContactEmail())
                 .clickFinishButtonForRolodex();
     }
-    @Test(description = "Create the Administrator user from the Company landing page")//checked
+    @Test(description = "Create the Administrator user from the Company landing page")
     public void createAdministratorFromCompanyLandingPage(){
         fillCompanyPage();
         companiesPage
@@ -119,7 +119,7 @@ public class ContactsTests extends TestBase {
                 .selectAdministratorRole()
                 .clickFinishButtonForRolodex();
     }
-    @Test(description = "Create the Collaborator user from the Company landing page")//checked
+    @Test(description = "Create the Collaborator user from the Company landing page")
     public void createCollaboratorFromCompanyLandingPage(){
         fillCompanyPage();
         companiesPage
@@ -139,7 +139,7 @@ public class ContactsTests extends TestBase {
                 .selectCollaboratorRole()
                 .clickFinishButtonForRolodex();
     }
-    @Test(description = "Create the Collaborator user from the Company landing page with the additional permissions")//checked
+    @Test(description = "Create the Collaborator user from the Company landing page with the additional permissions")
     public void createCollaboratorFromCompanyLandingPageAdditionalPermissions(){
         fillCompanyPage();
         companiesPage
@@ -168,7 +168,7 @@ public class ContactsTests extends TestBase {
                 .clickFinishButtonForRolodex();
     }
 
-    @Test(description = "Creating a new Administrator user from the 'Contacts' page")//check
+    @Test(description = "Creating a new Administrator user from the 'Contacts' page")
     public void createAdministratorFromContactPage(){
         fillContactsPage();
         contactsPage
@@ -185,7 +185,7 @@ public class ContactsTests extends TestBase {
                 .getSuccessPopUp().isExists();
     }
 
-    @Test(description = "Creating a new Collaborator user from the 'Contacts' page")//check
+    @Test(description = "Creating a new Collaborator user from the 'Contacts' page")
     public void createCollaboratorFromContactPage(){
         fillContactsPage();
         contactsPage
@@ -201,7 +201,7 @@ public class ContactsTests extends TestBase {
                 .clickOnFinishButton()
                 .getSuccessPopUp().isExists();
     }
-    @Test(description = "Creating a new Collaborator user from the 'Contacts' page with the additional permissions")//check
+    @Test(description = "Creating a new Collaborator user from the 'Contacts' page with the additional permissions")
     public void createCollaboratorFromContactPageWithAdditionalPermissions(){
         fillContactsPage();
         contactsPage
@@ -226,7 +226,7 @@ public class ContactsTests extends TestBase {
                 .getSuccessPopUp().isExists();
     }
 
-    @Test(description = "Set personal profile for the new created user")//check
+    @Test(description = "Set personal profile for the new created user")
     public void setPersonalProfile(){
         fillContactsPage();
         contactsPage
@@ -248,7 +248,7 @@ public class ContactsTests extends TestBase {
                 .getSuccessPopUp().isExists();
     }
 
-    @Test(description = "Create new email from the Contact landing page")//check
+    @Test(description = "Create new email from the Contact landing page")
     public void createEmailFromContactPage(){
         fillContactsPage();
         contactsPage
@@ -258,13 +258,28 @@ public class ContactsTests extends TestBase {
                 .getAllContactsPageHeader().isExists();
         contactsPage
                 .clickOnFirstCommercialContactFromTeble()
-                .getContactLandingPage();
+                .getContactLandingPage().isExists();
         contactsPage
-                .clickOnCompaniesTab()
                 .clickOnEmailButton()
                 .enterSubjectForEmail(generateEmailSubject());
     }
-    @Test(description = "Create new note from the Contact landing page")//check
+    @Test(description = "Send a new email from the Contact landing page")
+    public void sendEmailFromContactPage(){
+        fillContactsPage();
+        contactsPage
+                .getAllContactsPageHeader().isExists();
+        contactsPage
+                .clickOnClientsTabInSubmenu()
+                .getAllContactsPageHeader().isExists();
+        contactsPage
+                .clickOnFirstCommercialContactFromTeble()
+                .getContactLandingPage().isExists();
+        contactsPage
+                .clickOnEmailButton()
+                .enterSubjectForEmail(generateEmailSubject())
+                .clickOnSendButtonForEmail();
+    }
+    @Test(description = "Create new note from the Contact landing page")
     public void createNoteFromContactPage(){
         fillContactsPage();
         contactsPage
@@ -276,10 +291,9 @@ public class ContactsTests extends TestBase {
                 .clickOnFirstCommercialContactFromTeble()
                 .getContactLandingPage().isExists();
         contactsPage
-                .clickOnCompaniesTab()
                 .clickOnNoteButton();
     }
-    @Test(description = "Create new Task from the Contact landing page")//check
+    @Test(description = "Create new Task from the Contact landing page")
     public void createTaskFromContactPage(){
         fillContactsPage();
         contactsPage
@@ -288,10 +302,11 @@ public class ContactsTests extends TestBase {
                 .clickOnClientsTabInSubmenu()
                 .getAllContactsPageHeader().isExists();
         contactsPage
-                .clickOnFirstCommercialContactFromTeble()
-                .getContactLandingPage();
+                .clickOnSecondCommercialContactFromTeble()
+                .getContactLandingPage().isExists();
         contactsPage
-                .clickOnCompaniesTab()
+                .getCompaniesTabOnContactLanding().clickTab();
+        contactsPage
                 .clickOnTaskButton();
     }
 

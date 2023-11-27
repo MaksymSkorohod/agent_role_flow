@@ -5,7 +5,12 @@ import io.toweriq.DriverManager;
 import io.toweriq.Elements.*;
 import lombok.Getter;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 
 public class CompaniesPage extends AbstractPage {
 
@@ -16,7 +21,7 @@ public class CompaniesPage extends AbstractPage {
     private By agenciesTab = By.id("Agencies");
     private By carriersTab = By.id("Carriers");
     private By createNewCompanyButton = By.id("clientCreate");
-    private By clientOptionBox = By.xpath("//div[@id='squareImagecheckBoxItemClient']/div[2]");
+    private By clientOptionBox = By.xpath("//div[@id='squareImagecheckBoxItemClient']/div");
     private By otherOptionBox = By.xpath("//div[@id='squareImagecheckBoxItemOther']/div[2]");
     private By nextButtonCreate = By.id("createCompanyNext");
     private By clientNameField = By.id("clientName");
@@ -44,14 +49,17 @@ public class CompaniesPage extends AbstractPage {
     private By closeClientEditMode = By.id("create-client-button-cancel");
     private By clientInformationTab = By.xpath("//div[@id='transactionTabClientInformation']/p");
     private By schedulesDropDown = By.cssSelector("div:nth-of-type(2) > button#tabDropDown");
-    private By schedulesOption = By.xpath("//body/div[@role='tooltip']/div/p[1]");
+    private By schedulesOption = By.xpath("//body/div[@role='tooltip']/div/div[1]/div[text()='Schedules']");
     private By clientActionButton = By.id("clientActionsButton");
     private By addSchedule = By.xpath("//body/div[@role='tooltip']//div[text()='Add schedule']");
     private By createScheduleModal = By.id("schedule-dialog-title");
     private By blankScheduleOption = By.id("type0");
     private By createScheduleNextButton = By.id("create-schedule-button-next");
-    private By firstScheduleInTheList = By.id("template-73456669776131547321349741207");
-
+    private By searchFieldForSchedules = By.id("tiq-unknown-search-input");
+    private By firstScheduleInTheList = By.xpath("//*[@id=\"73456669776131547321349741207\"]");
+    private By scheduleNameInputField = By.id("schedule-name");
+    private By scheduleDescriptionInputField = By.id("schedule-description");
+    private By createScheduleButton = By.id("create-schedule-button-cancel");
     private By contactTabCompanyLanding = By.id("transactionTabContacts");
     private By transactionsTabOfClient = By.id("transactionTabTransactions");
     private By subTabClientContacts = By.id("transactionTabClientContacts");
@@ -73,7 +81,7 @@ public class CompaniesPage extends AbstractPage {
     private By requestClaimsAdditionalPermission = By.xpath("//form[@id='new-rolodex-crm-contact-form']//span[text()='Request Claims']");
     private By requestEndorsementAdditionalPermission = By.xpath("//form[@id='new-rolodex-crm-contact-form']//span[text()='Request Endorsement']");
     private By requestCertificateAdditionalPermission = By.xpath("//form[@id='new-rolodex-crm-contact-form']//span[text()='Request Certificate']");
-    private By createContactFinishButton = By.id("createCompanyFinish");
+    private By createContactFinishButton = By.xpath("//*[@id=\"createCompanyFinish\"]/div[text()='Save changes']");
     private By addTransactionButton = By.id("create-transaction-button");
     private By starTransactionModal = By.id("transaction-dialog-title");
     private By transactionTypeDropdownField = By.id("transactionType");
@@ -86,10 +94,6 @@ public class CompaniesPage extends AbstractPage {
     private By newBusinessOption = By.id("New_business");
     private By renewalOption = By.id("Renewal");
     private By finishTransactionButton = By.id("createTSFinish");
-
-
-//    private By profileSelect0 = By.xpath("//form[@id='personal-info-form']/div//div[@data-select='Select-0']"); // the selectors for the Profile on the login page for the Contact users
-//    private By profileSelect1 = By.xpath("//form[@id='personal-info-form']/div//div[@data-select='Select-1']");//
 
     @Getter
     TextField AllCompaniesPageHeader = new TextField(allCompaniesPageHeader, "The 'Clients' label is visible");
@@ -157,7 +161,6 @@ public class CompaniesPage extends AbstractPage {
     Button EditClientButton = new Button(clientEditButton,"The 'Edit client' button");
     @Getter
     Button CloseClientEditMode = new Button(closeClientEditMode,"The 'Cancel' button to close 'Edit client' window");
-
     @Getter
     Button ClientInformationTab = new Button(clientInformationTab, "The 'Client information' tab on the company landing page");
     @Getter
@@ -175,8 +178,15 @@ public class CompaniesPage extends AbstractPage {
     @Getter
     Button CreateScheduleNextButton = new Button(createScheduleNextButton, "The 'Next' button on the 'Create schedule' modal");
     @Getter
-    Button FirstScheduleInTheList =new Button(firstScheduleInTheList, "The first schedule in the list on the 'Create schedule' modal");
-
+    InputField SearchFieldForSchedules = new InputField(searchFieldForSchedules,"The search field for the schedules on the 'Create schedule' modal window");
+    @Getter
+    Button FirstScheduleInTheList = new Button(firstScheduleInTheList, "The first schedule in the list on the 'Create schedule' modal");
+    @Getter
+    InputField ScheduleNameInputField = new InputField(scheduleNameInputField,"The 'Schedule name' input field");
+    @Getter
+    InputField ScheduleDescriptionInputField = new InputField(scheduleDescriptionInputField, "The 'Schedule description' input field");
+    @Getter
+    Button CreateScheduleButton = new Button(createScheduleButton,"The 'Create schedule' button on the 'Create schedule' modal window");
     @Getter
     Tab ContactTabCompanyLanding = new Tab (contactTabCompanyLanding, "The 'Other contacts' sub tab on the company landing page");
     @Getter
@@ -245,6 +255,7 @@ public class CompaniesPage extends AbstractPage {
     DropDownOption RenewalOption = new DropDownOption(renewalOption, "The 'Renewal' option in the 'Transaction type' dropdown");
     @Getter
     Button FinishTransactionButton = new Button(finishTransactionButton, "The 'Finish' button to complete creation of the transaction");
+    private WebElement driver;
 
     @Step("Click on the 'All companies' tab from the 'Companies' page")
     public CompaniesPage clickOnAllCompaniesTab(){
@@ -415,6 +426,7 @@ public class CompaniesPage extends AbstractPage {
     }
     @Step("Click on the 'Action' button from the 'Schedules' sub tab")
     public CompaniesPage clickOnActionsButton(){
+        DriverManager.webDriverWait();
         getClientActionButton().clickButton();
         return this;
     }
@@ -435,13 +447,35 @@ public class CompaniesPage extends AbstractPage {
         getCreateScheduleNextButton().clickButton();
         return this;
     }
+    @Step("Enter schedule template name into the 'Search' input field")
+    public CompaniesPage enterScheduleNameinSearchField(String email){
+        getSearchFieldForSchedules().setText(email);
+        System.out.println(email);
+        return this;
+    }
     @Step("Select and click on the first schedule in the list")
     public CompaniesPage clickOnFirstScheduleInTheList(){
         DriverManager.getWaiter(3);
         getFirstScheduleInTheList().clickButton();
         return this;
     }
-
+    @Step("Enter schedule name into the 'Schedule name' input field")
+    public CompaniesPage enterScheduleName(String email){
+        getScheduleNameInputField().setText(email);
+        System.out.println(email);
+        return this;
+    }
+    @Step("Enter schedule name into the 'Schedule name' input field")
+    public CompaniesPage enterScheduleDescription(String email){
+        getScheduleDescriptionInputField().setText(email);
+        System.out.println(email);
+        return this;
+    }
+    @Step("Click on the 'Create schedule' button on the 'Create schedule' modal window")
+    public CompaniesPage clickCreateScheduleButton(){
+        getCreateScheduleButton().clickButton();
+        return this;
+    }
     @Step("Click on the 'Contacts' tab from the company landing page")
     public CompaniesPage clickContactsTabFromCompanyLandingPage(){
         getContactTabCompanyLanding().clickTab();
@@ -554,7 +588,6 @@ public class CompaniesPage extends AbstractPage {
         getCreateContactFinishButton().clickButton();
         return this;
     }
-
     @Step("Click on the 'Transactions' tab from the company landing page")
     public CompaniesPage clickOnTransactionsTabOnCompanyLandingPage(){
         getTransactionsTabOfClient().clickTab();

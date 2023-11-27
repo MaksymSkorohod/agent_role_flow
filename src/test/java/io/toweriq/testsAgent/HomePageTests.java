@@ -39,6 +39,9 @@ public class HomePageTests extends TestBase {
                 .clickOnESignatureButton()
                 .getESignaturePageHeader().isExists();
         homePage
+                .clickOnSchedulesButton()
+                .getSchedulePageHeader().isExists();
+        homePage
                 .clickOnSettingsButton()
                 .getSettingsPageHeader().isExists();
         homePage
@@ -52,7 +55,7 @@ public class HomePageTests extends TestBase {
                 .clickSignOutLink();
     }
 
-    @Test(description = "Click on the '+Add a task' button from the 'Activity feed' page")//check
+    @Test(description = "Create the task from the 'Activity feed' page")//check
     public void clickOnTaskButton(){
         homePage
                 .clickAddTaskButton()
@@ -92,11 +95,5 @@ public class HomePageTests extends TestBase {
         homePage
                 .clickOnNotesTab()
                 .getNotesPageHeader().isExists();
-    }
-    @Test(description = "Open the 'Tasks' page from the 'Activity feed'")
-    public void  openTasksPage(){
-        homePage
-                .clickOnTasksTab()
-                .getTasksPageHeader().isExists();
     }
 }

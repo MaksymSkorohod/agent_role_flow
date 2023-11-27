@@ -31,7 +31,7 @@ public class TransactionsPage extends AbstractPage{
     private By renewalOption = By.id("Renewal");
     private By finishTransactionCreationButton = By.id("createTSFinish");
     private By transactionsLinkOnLandingPage = By.xpath("//div[@id='root']//div/h1/a[@href='/transactions']");
-    private By transactionLandingPageHeader = By.id("transaction-landing-page");
+    private By transactionLandingPageHeader = By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/div/div[1]/div[1]/h1/a");
     private By transactionNameInTable = By.xpath("//table[@id='transactions-table']//tbody//tr[1]/td[2]/div");
     private By transactionsHeaderLink = By.xpath("//div[@id='root']//div/h1//a[@href='/transactions']");
     private By firstTransactionInTable = By.xpath("//table[@id='transactions-table']/tbody/tr[1]/td[2]//a");
@@ -40,13 +40,16 @@ public class TransactionsPage extends AbstractPage{
     private By transactionTabWorkspace = By.xpath("//div[@id='transactionTabWorkspace']/p");
     private By transactionFormsSubTab = By.id("transactionTabForms");
     private By addFormButton = By.id("add-form-btn");
-    private By theFormForTransaction = By.xpath("//table[@id='companies-table']//tr[1]/td[1]");
+    private By theFormForTransaction = By.xpath("//*[@id=\"companies-table\"]/tbody/tr/td[1]/div/div/div/div");
     private By doneButtonForAddingForm = By.id("done");
     private By emailButtonOnTransactionPage = By.id("action-email-btn");
     private By subjectFieldNewEmail = By.id("subject");
     private By emailTextArea = By.cssSelector(".ql-container.ql-snow > .ql-blank.ql-editor");
     private By sendButtonForEmail = By.xpath("//div[@id='crm-draggable-wrapper']/div[@class='react-draggable']//div[text()='Send']");
     private By noteButtonOnTransactionPage = By.id("action-note-btn");
+    private By noteSubjectField = By.xpath("//*[@id=\"crm-draggable-wrapper\"]/div/div[1]/div/div[2]/div/div[1]/div[2]/div/div/input");
+    private By noteTextArea = By.xpath("//*[@id=\"crm-draggable-wrapper\"]/div/div[1]/div/div[2]/div/div[2]/div[1]/div/div[1]");
+    private By saveNoteButton = By.id("crm-modal-save-note");
     private By taskButtonOnTransactionPage = By.id("action-task-btn");
     private By transactionSubTabClientRecordForms = By.id("transactionTabClientRecordForms");
     private By transactionSubTabSchedules = By.id("transactionTabSchedules");
@@ -59,7 +62,8 @@ public class TransactionsPage extends AbstractPage{
     private By transactionTabNotes = By.id("transactionTabNotes");
     private By transactionTabTasks = By.xpath("//div[@id='transactionTabTasks']/p");
     private By userRoleDropDown = By.cssSelector("[class='css-1pcexqc-container select-component']");
-
+    private By clientRoleUserOption = By.id("//*[@id=\"react-select-16-option-0\"]");
+    private By agentRoleUserOption = By.id("//*[@id=\"react-select-16-option-1\"]");
 
     @Getter
     TextField TransactionsPageHeader = new TextField(transactionsPageHeader,"The header of the 'Transactions' page");
@@ -134,6 +138,12 @@ public class TransactionsPage extends AbstractPage{
     @Getter
     Button NoteButtonOnTransactionPage = new Button(noteButtonOnTransactionPage,"The 'Note' button on the transaction landing page");
     @Getter
+    InputField NoteSubjectField = new InputField(noteSubjectField,"The subject field for the note");
+    @Getter
+    InputField NoteTextArea = new InputField(noteTextArea, "The text area for the note");
+    @Getter
+    Button SaveNoteButton = new Button(saveNoteButton,"The 'Save' button for the note");
+    @Getter
     Button TaskButtonOnTransactionPage = new Button(taskButtonOnTransactionPage,"The 'Task' button on the transaction landing page");
     @Getter
     Tab TransactionSubTabClientRecordForms = new Tab(transactionSubTabClientRecordForms,"The 'Client record forms' sub tab on the company landing page");
@@ -157,6 +167,10 @@ public class TransactionsPage extends AbstractPage{
     Tab TransactionTabTasks = new Tab(transactionTabTasks, "The 'Tasks' tab on the company landing page");
     @Getter
     DropDownList UserRoleDropDownField = new DropDownList(userRoleDropDown, "The 'Select a user role' area on the transaction landing page");
+    @Getter
+    Button ClientRoleUserOption = new Button(clientRoleUserOption,"The 'Client' option");
+    @Getter
+    Button AgentRoleUserOption = new Button(agentRoleUserOption,"The 'Agent' option");
 
 
     @Step("Enter text into the 'Search' field")
@@ -271,7 +285,7 @@ public class TransactionsPage extends AbstractPage{
     }
     @Step("Click on the Form")
     public TransactionsPage clickOnTheForm(){
-        getTheFormForTransaction().clickButton();
+        DriverManager.elementToBeClickable(theFormForTransaction);
         return this;
     }
     @Step("Click on the 'Done' button on the 'Add forms' modal")
@@ -287,6 +301,23 @@ public class TransactionsPage extends AbstractPage{
     @Step("Click on the 'Note' button on the transaction landing page")
     public TransactionsPage clickNoteButtonOnTransactionPage (){
         getNoteButtonOnTransactionPage().clickButton();
+        return this;
+    }
+    @Step("Enter the subject for the note")
+    public TransactionsPage enterSubjectForTheNote(String noteSubject){
+        getNoteSubjectField().setText(noteSubject);
+        System.out.println(noteSubject);
+        return this;
+    }
+    @Step("Enter the text into the note text area")
+    public TransactionsPage enterNoteText(String noteText){
+        getNoteTextArea().setText(noteText);
+        System.out.println(noteText);
+        return this;
+    }
+    @Step("Click on the 'Save' button for the note")
+    public TransactionsPage clickSaveForNote(){
+        DriverManager.elementToBeClickable(saveNoteButton);
         return this;
     }
     @Step("Click on the 'Task' button on the transaction landing page")
@@ -345,6 +376,12 @@ public class TransactionsPage extends AbstractPage{
     public TransactionsPage clickOnSelectRoleDropdown(){
         DriverManager.getWaiter(5);
         getUserRoleDropDownField().click();
+        return this;
+    }
+    @Step("Click on the 'Client' option from the dropdown field")
+    public TransactionsPage clickOnClientOption(){
+        DriverManager.webDriverWait();
+        getClientRoleUserOption().clickButton();
         return this;
     }
 }

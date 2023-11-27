@@ -14,9 +14,8 @@ import static io.toweriq.DriverManager.killDriver;
 @Listeners({TestListener.class})
 public class TestBase {
 
-    protected HomePage   homePage;
-    protected ProgramsPage programsPage;
-    protected ProspectsPage prospectsPage;
+
+    protected HomePage homePage;
     protected CompaniesPage companiesPage;
     protected TransactionsPage transactionPage;
     protected PoliciesPage policiesPage;
@@ -24,6 +23,7 @@ public class TestBase {
     protected LibraryPage libraryPage;
     protected SignaturePage signaturePage;
     protected PortalsPage portalsPage;
+    protected SchedulesPage schedulesPage;
     protected ProfileAndPreferencesPage profilePage;
     protected SettingsPage settingsPage;
 
@@ -35,7 +35,12 @@ public class TestBase {
     public void signIn() {
         System.out.println("test");
         homePage = new SignInPage()
-                .typeEmail("toweriqautotest1@gmail.com")
+                .typeEmail("toweriqautotest1@outlook.com")
+                .clickSignInButton();
+        new SignInPage()
+                .getRememberCheckBox().isExists();
+        new SignInPage()
+                .clickRememberMeCheckBox()
                 .typePassword("Vfrcbv82")
                 .clickSignInButton();
     }
@@ -44,27 +49,11 @@ public class TestBase {
         homePage = homePage
                 .clickOnHomeButton();
     }
-
     protected void fillSettingsPage(){
         DriverManager.webDriverWait();
         settingsPage = homePage
                 .clickOnSettingsButton();
     }
-//    protected void fillProgramsPage(){
-//        DriverManager.WebDriverWait();
-//        programsPage = homePage
-//                .clickOnProgramsLink();
-//    }
-//    protected void fillLeadsPage(){
-//        DriverManager.WebDriverWait();
-//        leadsPage = homePage
-//                .clickOnLeadsLink();
-//    }
-//    protected void fillProspectsPage(){
-//        DriverManager.WebDriverWait();
-//        prospectsPage = homePage
-//                .clickOnProspectsLink();
-//    }
     protected void fillCompanyPage(){
         DriverManager.webDriverWait();
         companiesPage = homePage
@@ -95,14 +84,16 @@ public class TestBase {
         portalsPage = homePage
                 .clickOnPortalsButton();
     }
+    protected void fillSchedulesPage(){
+        schedulesPage = homePage
+                .clickOnSchedulesButton();
+    }
     protected void fillProfilePage(){
         profilePage = homePage
                 .clickOnProfilePreferencesLink();
+     }
+    @AfterMethod
+    public void close(){
+        killDriver();
     }
-
-//    @AfterMethod
-//    public void close(){
-//        killDriver();
-//    }
-
 }

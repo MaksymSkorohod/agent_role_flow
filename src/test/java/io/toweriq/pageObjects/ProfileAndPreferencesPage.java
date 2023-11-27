@@ -37,14 +37,6 @@ public class ProfileAndPreferencesPage extends AbstractPage {
     @Step("Click on the 'Notifications' tab")
     public NotificationPage clickOnNotificationsTab(){
         getClickOnNotificationsTab().clickButton();
-//        DriverManager.WebDriverWait();
         return new NotificationPage();
     }
-    @Step("Click on the 'Underwriters' tab")
-    public UnderwritersPage clickOnUnderwriterPage(){
-        getClickOnUnderwriterTab().clickButton();
-        return new UnderwritersPage();
-    }
-
-
 }
