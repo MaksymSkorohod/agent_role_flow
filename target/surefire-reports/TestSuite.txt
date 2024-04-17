@@ -1,0 +1,29 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 22, Failures: 3, Errors: 0, Skipped: 17, Time elapsed: 154.287 s <<< FAILURE! - in TestSuite
+LogIn(ro.maxbet.testsAgent.HomePageTests)  Time elapsed: 10.973 s  <<< FAILURE!
+org.openqa.selenium.ElementClickInterceptedException: 
+element click intercepted: Element <input _ngcontent-ng-c3094140440="" type="text" formcontrolname="username" class="w-100 ng-untouched ng-pristine ng-invalid"> is not clickable at point (960, 349). Other element would receive the click: <div _ngcontent-ng-c3094140440="" class="input text-center w-100">...</div>
+  (Session info: chrome=121.0.6167.139)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'MacBook-Pro-Maxim.local', ip: 'fe80:0:0:0:83d:e23e:65ed:d8ab%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '12.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.139, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: /var/folders/gm/x6z5bb8x79b...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54185}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: MAC, platformName: MAC, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 13a4ea713159abca449fdeb3cd053820
+
+clickSoccerButtonFromLiveBettingPage(ro.maxbet.testsAgent.LiveBettingPageTest)  Time elapsed: 0.597 s  <<< FAILURE!
+java.lang.NullPointerException
+	at ro.maxbet.testsAgent.LiveBettingPageTest.clickSoccerButtonFromLiveBettingPage(LiveBettingPageTest.java:9)
+
+clickOnPlayNowButton(ro.maxbet.testsAgent.PromotionsPageTest)  Time elapsed: 1.573 s  <<< FAILURE!
+org.openqa.selenium.ElementClickInterceptedException: 
+element click intercepted: Element <menu-nav-item class="nav-item" _nghost-ng-c330475399="" style="color: red; border: 2px solid yellow;">...</menu-nav-item> is not clickable at point (712, 25). Other element would receive the click: <div _ngcontent-ng-c3786585767="" class="mask"></div>
+  (Session info: chrome=121.0.6167.139)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'MacBook-Pro-Maxim.local', ip: 'fe80:0:0:0:83d:e23e:65ed:d8ab%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '12.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.139, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: /var/folders/gm/x6z5bb8x79b...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54252}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: MAC, platformName: MAC, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: a4d27f5d5e427c1e535d6addcc963b47
+	at ro.maxbet.testsAgent.PromotionsPageTest.clickOnPlayNowButton(PromotionsPageTest.java:15)
+

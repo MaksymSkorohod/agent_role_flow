@@ -1,0 +1,17 @@
+ro/maxbet/pageObjects/LogInPage.class
+ro/maxbet/pageObjects/AbstractPage.class
+ro/maxbet/pageObjects/WalletPage.class
+ro/maxbet/pageObjects/LiveBettingPage.class
+ro/maxbet/pageObjects/BettingPage.class
+ro/maxbet/pageObjects/TournamentsPage.class
+ro/maxbet/testsAgent/LiveBettingPageTest.class
+ro/maxbet/testsAgent/TournamentsPageTest.class
+ro/maxbet/pageObjects/HomePage.class
+ro/maxbet/testsAgent/BettingPageTest.class
+ro/maxbet/testsAgent/LiveCasinoPageTests.class
+ro/maxbet/utils/TestListener.class
+ro/maxbet/testsAgent/HomePageTests.class
+ro/maxbet/pageObjects/PromotionsPage.class
+ro/maxbet/pageObjects/LiveCasinoPage.class
+ro/maxbet/testsAgent/TestBase.class
+ro/maxbet/testsAgent/PromotionsPageTest.class

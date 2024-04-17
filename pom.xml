@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.toweriq</groupId>
-  <artifactId>agent_role_flow</artifactId>
+  <artifactId>user_role_flow</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <name>agent_role_flow</name>
