@@ -1,4 +1,4 @@
-package io.toweriq;
+package io.maxbet;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
